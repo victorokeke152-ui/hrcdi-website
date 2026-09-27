@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs & Impact - HRCDI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1b4332;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2.5rem;
+        }
+        .hero h1 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+        }
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .program-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-top: 4px solid #2d6a4f;
+        }
+        .program-card h3 {
+            color: #1b4332;
+            margin-bottom: 0.75rem;
+        }
+        .cta-section {
+            margin-top: 3rem;
+            text-align: center;
+            background: #2d6a4f;
+            color: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 8px;
+        }
+        .cta-section a {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #ffffff;
+            color: #1b4332;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #1b4332;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <div class="logo">
+            <h2>HRCDI</h2>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="programs.html">Programs</a>
+            <a href="donate.html">Donate</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Our Programs & Impact</h1>
+            <p>Empowering marginalized communities through sustainable development, education, capacity building, and economic growth.</p>
+        </section>
+
+        <section class="program-grid">
+            <div class="program-card">
+                <h3>Community Empowerment</h3>
+                <p>Equipping individuals and local grassroots groups with resources, leadership skills, and advocacy tools to drive long-term community growth.</p>
+            </div>
+
+            <div class="program-card">
+                <h3>Education & Skill Acquisition</h3>
+                <p>Providing vocational training, digital literacy, and educational support to youth and adults to foster self-reliance and employment opportunities.</p>
+            </div>
+
+            <div class="program-card">
+                <h3>Economic Growth & Micro-Initiatives</h3>
+                <p>Supporting local enterprise development, small business incubation, and financial literacy programs to uplift vulnerable households.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Support Our Work</h2>
+            <p>Your support allows us to expand our outreach and impact more lives across our communities.</p>
+            <a href="donate.html">Make a Donation</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Hope Rising Community Development Initiative. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
