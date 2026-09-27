@@ -169,46 +169,16 @@ nav {
             <p>Your generosity supports sustainable development and community growth.</p>
         </div>
 
-        <form id="paymentForm">
-            <div class="form-group">
-                <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" required placeholder="John Doe">
-            </div>
-            <div class="form-group">
-                <label for="email-address">Email Address</label>
-                <input type="email" id="email-address" required placeholder="donor@example.com">
-            </div>
-            <div class="form-group">
-                <label for="amount">Donation Amount (NGN)</label>
-                <input type="number" id="amount" required placeholder="5000" min="100">
-            </div>
-            <button type="submit" onclick="payWithPaystack(event)" class="btn-donate"><i class="fa-solid fa-heart"></i> Donate Now</button>
-        </form>
+        <div class="donate-container" style="max-width: 500px; margin: 2rem auto; padding: 2rem; border-radius: 8px; background: #f8f9fa; text-align: center;">
+    <h2>Make a Direct Donation</h2>
+    <p>You can support Hope Rising Community Development Initiative directly via bank transfer:</p>
+    
+    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <p><strong>Bank Name:</strong> [Insert Bank Name]</p>
+        <p><strong>Account Name:</strong> Hope Rising Community Development Initiative</p>
+        <p><strong>Account Number:</strong> [Insert Account Number]</p>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
-    </footer>
-
-    <script>
-        const paymentForm = document.getElementById('paymentForm');
-        paymentForm.addEventListener("submit", payWithPaystack, false);
-
-        function payWithPaystack(e) {
-            e.preventDefault();
-
-            let handler = PaystackPop.setup({
-                key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Replace with your Paystack Public Key
-                email: document.getElementById("email-address").value,
-                amount: document.getElementById("amount").value * 100,
-                currency: 'NGN',
-                ref: 'HRCDI_'+Math.floor((Math.random() * 1000000000) + 1),
-                onClose: function(){
-                    alert('Donation cancelled.');
-                },
-                callback: function(response){
-                    alert('Thank you for your generous support! Reference: ' + response.reference);
-                }
+</div>
             });
 
             handler.openIframe();
