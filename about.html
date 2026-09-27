@@ -1,1 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Hope Rising Community Development Initiative</title>
+    <link rel="icon" type="image/png" href="IMG_2369.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --primary-light: #2d6a4f;
+            --accent: #52b788;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Banner */
+        .page-header {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('IMG_2369.png') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border-left: 4px solid var(--accent);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Core Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .value-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .value-box i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="IMG_2369.png" alt="HRCDI Logo">
+            <span>HRCDI</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="index.html#focus" class="btn-primary">Get Involved</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Banner -->
+    <header class="page-header">
+        <h1>About HRCDI</h1>
+        <p>Learn about our story, mission, and commitment to sustainable community transformation.</p>
+    </header>
+
+    <!-- Mission & Vision -->
+    <section>
+        <div class="grid-2">
+            <div class="card">
+                <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
+                <p>To empower vulnerable and marginalized communities through sustainable development programs, access to quality education, healthcare initiatives, and economic growth opportunities.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-eye"></i> Our Vision</h3>
+                <p>A resilient society where every individual, regardless of socioeconomic background, has equal opportunity to thrive, contribute, and live with dignity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section style="background-color: var(--bg-light); max-width: 100%;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <h4>Compassion</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Putting people and communities at the heart of everything we do.</p>
+                </div>
+                <div class="value-box">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Integrity</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Upholding total transparency and accountability in all operations.</p>
+                </div>
+                <div class="value-box">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h4>Sustainability</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Creating long-term solutions that foster self-reliance.</p>
+                </div>
+                <div class="value-box">
+                    <i class="fa-solid fa-users"></i>
+                    <h4>Inclusivity</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Ensuring non-discriminatory support across all communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
