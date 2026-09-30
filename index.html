@@ -45,6 +45,10 @@
             --text-muted: #6c757d;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -202,7 +206,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Donate Banner */
+        /* Donate Banner & Bank Box */
         .donate-banner {
             background-color: var(--primary);
             color: white;
@@ -222,19 +226,37 @@
             opacity: 0.9;
         }
 
-        .btn-donate-now {
-            background-color: white;
-            color: var(--primary);
-            font-weight: 700;
-            padding: 0.8rem 1.8rem;
-            border-radius: 5px;
-            text-decoration: none;
+        .bank-details-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 1.5rem;
+            border-radius: 8px;
             display: inline-block;
-            transition: background-color 0.2s ease;
+            text-align: left;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .btn-donate-now:hover {
-            background-color: #f0f0f0;
+        .bank-details-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .bank-row {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .bank-row strong {
+            color: #ffffff;
+            display: inline-block;
+            width: 130px;
         }
 
         /* Form Styling */
@@ -285,7 +307,7 @@
             <li><a href="#focus">Programs</a></li>
             <li><a href="#trustees">Leadership</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="https://paystack.com/pay/hrcdi-donate" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate</a></li>
+            <li><a href="#donate" class="btn-primary">Donate</a></li>
         </ul>
     </nav>
 
@@ -295,7 +317,7 @@
         <p>Empowering marginalized communities through sustainable development, education, and economic growth.</p>
         <div class="hero-btns">
             <a href="#focus" class="btn btn-green">Our Focus Areas</a>
-            <a href="https://paystack.com/pay/hrcdi-donate" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Support Us</a>
+            <a href="#donate" class="btn btn-outline">Support Us</a>
         </div>
     </header>
 
@@ -343,13 +365,23 @@
         </div>
     </section>
 
-    <!-- Support / Donate Banner -->
+    <!-- Support / Donate Banner with Direct Bank Transfer Details -->
     <div id="donate" class="donate-banner">
         <h2>Support Our Cause</h2>
         <p>Your contributions directly empower community projects and youth development initiatives across Nigeria.</p>
-        <a href="https://paystack.com/pay/hrcdi-donate" target="_blank" rel="noopener noreferrer" class="btn-donate-now">
-            Donate Now
-        </a>
+        
+        <div class="bank-details-card">
+            <h3><i class="fa-solid fa-building-columns" style="margin-right: 6px;"></i> Direct Bank Transfer</h3>
+            <div class="bank-row">
+                <strong>Bank Name:</strong> United Bank for Africa
+            </div>
+            <div class="bank-row">
+                <strong>Account Name:</strong> Hope Rising Community Development Initiative
+            </div>
+            <div class="bank-row">
+                <strong>Account Number:</strong> 2276823055
+            </div>
+        </div>
     </div>
 
     <!-- Contact Section -->
