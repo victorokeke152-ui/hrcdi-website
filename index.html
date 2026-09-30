@@ -80,15 +80,16 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--primary);
             text-decoration: none;
         }
 
+        /* Increased Logo Size */
         .logo img {
-            height: 35px;
+            height: 55px;
             width: auto;
             object-fit: contain;
         }
@@ -334,6 +335,10 @@
                 flex-direction: column;
                 gap: 0.8rem;
                 padding: 0.8rem 1rem;
+            }
+
+            .logo img {
+                height: 65px; /* Prominent view on mobile devices */
             }
 
             .nav-links {
