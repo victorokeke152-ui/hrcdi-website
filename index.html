@@ -259,6 +259,40 @@
             width: 130px;
         }
 
+        /* Donor Table Styles */
+        .table-responsive {
+            overflow-x: auto;
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .donor-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .donor-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .donor-table tr:last-child td {
+            border-bottom: none;
+        }
+
         /* Form Styling */
         form {
             display: flex;
@@ -306,6 +340,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="#focus">Programs</a></li>
             <li><a href="#trustees">Leadership</a></li>
+            <li><a href="#donors">Transparency</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#donate" class="btn-primary">Donate</a></li>
         </ul>
@@ -384,13 +419,54 @@
         </div>
     </div>
 
+    <!-- Public Donor Roll / Transparency Section -->
+    <section id="donors">
+        <h2 class="section-title">Public Donor Roll & Transparency</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            We transparently acknowledge and thank the individuals and organizations supporting our community initiatives.
+        </p>
+
+        <div class="table-responsive">
+            <table class="donor-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Donor Name</th>
+                        <th>Contribution</th>
+                        <th>Project / Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30/09/2026</td>
+                        <td>Anonymous Supporter</td>
+                        <td>₦50,000</td>
+                        <td>Youth Education Support</td>
+                    </tr>
+                    <tr>
+                        <td>28/09/2026</td>
+                        <td>Victor O.</td>
+                        <td>₦25,000</td>
+                        <td>General Development Fund</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+            *Note: To protect donor privacy, supporters may request to be listed as "Anonymous Supporter".
+        </p>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <h2 class="section-title">Contact Us</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Have questions or made a bank donation? Send us a message with your transfer reference or privacy preference.
+        </p>
         <form action="https://formspree.io/f/xqpagwkn" method="POST">
             <input type="text" name="name" placeholder="Your Full Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <textarea name="message" rows="5" placeholder="Your Message (e.g. Donation confirmation or enquiry)" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
