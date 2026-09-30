@@ -47,20 +47,20 @@
             --text-muted: #6c757d;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         html, body {
             scroll-behavior: smooth;
             width: 100%;
             overflow-x: hidden;
-            margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background-color: #fff;
-        }
-
-        * {
-            box-sizing: border-box;
         }
 
         /* Navigation */
@@ -82,63 +82,68 @@
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--primary);
             text-decoration: none;
         }
 
-        /* Increased Logo Size */
         .logo img {
             height: 55px;
             width: auto;
             object-fit: contain;
         }
 
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
         .nav-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             list-style: none;
             align-items: center;
-            padding: 0;
-            margin: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             white-space: nowrap;
         }
 
         .nav-links a.btn-primary {
             background-color: var(--accent);
             color: white;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
-            font-size: 0.85rem;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('IMG_2369.png') center/cover no-repeat;
+            background: linear-gradient(rgba(27, 67, 50, 0.88), rgba(45, 106, 79, 0.88)), url('IMG_2369.png') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 4rem 1.2rem;
+            padding: 5rem 1rem;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .hero h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
             line-height: 1.25;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             max-width: 650px;
-            margin: 0 auto 1.5rem auto;
+            margin: 0 auto 1.8rem auto;
             opacity: 0.95;
         }
 
@@ -146,20 +151,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.8rem;
-            flex-direction: column;
-            width: 100%;
+            gap: 1rem;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.6rem;
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
             text-align: center;
-            width: 100%;
-            max-width: 280px;
         }
 
         .btn-green {
@@ -174,7 +175,7 @@
 
         /* Content Sections */
         section {
-            padding: 3rem 5%;
+            padding: 3.5rem 5%;
             max-width: 1100px;
             margin: 0 auto;
             width: 100%;
@@ -182,15 +183,15 @@
 
         .section-title {
             text-align: center;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.2rem;
+            gap: 1.5rem;
         }
 
         .card {
@@ -212,39 +213,40 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1.5rem;
             border-radius: 8px;
-            margin: 2rem 5%;
-            width: auto;
+            margin: 2rem auto;
+            max-width: 1100px;
+            width: 90%;
         }
 
         .donate-banner h2 {
             margin-bottom: 0.8rem;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
 
         .donate-banner p {
             margin-bottom: 1.5rem;
             opacity: 0.9;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .bank-details-card {
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 1.2rem;
+            padding: 1.5rem;
             border-radius: 8px;
             display: inline-block;
             text-align: left;
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .bank-details-card h3 {
             color: var(--accent);
             margin-bottom: 0.8rem;
-            font-size: 1rem;
+            font-size: 1.05rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -252,10 +254,10 @@
         }
 
         .bank-row {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
         }
 
         .bank-row strong {
@@ -276,19 +278,19 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             min-width: 500px;
         }
 
         .donor-table th {
             background-color: var(--primary);
             color: white;
-            padding: 0.8rem;
+            padding: 0.9rem;
             font-weight: 600;
         }
 
         .donor-table td {
-            padding: 0.8rem;
+            padding: 0.9rem;
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -324,44 +326,55 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 1.5rem 1rem;
+            padding: 1.8rem 1rem;
             margin-top: 2.5rem;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Mobile Styles */
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 0.8rem;
-                padding: 0.8rem 1rem;
-            }
-
-            .logo img {
-                height: 65px; /* Prominent view on mobile devices */
+            .menu-toggle {
+                display: block;
             }
 
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.6rem 0.8rem;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 1.2rem 0;
+                gap: 1rem;
             }
 
-            .bank-row {
-                flex-direction: row;
-                justify-content: space-between;
+            .nav-links.active {
+                display: flex;
             }
 
-            .bank-row strong {
-                width: auto;
+            .logo img {
+                height: 50px;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
             }
 
             .hero-btns {
                 flex-direction: column;
+                width: 100%;
             }
 
             .btn {
                 width: 100%;
+                max-width: 280px;
+            }
+
+            .bank-row {
+                flex-direction: column;
+                gap: 2px;
             }
         }
     </style>
@@ -374,7 +387,10 @@
             <img src="IMG_2369.png" alt="HRCDI Logo">
             <span>HRCDI</span>
         </a>
-        <ul class="nav-links">
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="#focus">Programs</a></li>
             <li><a href="#trustees">Leadership</a></li>
@@ -513,6 +529,24 @@
     <footer>
         <p>&copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
     </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuToggle = id => document.getElementById(id);
+        const mobileMenu = menuToggle('mobile-menu');
+        const navList = menuToggle('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close menu when clicking any nav link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
