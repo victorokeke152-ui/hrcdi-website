@@ -5,387 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Hope Rising Community Development Initiative</title>
     <link rel="icon" type="image/png" href="IMG_2369.png">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #1b4332;
-            --primary-light: #2d6a4f;
-            --accent: #52b788;
-            --bg-light: #f8f9fa;
-            --text-dark: #212529;
-            --text-muted: #6c757d;
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: #fff;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent);
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: white !important;
-            padding: 0.6rem 1.2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-light);
-        }
-
-        /* Banner */
-        .page-header {
-            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('IMG_2369.png') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            padding: 4rem 1rem;
-        }
-
-        .page-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 4rem 5%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .card {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border-left: 4px solid var(--accent);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Core Values */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .value-box {
-            text-align: center;
-            padding: 1.5rem;
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .value-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .value-box i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Board of Trustees Grid */
-        .trustees-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .trustee-card {
-            background: #fff;
-            padding: 2rem 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .trustee-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .trustee-avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--bg-light);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.2rem;
-            border: 2px solid var(--accent);
-        }
-
-        .trustee-card h3 {
-            color: var(--text-dark);
-            font-size: 1.25rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .trustee-card p {
-            color: var(--primary-light);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .trustee-card .description {
-            color: var(--text-muted);
-            font-weight: normal;
-            font-size: 0.88rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem 2rem;
-            margin-top: 3rem;
-        }
-
-        footer .footer-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        footer h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: #fff;
-        }
-
-        footer p {
-            opacity: 0.9;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-
-        footer .legal-notice {
-            font-size: 0.85rem;
-            opacity: 0.75;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-500 selection:text-white flex flex-col min-h-screen">
 
     <!-- Header / Navbar -->
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="IMG_2369.png" alt="HRCDI Logo">
-            <span>HRCDI</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="index.html#focus" class="btn-primary">Get Involved</a></li>
-        </ul>
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
+                        <span class="font-bold text-lg text-emerald-900 tracking-tight">HRCDI</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-emerald-700 font-semibold border-b-2 border-emerald-600 py-1">About Us</a>
+                    <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Contact Us</a>
+                    <a href="index.html#focus" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-sm shadow-emerald-200">Get Involved</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2" aria-label="Toggle navigation">
+                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-2">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-semibold text-emerald-700 bg-emerald-50">About Us</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Contact Us</a>
+            <a href="index.html#focus" class="block px-3 py-2 text-center rounded-md text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700">Get Involved</a>
+        </div>
     </nav>
 
     <!-- Page Banner -->
-    <header class="page-header">
-        <h1>About HRCDI</h1>
-        <p>Learn about our story, mission, and commitment to sustainable community transformation.</p>
+    <header class="relative bg-emerald-950 text-white py-16 px-4 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#15803d_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">About HRCDI</h1>
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light">
+                Learn about our story, mission, and commitment to sustainable community transformation.
+            </p>
+        </div>
     </header>
 
-    <!-- Mission & Vision -->
-    <section>
-        <div class="grid-2">
-            <div class="card">
-                <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
-                <p>To empower vulnerable and marginalized communities through sustainable development programs, access to quality education, healthcare initiatives, and economic growth opportunities.</p>
+    <main class="flex-grow">
+        <!-- Mission & Vision -->
+        <section class="py-12 max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 sm:p-8 rounded-xl border-l-4 border-emerald-600 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                        <span class="p-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </span>
+                        Our Mission
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                        To empower vulnerable and marginalized communities through sustainable development programs, access to quality education, healthcare initiatives, and economic growth opportunities.
+                    </p>
+                </div>
+                <div class="bg-white p-6 sm:p-8 rounded-xl border-l-4 border-emerald-600 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                        <span class="p-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm">
+                            <i class="fa-solid fa-eye"></i>
+                        </span>
+                        Our Vision
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                        A resilient society where every individual, regardless of socioeconomic background, has equal opportunity to thrive, contribute, and live with dignity.
+                    </p>
+                </div>
             </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-eye"></i> Our Vision</h3>
-                <p>A resilient society where every individual, regardless of socioeconomic background, has equal opportunity to thrive, contribute, and live with dignity.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Core Values -->
-    <section style="background-color: var(--bg-light); max-width: 100%;">
-        <div style="max-width: 1100px; margin: 0 auto;">
-            <h2 class="section-title">Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-box">
-                    <i class="fa-solid fa-hand-holding-heart"></i>
-                    <h4>Compassion</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Putting people and communities at the heart of everything we do.</p>
-                </div>
-                <div class="value-box">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h4>Integrity</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Upholding total transparency and accountability in all operations.</p>
-                </div>
-                <div class="value-box">
-                    <i class="fa-solid fa-seedling"></i>
-                    <h4>Sustainability</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Creating long-term solutions that foster self-reliance.</p>
-                </div>
-                <div class="value-box">
-                    <i class="fa-solid fa-users"></i>
-                    <h4>Inclusivity</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">Ensuring non-discriminatory support across all communities.</p>
+        <!-- Core Values -->
+        <section class="py-12 bg-slate-100/70 border-y border-slate-200/60">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-2">Our Core Values</h2>
+                <div class="w-12 h-1 bg-emerald-600 mx-auto rounded-full mb-8"></div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 text-center hover:-translate-y-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <i class="fa-solid fa-hand-holding-heart text-3xl text-emerald-600 mb-3"></i>
+                        <h4 class="font-bold text-slate-800 text-lg">Compassion</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Putting people and communities at the heart of everything we do.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 text-center hover:-translate-y-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <i class="fa-solid fa-shield-halved text-3xl text-emerald-600 mb-3"></i>
+                        <h4 class="font-bold text-slate-800 text-lg">Integrity</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Upholding total transparency and accountability in all operations.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 text-center hover:-translate-y-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <i class="fa-solid fa-seedling text-3xl text-emerald-600 mb-3"></i>
+                        <h4 class="font-bold text-slate-800 text-lg">Sustainability</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Creating long-term solutions that foster self-reliance.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 text-center hover:-translate-y-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <i class="fa-solid fa-users text-3xl text-emerald-600 mb-3"></i>
+                        <h4 class="font-bold text-slate-800 text-lg">Inclusivity</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Ensuring non-discriminatory support across all communities.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Leadership & Board of Trustees -->
-    <section>
-        <h2 class="section-title">Trustee Board & Leadership</h2>
-        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: -1rem auto 2rem;">
-            Guiding our mission and strategic direction towards impactful community development.
-        </p>
-        <div class="trustees-grid">
-            <div class="trustee-card">
-                <div class="trustee-avatar">
-                    <i class="fa-solid fa-user-tie"></i>
-                </div>
-                <h3>Victor Oluebube Okeke</h3>
-                <p>Chairman</p>
-                <p class="description">Leading strategic direction and organizational partnerships.</p>
+        <!-- Leadership Section -->
+        <section id="leadership" class="py-12 bg-gray-50">
+          <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Our Leadership</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+              <!-- Chairman -->
+              <div class="bg-white rounded-lg p-6 shadow-sm border-t-4 border-emerald-600 text-center">
+                <h3 class="text-xl font-bold text-gray-900">Victor Oluebube Okeke</h3>
+                <p class="text-emerald-600 font-semibold mb-3">Chairman</p>
+                <p class="text-gray-600 text-sm">Leading strategic direction, vision, and organizational partnerships.</p>
+              </div>
+
+              <!-- Secretary -->
+              <div class="bg-white rounded-lg p-6 shadow-sm border-t-4 border-emerald-600 text-center">
+                <h3 class="text-xl font-bold text-gray-900">Obinna Rejoice Ifechukwu</h3>
+                <p class="text-emerald-600 font-semibold mb-3">Secretary</p>
+                <p class="text-gray-600 text-sm">Managing operational governance, records, and corporate affairs.</p>
+              </div>
+
+              <!-- Trustee -->
+              <div class="bg-white rounded-lg p-6 shadow-sm border-t-4 border-emerald-600 text-center">
+                <h3 class="text-xl font-bold text-gray-900">Hassan Isaac</h3>
+                <p class="text-emerald-600 font-semibold mb-3">Trustee</p>
+                <p class="text-gray-600 text-sm">Overseeing community outreach, field operations, and project execution.</p>
+              </div>
+
             </div>
-            <div class="trustee-card">
-                <div class="trustee-avatar">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
-                <h3>Obinna Rejoice Ifechukwu</h3>
-                <p>Secretary</p>
-                <p class="description">Managing operational governance and corporate affairs.</p>
-            </div>
-            <div class="trustee-card">
-                <div class="trustee-avatar">
-                    <i class="fa-solid fa-user-gear"></i>
-                </div>
-                <h3>Hassan Isaac</h3>
-                <p>Trustee</p>
-                <p class="description">Overseeing technical operations and project implementation.</p>
-            </div>
-        </div>
-    </section>
+          </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <h4>Hope Rising Community Development Initiative (HRCDI)</h4>
-            <p>Registered Incorporated Trustee with the Corporate Affairs Commission (CAC) | Maiduguri, Borno State, Nigeria.</p>
-            <p><strong>Official Donation Account:</strong> United Bank for Africa (UBA) — <strong>2276823055</strong></p>
-            <p class="legal-notice">&copy; 2026 Hope Rising Community Development Initiative. All rights reserved.</p>
+    <footer class="bg-slate-900 text-slate-300 text-center py-10 px-4 mt-auto border-t border-slate-800">
+        <div class="max-w-3xl mx-auto space-y-3">
+            <h4 class="text-white font-bold text-base sm:text-lg">Hope Rising Community Development Initiative (HRCDI)</h4>
+            <p class="text-xs sm:text-sm text-slate-400">
+                Registered Incorporated Trustee with the Corporate Affairs Commission (CAC) | Maiduguri, Borno State, Nigeria.
+            </p>
+            <div class="pt-2">
+                <span class="inline-block bg-slate-800 text-slate-300 px-4 py-2 rounded-lg text-xs sm:text-sm border border-slate-700">
+                    <strong class="text-emerald-400">Official Donation Account:</strong> United Bank for Africa (UBA) — <strong class="text-white">2276823055</strong>
+                </span>
+            </div>
+            <p class="text-xs text-slate-500 pt-6 border-t border-slate-800/80 mt-6">
+                &copy; 2026 Hope Rising Community Development Initiative. All rights reserved.
+            </p>
         </div>
     </footer>
 
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (btn && menu && icon) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
