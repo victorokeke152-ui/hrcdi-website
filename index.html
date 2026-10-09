@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +7,23 @@
     <link rel="icon" type="image/png" href="IMG_2369.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
                         }
                     }
                 }
@@ -33,124 +33,242 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
+    <!-- Top Announcement Bar -->
+    <div class="bg-emerald-950 text-emerald-200 text-xs py-2 px-4 border-b border-emerald-900/60">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-4">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-medium text-emerald-100">CAC Incorporated Trustee Registration Pending Final Publication Maturity</span>
+            </div>
+            <div class="flex items-center gap-4 text-emerald-300">
+                <a href="mailto:info@hrcdi.org.ng" class="hover:text-white transition-colors flex items-center gap-1">
+                    <i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Header / Navbar -->
-    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+    <nav class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center gap-3 group">
                         <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
-                        <span class="font-bold text-lg text-emerald-900 tracking-tight">HRCDI</span>
+                        <div class="flex flex-col">
+                            <span class="font-extrabold text-lg text-emerald-950 tracking-tight leading-none">HRCDI</span>
+                            <span class="text-[10px] text-emerald-700 font-semibold tracking-wider">HOPE RISING</span>
+                        </div>
                     </a>
                 </div>
-                <div class="hidden md:flex items-center gap-6">
-                    <a href="index.html" class="text-emerald-700 font-semibold border-b-2 border-emerald-600 py-1">Home</a>
+                <div class="hidden md:flex items-center gap-7">
+                    <a href="index.html" class="text-emerald-700 font-bold border-b-2 border-emerald-600 py-1">Home</a>
                     <a href="about.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">About Us</a>
                     <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Contact Us</a>
-                    <a href="#focus" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-sm shadow-emerald-200">Get Involved</a>
+                    <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors shadow-sm shadow-emerald-200">Donate & Support</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" type="button" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2" aria-label="Toggle navigation">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-emerald-800 focus:outline-none p-2" aria-label="Toggle navigation">
                         <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-2">
-            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-semibold text-emerald-700 bg-emerald-50">Home</a>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-700 bg-emerald-50">Home</a>
             <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">About Us</a>
             <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Contact Us</a>
-            <a href="#focus" class="block px-3 py-2 text-center rounded-md text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700">Get Involved</a>
+            <a href="#donate" class="block px-3 py-2 text-center rounded-md text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700">Donate & Support</a>
         </div>
     </nav>
 
     <!-- Hero Banner -->
-    <header class="relative bg-emerald-950 text-white py-20 px-4 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#15803d_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+    <header class="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <span class="inline-block bg-emerald-800/60 text-emerald-300 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border border-emerald-700 mb-4">
-                Incorporated Trustee NGO
+            <span class="inline-flex items-center gap-2 bg-emerald-900/80 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-emerald-700/60 mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-shield-heart text-emerald-400"></i> Non-Governmental Organization
             </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                 Hope Rising Community Development Initiative
             </h1>
-            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-8">
-                Empowering vulnerable communities through sustainable development, education, healthcare, and humanitarian support across Nigeria.
+            <p class="text-slate-300 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                Empowering vulnerable communities through sustainable development, educational support, healthcare access, and economic empowerment across Nigeria.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="about.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-lg shadow-emerald-900/50">
-                    Learn More About Us
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="about.html" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-900/50 hover:shadow-emerald-600/30">
+                    Discover Our Mission
                 </a>
-                <a href="contact.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3 rounded-lg border border-slate-700 transition-colors">
-                    Contact Us
+                <a href="#donate" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-3.5 rounded-xl border border-slate-700 transition-all">
+                    Support Our Programs
                 </a>
             </div>
         </div>
     </header>
 
+    <!-- Impact Metrics Section -->
+    <section class="bg-white border-b border-slate-200/80 py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="p-4">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-emerald-700 mb-1">3+</p>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500">Core Focus Areas</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-emerald-700 mb-1">100%</p>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500">Transparent Governance</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-emerald-700 mb-1">Borno</p>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500">Headquarters (Maiduguri)</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-emerald-700 mb-1">CAMA 2020</p>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500">CAC Legal Framework</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="flex-grow">
         <!-- Key Focus Areas -->
-        <section id="focus" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Our Key Focus Areas</h2>
-                <div class="w-12 h-1 bg-emerald-600 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
-                    Targeted initiatives designed to transform lives and strengthen local communities.
+        <section id="focus" class="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">Our Core Focus Areas</h2>
+                <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
+                    Driven by a commitment to foster self-reliance, social welfare, and long-term community growth.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Community Development -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-building-columns"></i>
+                <!-- Community Infrastructure -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Community Infrastructure</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Promoting sustainable rural infrastructure improvements, clean water access, and social welfare programs across underprivileged regions.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Community Infrastructure</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Promoting sustainable development, social welfare, and rural infrastructure improvements across underprivileged communities.
-                    </p>
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
 
                 <!-- Youth & Women Empowerment -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-graduation-cap"></i>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Youth & Women Empowerment</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Empowering youth and women through practical skill acquisition, vocational training, educational grants, and leadership development.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Empowerment & Training</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Empowering youth and women through skill acquisition programs, educational support, vocational training, and leadership development.
-                    </p>
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
 
                 <!-- Healthcare & Relief -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-heart-pulse"></i>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Healthcare & Humanitarian Relief</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Enhancing basic healthcare access, poverty alleviation outreach, and emergency relief supplies for vulnerable populations.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Healthcare & Relief</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Fostering healthcare access, poverty alleviation initiatives, and humanitarian relief for vulnerable populations.
-                    </p>
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section id="leadership" class="py-16 bg-slate-100/70 border-y border-slate-200/80">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-center text-slate-900 mb-2">Our Trustee Board & Leadership</h2>
+            <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-10"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+              <!-- Chairman -->
+              <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200/80 border-t-4 border-t-emerald-600 text-center hover:shadow-md transition-shadow">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Victor Oluebube Okeke</h3>
+                <p class="text-emerald-700 font-semibold text-xs tracking-wide uppercase mb-3">Chairman</p>
+                <p class="text-slate-600 text-xs leading-relaxed">Leading strategic direction, vision, and organizational partnerships.</p>
+              </div>
+
+              <!-- Secretary -->
+              <div class="bg-white rounded-lg p-6 shadow-sm border border-slate-200/80 border-t-4 border-t-emerald-600 text-center hover:shadow-md transition-shadow">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Obinna Rejoice Ifechukwu</h3>
+                <p class="text-emerald-700 font-semibold text-xs tracking-wide uppercase mb-3">Secretary</p>
+                <p class="text-slate-600 text-xs leading-relaxed">Managing operational governance, records, and corporate affairs.</p>
+              </div>
+
+              <!-- Trustee -->
+              <div class="bg-white rounded-lg p-6 shadow-sm border border-slate-200/80 border-t-4 border-t-emerald-600 text-center hover:shadow-md transition-shadow">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Hassan Isaac</h3>
+                <p class="text-emerald-700 font-semibold text-xs tracking-wide uppercase mb-3">Trustee</p>
+                <p class="text-slate-600 text-xs leading-relaxed">Overseeing community outreach, field operations, and project execution.</p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Support / Donation Callout -->
+        <section id="donate" class="py-16 max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-emerald-950 text-white rounded-3xl p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-800/30 rounded-full blur-2xl"></div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Support Our Cause</h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light leading-relaxed">
+                    Your contributions power our outreach, youth empowerment projects, and community relief initiatives across vulnerable populations.
+                </p>
+                <div class="inline-block bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl max-w-md w-full text-left">
+                    <p class="text-xs uppercase font-bold tracking-wider text-emerald-400 mb-2">Official Banking Details</p>
+                    <p class="text-sm font-semibold text-slate-200">United Bank for Africa (UBA)</p>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/10">
+                        <div>
+                            <p class="text-xs text-slate-400">Account Number</p>
+                            <p class="text-xl font-mono font-bold text-white tracking-wider">2276823055</p>
+                        </div>
+                        <span class="text-xs bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg">NGN Account</span>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-300 text-center py-10 px-4 mt-auto border-t border-slate-800">
-        <div class="max-w-3xl mx-auto space-y-3">
-            <h4 class="text-white font-bold text-base sm:text-lg">Hope Rising Community Development Initiative (HRCDI)</h4>
-            <p class="text-xs sm:text-sm text-slate-400">
-                Registered Incorporated Trustee with the Corporate Affairs Commission (CAC) | Maiduguri, Borno State, Nigeria.
-            </p>
-            <div class="pt-2">
-                <span class="inline-block bg-slate-800 text-slate-300 px-4 py-2 rounded-lg text-xs sm:text-sm border border-slate-700">
-                    <strong class="text-emerald-400">Official Donation Account:</strong> United Bank for Africa (UBA) — <strong class="text-white">2276823055</strong>
-                </span>
+    <footer class="bg-slate-950 text-slate-400 text-center py-12 px-4 mt-auto border-t border-slate-900">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="flex justify-center items-center gap-2">
+                <span class="font-extrabold text-white text-xl tracking-tight">HRCDI</span>
             </div>
-            <p class="text-xs text-slate-500 pt-6 border-t border-slate-800/80 mt-6">
+            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Hope Rising Community Development Initiative is an Incorporated Trustee NGO registered under Part F of CAMA 2020 | Maiduguri, Borno State, Nigeria.
+            </p>
+            <p class="text-xs text-slate-600 pt-6 border-t border-slate-900 mt-6">
                 &copy; 2026 Hope Rising Community Development Initiative. All rights reserved.
             </p>
         </div>
