@@ -1,1 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Governance & Volunteer Opportunities | Hope Rising Community Development Initiative (HRCDI)</title>
+    
+    <!-- Open Graph & Social Preview Tags -->
+    <meta property="og:title" content="HR & Volunteer Portal | Hope Rising Community Development Initiative">
+    <meta property="og:description" content="Explore volunteer opportunities, HR policies, PSEA safeguarding guidelines, and community mobilization roles at HRCDI.">
+    <meta property="og:image" content="https://hrcdi.org.ng/IMG_2369.png">
+    <meta property="og:url" content="https://hrcdi.org.ng/volunteer.html">
 
+    <link rel="icon" type="image/png" href="IMG_2369.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-emerald-950 text-emerald-200 text-xs py-2 px-4 border-b border-emerald-900/60">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-4">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-medium text-emerald-100">CAC Incorporated Trustee Filing • Statutory Notice Period Pending Nov 2, 2026 Maturity</span>
+            </div>
+            <div class="flex items-center gap-4 text-emerald-300">
+                <a href="mailto:info@hrcdi.org.ng" class="hover:text-white transition-colors flex items-center gap-1">
+                    <i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng
+                </a>
+                <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
+                        <div class="flex flex-col">
+                            <span class="font-extrabold text-lg text-emerald-950 tracking-tight leading-none">HRCDI</span>
+                            <span class="text-[10px] text-emerald-700 font-semibold tracking-wider">HOPE RISING</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Home</a>
+                    <a href="about.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">About Us</a>
+                    <a href="volunteer.html" class="text-emerald-700 font-bold border-b-2 border-emerald-600 py-1">HR & Careers</a>
+                    <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Contact Us</a>
+                    <a href="privacy.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Privacy Policy</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-emerald-800 focus:outline-none p-2" aria-label="Toggle navigation">
+                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">About Us</a>
+            <a href="volunteer.html" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-700 bg-emerald-50">HR & Careers</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Contact Us</a>
+            <a href="privacy.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Privacy Policy</a>
+        </div>
+    </nav>
+
+    <!-- Page Banner -->
+    <header class="relative bg-emerald-950 text-white pt-24 sm:pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center gap-2 bg-emerald-900/80 text-emerald-300 text-xs font-semibold px-3.5 py-1 rounded-full border border-emerald-700/60 mb-4 backdrop-blur-sm">
+                <i class="fa-solid fa-users-gear text-emerald-400"></i> Human Resources & People Operations
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Join Our Team & Volunteer Portal</h1>
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Empowering communities through structured HR governance, ethical field standards, safeguarding protocols, and active volunteer engagement across Nigeria.
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- HR Governance Standards Section -->
+        <section class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Institutional Governance</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-1">HRCDI Human Resources & Safeguarding Framework</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-1">Our people operations adhere strictly to international non-profit labor standards, equal opportunity principles, and donor audit benchmarks.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                <div class="p-5 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">PSEA Safeguarding</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Zero tolerance for Protection from Sexual Exploitation and Abuse (PSEA). Mandatory code of conduct compliance for all staff and volunteers.</p>
+                </div>
+
+                <div class="p-5 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Equal Opportunity</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Merit-based selection without bias toward gender, ethnicity, or religion. Committed to expanding women and youth inclusion.</p>
+                </div>
+
+                <div class="p-5 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Field Duty of Care</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Comprehensive Occupational Health & Safety (OHS) protocols protecting personnel during rural community deployments.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Opportunities Section -->
+        <section class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Current Openings & Volunteer Roles</h2>
+                <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full my-3"></div>
+                <p class="text-slate-600 text-sm">Join HRCDI as a volunteer or field specialist to drive rural empowerment and community development in Borno State and regional hubs.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Role Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-emerald-500 transition-colors">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Community Field</span>
+                            <span class="text-xs text-slate-400"><i class="fa-solid fa-location-dot mr-1"></i> Maiduguri / Regional Hubs</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Community Outreach & Field Mobilizer</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">Coordinate community baseline mapping, engage local leaders, and assist in logistics for rural sanitation and youth workshops.</p>
+                    </div>
+                    <a href="mailto:info@hrcdi.org.ng?subject=Application%20-%20Community%20Outreach%20Mobilizer" class="mt-6 text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded-lg transition-colors">
+                        Apply for Role <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Role Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-emerald-500 transition-colors">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Youth & Skill Training</span>
+                            <span class="text-xs text-slate-400"><i class="fa-solid fa-location-dot mr-1"></i> Maiduguri / Remote</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Vocational Trainer & Youth Mentor</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">Facilitate practical skill acquisition sessions, digital literacy classes, and entrepreneurship guidance for vulnerable young adults.</p>
+                    </div>
+                    <a href="mailto:info@hrcdi.org.ng?subject=Application%20-%20Vocational%20Trainer%20%26%20Mentor" class="mt-6 text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded-lg transition-colors">
+                        Apply for Role <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Whistleblower & Grievance Mechanism -->
+        <section class="bg-slate-900 text-white p-8 sm:p-10 rounded-2xl border border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="space-y-2 max-w-xl text-center sm:text-left">
+                <span class="text-emerald-400 text-xs uppercase tracking-wider font-bold"><i class="fa-solid fa-lock mr-1"></i> Confidential HR Channel</span>
+                <h3 class="text-xl font-bold">Whistleblower & Grievance Reporting</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">HRCDI maintains a zero-tolerance stance on ethical breaches or harassment. Reports are investigated confidentially by the Secretary & Trustee Board.</p>
+            </div>
+            <a href="mailto:info@hrcdi.org.ng?subject=CONFIDENTIAL%20-%20HR%20Whistleblower%20Report" class="whitespace-nowrap bg-slate-800 hover:bg-slate-700 text-emerald-300 font-semibold text-xs px-6 py-3 rounded-xl border border-slate-700 transition-all">
+                Submit Confidential Report
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-center py-12 px-4 mt-auto border-t border-slate-900">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="flex justify-center items-center gap-2">
+                <span class="font-extrabold text-white text-xl tracking-tight">HRCDI</span>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="flex justify-center items-center gap-4 py-2">
+                <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all flex items-center justify-center text-lg" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="mailto:info@hrcdi.org.ng" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all flex items-center justify-center text-lg" aria-label="Email">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="flex justify-center gap-4 text-xs text-slate-400 pt-2">
+                <a href="index.html" class="hover:text-emerald-400">Home</a>
+                <span>•</span>
+                <a href="about.html" class="hover:text-emerald-400">About Us</a>
+                <span>•</span>
+                <a href="volunteer.html" class="hover:text-emerald-400">HR & Careers</a>
+                <span>•</span>
+                <a href="contact.html" class="hover:text-emerald-400">Contact Us</a>
+                <span>•</span>
+                <a href="privacy.html" class="hover:text-emerald-400">Privacy Policy</a>
+            </div>
+
+            <p class="text-xs text-slate-600 pt-6 border-t border-slate-900">
+                &copy; 2026 Hope Rising Community Development Initiative. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (btn && menu && icon) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
