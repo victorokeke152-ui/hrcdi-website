@@ -41,26 +41,19 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Top Announcement Bar (Mobile Responsive & Clean Alignment) -->
-    <div class="bg-emerald-950 text-emerald-200 text-[11px] py-2 px-3 border-b border-emerald-900/60">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 text-center sm:text-left">
-            <!-- CAC Notice -->
-            <div class="flex items-center justify-center sm:justify-start gap-1.5">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-                <span class="font-medium text-emerald-100">CAC Incorporated Trustee Filing • Nov 2, 2026 Maturity</span>
+    <!-- Top Announcement Bar (CAC Legal Governance Notice) -->
+    <div class="bg-emerald-950 text-emerald-200 text-xs py-2 px-4 border-b border-emerald-900/60">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-4">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-medium text-emerald-100">CAC Incorporated Trustee Filing • Statutory Notice Period Pending Nov 2, 2026 Maturity</span>
             </div>
-            <!-- Quick Contacts -->
-            <div class="flex items-center justify-center gap-3 text-emerald-300">
-                <a href="tel:09030700643" class="hover:text-white transition-colors flex items-center gap-1 font-semibold text-emerald-100">
-                    <i class="fa-solid fa-phone text-emerald-400 text-[10px]"></i> 09030700643
-                </a>
-                <span class="text-emerald-800">|</span>
+            <div class="flex items-center gap-4 text-emerald-300">
                 <a href="mailto:info@hrcdi.org.ng" class="hover:text-white transition-colors flex items-center gap-1">
-                    <i class="fa-regular fa-envelope text-[10px]"></i> info@hrcdi.org.ng
+                    <i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng
                 </a>
-                <span class="text-emerald-800">|</span>
                 <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f text-[10px]"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
                 </a>
             </div>
         </div>
@@ -82,9 +75,10 @@
                 <div class="hidden md:flex items-center gap-6">
                     <a href="index.html" class="text-emerald-700 font-bold border-b-2 border-emerald-600 py-1">Home</a>
                     <a href="about.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">About Us</a>
-                    <a href="volunteer.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">HR & Careers</a>
+                    <a href="#roadmap" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Program Roadmap</a>
+                    <a href="#partners" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Partnerships</a>
                     <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Contact Us</a>
-                    <a href="privacy.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Privacy Policy</a>
+                    <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors shadow-sm shadow-emerald-200">Support Us</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
@@ -98,9 +92,10 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
             <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-700 bg-emerald-50">Home</a>
             <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">About Us</a>
-            <a href="volunteer.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">HR & Careers</a>
+            <a href="#roadmap" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Program Roadmap</a>
+            <a href="#partners" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Partnerships</a>
             <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Contact Us</a>
-            <a href="privacy.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Privacy Policy</a>
+            <a href="#donate" class="block px-3 py-2 text-center rounded-md text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700">Support Us</a>
         </div>
     </nav>
 
@@ -109,7 +104,7 @@
         <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <span class="inline-flex items-center gap-2 bg-emerald-900/80 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-emerald-700/60 mb-6 backdrop-blur-sm">
-                <i class="fa-solid fa-shield-heart text-emerald-400"></i> Non-Governmental Organization • Borno State, Nigeria
+                <i class="fa-solid fa-shield-heart text-emerald-400"></i> Newly Launching NGO • Borno State, Nigeria
             </span>
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                 Hope Rising Community Development Initiative
@@ -118,8 +113,8 @@
                 Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="tel:09030700643" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-900/50 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-phone"></i> Call Us: 09030700643
+                <a href="#roadmap" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-900/50 hover:shadow-emerald-600/30">
+                    Explore Our Strategic Roadmap
                 </a>
                 <a href="#partners" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-3.5 rounded-xl border border-slate-700 transition-all">
                     Partner & Donor Enquiries
@@ -154,8 +149,8 @@
 
     <main class="flex-grow">
         <!-- Key Focus Areas -->
-        <section id="focus" class="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div class="text-center mb-14 px-2">
+        <section id="focus" class="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">Our Core Program Objectives</h2>
                 <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-4"></div>
                 <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
@@ -163,51 +158,51 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 px-2 sm:px-0">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Community Infrastructure -->
-                <div class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
                             <i class="fa-solid fa-building-columns"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3">Rural Infrastructure</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Rural Infrastructure</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
                             Facilitating clean water access, community sanitation facilities, and basic social support structures across rural Borno State settlements.
                         </p>
                     </div>
-                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-xs sm:text-sm font-bold hover:gap-3 transition-all">
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
                         Program Framework <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
 
                 <!-- Youth & Women Empowerment -->
-                <div class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3">Youth & Women Empowerment</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Youth & Women Empowerment</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
                             Providing practical skill acquisition, micro-business guidance, and educational sponsorship grants for vulnerable youth and women.
                         </p>
                     </div>
-                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-xs sm:text-sm font-bold hover:gap-3 transition-all">
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
                         Program Framework <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
 
                 <!-- Healthcare & Relief -->
-                <div class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl mb-6">
                             <i class="fa-solid fa-heart-pulse"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3">Healthcare & Relief</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Healthcare & Relief</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
                             Organizing community health awareness drives, hygiene supply distributions, and emergency assistance for vulnerable households.
                         </p>
                     </div>
-                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-xs sm:text-sm font-bold hover:gap-3 transition-all">
+                    <a href="about.html" class="inline-flex items-center gap-2 text-emerald-700 text-sm font-bold hover:gap-3 transition-all">
                         Program Framework <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
@@ -306,20 +301,15 @@
                         <div class="w-12 h-12 bg-emerald-600/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-xl">
                             <i class="fa-solid fa-handshake"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Institutional Enquiries</h3>
+                        <h3 class="text-lg font-bold">Institutional Enquiries</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">
                             Request our Organizational Capability Profile, Trustee Governance Guidelines, or propose a joint grant project.
                         </p>
                         <div class="pt-2 space-y-3">
                             <a href="mailto:info@hrcdi.org.ng?subject=Partnership%20Enquiry%20-%20HRCDI" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md">
-                                <i class="fa-regular fa-envelope mr-1.5"></i> Send Institutional Email Enquiry
+                                Send Institutional Partner Enquiry
                             </a>
-                            <a href="tel:09030700643" class="block w-full bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2.5 rounded-xl text-xs transition-all border border-slate-600">
-                                <i class="fa-solid fa-phone mr-1.5 text-emerald-400"></i> Direct Line: 09030700643
-                            </a>
-                        </div>
-                        <div class="pt-1">
-                            <a href="about.html" class="text-[11px] text-slate-400 hover:text-emerald-300 underline transition-colors">
+                            <a href="about.html" class="block w-full bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-3 rounded-xl text-xs transition-all border border-slate-600">
                                 Review Board Governance Guidelines
                             </a>
                         </div>
@@ -411,3 +401,108 @@
             <div class="space-y-4">
                 <details class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
                     <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+                        <span>What is HRCDI's exact CAC legal registration status?</span>
+                        <span class="ml-4 shrink-0 transition-transform duration-200 group-open:-rotate-180 text-emerald-600">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        HRCDI is filed under Part F (Incorporated Trustees) of the Companies and Allied Matters Act (CAMA 2020) with the Corporate Affairs Commission (CAC), Nigeria. It is currently completing its statutory 28-day public newspaper notice publication window maturing on November 2, 2026.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+                        <span>How can institutional partners request our organizational profile?</span>
+                        <span class="ml-4 shrink-0 transition-transform duration-200 group-open:-rotate-180 text-emerald-600">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Donor bodies and partner organizations can contact our desk directly at <a href="mailto:info@hrcdi.org.ng" class="text-emerald-700 font-semibold underline">info@hrcdi.org.ng</a> to receive our formal profile and governance documentation.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+                        <span>How can I support or sponsor HRCDI community programs?</span>
+                        <span class="ml-4 shrink-0 transition-transform duration-200 group-open:-rotate-180 text-emerald-600">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Individual supporters, sponsors, and grant bodies can get in touch with our team directly via email at <a href="mailto:info@hrcdi.org.ng" class="text-emerald-700 font-semibold underline">info@hrcdi.org.ng</a> to discuss partnership frameworks and official sponsorship channels.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Support / Contact Callout -->
+        <section id="donate" class="py-16 max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-emerald-950 text-white rounded-3xl p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-800/30 rounded-full blur-2xl"></div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Support Our Programs</h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light leading-relaxed">
+                    Interested in supporting our operational rollout, youth vocational grants, or rural health initiatives? Get in touch with our partnership desk.
+                </p>
+                <div class="inline-block bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl max-w-md w-full text-center space-y-3">
+                    <p class="text-xs uppercase font-bold tracking-wider text-emerald-400">Direct Contact Desk</p>
+                    <p class="text-lg font-bold text-white tracking-wider"><i class="fa-solid fa-envelope text-emerald-400 mr-2"></i> info@hrcdi.org.ng</p>
+                    <a href="mailto:info@hrcdi.org.ng?subject=Support%20Enquiry%20-%20HRCDI" class="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md">
+                        Contact Partnership Desk
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-center py-12 px-4 mt-auto border-t border-slate-900">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="flex justify-center items-center gap-2">
+                <span class="font-extrabold text-white text-xl tracking-tight">HRCDI</span>
+            </div>
+            
+            <div class="flex justify-center items-center gap-6 py-2 text-sm">
+                <a href="mailto:info@hrcdi.org.ng" class="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                    <i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-4 text-xs text-slate-400 pt-2">
+                <a href="index.html" class="hover:text-emerald-400">Home</a>
+                <span>•</span>
+                <a href="about.html" class="hover:text-emerald-400">About Us</a>
+                <span>•</span>
+                <a href="contact.html" class="hover:text-emerald-400">Contact Us</a>
+            </div>
+
+            <p class="text-xs text-slate-600 pt-6 border-t border-slate-900">
+                &copy; 2026 Hope Rising Community Development Initiative. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (btn && menu && icon) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
