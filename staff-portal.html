@@ -12,7 +12,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex items-center justify-center p-4">
 
-    <!-- 1. LOGIN CARD -->
+    <!-- 1. PASSCODE LOGIN CARD -->
     <div id="login-card" class="bg-slate-800 border border-slate-700 p-6 sm:p-8 rounded-2xl max-w-md w-full shadow-2xl text-center space-y-5">
         <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl border border-emerald-500/20">
             <i class="fa-solid fa-lock"></i>
@@ -34,40 +34,40 @@
         </form>
     </div>
 
-    <!-- 2. LOCATION CONSENT MODAL (Appears immediately after login) -->
-    <div id="location-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl">
-            <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+    <!-- 2. MANDATORY LOCATION MODAL (Strictly Accept Only) -->
+    <div id="location-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center space-y-5 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-3xl border border-emerald-500/20">
                 <i class="fa-solid fa-location-dot"></i>
             </div>
-            <h3 class="text-lg font-bold text-white">Location Verification</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">
-                HRCDI security protocols require staff location verification to log active field sessions and protect organizational records.
-            </p>
-            <div class="space-y-2 pt-2">
-                <button onclick="requestLocation()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition-colors flex items-center justify-center gap-2">
+            <div>
+                <h3 class="text-xl font-bold text-white">Location Verification</h3>
+                <p class="text-xs text-slate-300 leading-relaxed mt-2">
+                    HRCDI security protocols require staff location verification to log active field sessions and protect organizational records.
+                </p>
+            </div>
+            
+            <div class="pt-2">
+                <button onclick="requestLocation()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-crosshairs"></i> Accept & Share Location
                 </button>
-                <button onclick="bypassLocation()" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 rounded-xl text-xs transition-colors">
-                    Continue Without GPS
-                </button>
             </div>
+            <p id="geo-status" class="text-[11px] text-slate-400 mt-2 min-h-[18px]"></p>
         </div>
     </div>
 
-    <!-- 3. PROTECTED STAFF DASHBOARD -->
+    <!-- 3. PROTECTED DASHBOARD -->
     <div id="staff-content" class="hidden max-w-4xl w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8">
         
-        <!-- Dashboard Header & Status Banner -->
+        <!-- Header -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-700 pb-6">
             <div>
                 <div class="flex items-center gap-2">
                     <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-emerald-800/60 uppercase tracking-wider">
                         Internal Portal
                     </span>
-                    <!-- Dynamic Location Badge -->
-                    <span id="location-badge" class="bg-slate-700 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1">
-                        <i class="fa-solid fa-location-dot text-slate-400"></i> Location Pending
+                    <span id="location-badge" class="bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1">
+                        <i class="fa-solid fa-location-dot text-emerald-400"></i> Location Verified
                     </span>
                 </div>
                 <h1 class="text-2xl font-extrabold text-white mt-2">Welcome, HRCDI Team Member</h1>
@@ -77,19 +77,19 @@
             </button>
         </div>
 
-        <!-- Location Coordinates Details Box -->
-        <div id="location-info-box" class="hidden bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl flex items-center justify-between text-xs text-emerald-200">
+        <!-- Verified GPS Box -->
+        <div id="location-info-box" class="bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl flex items-center justify-between text-xs text-emerald-200">
             <div class="flex items-center gap-3">
                 <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
                 <div>
                     <p class="font-bold text-white">Active Session Location Verified</p>
-                    <p id="coords-text" class="text-[11px] text-emerald-300 font-mono mt-0.5">Fetching GPS coordinates...</p>
+                    <p id="coords-text" class="text-[11px] text-emerald-300 font-mono mt-0.5">Coordinates Logged</p>
                 </div>
             </div>
             <span class="text-[10px] bg-emerald-900 text-emerald-300 font-semibold px-2 py-0.5 rounded">GPS Active</span>
         </div>
 
-        <!-- Internal Staff Resources -->
+        <!-- Staff Resources -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-700 space-y-3">
@@ -120,7 +120,7 @@
 
     </div>
 
-    <!-- JavaScript Logic -->
+    <!-- Script Logic -->
     <script>
         const STAFF_PIN = "HRCDI2026";
 
@@ -140,41 +140,35 @@
         }
 
         function requestLocation() {
+            const statusText = document.getElementById('geo-status');
+            statusText.innerText = "Requesting GPS coordinates...";
+            statusText.className = "text-[11px] text-emerald-400 mt-2 animate-pulse";
+
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const lat = position.coords.latitude.toFixed(4);
                         const lng = position.coords.longitude.toFixed(4);
                         
-                        // Update UI with GPS info
-                        document.getElementById('coords-text').innerText = `Latitude: ${lat} | Longitude: ${lng}`;
-                        document.getElementById('location-info-box').classList.remove('hidden');
-                        
-                        const badge = document.getElementById('location-badge');
-                        badge.className = "bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1";
-                        badge.innerHTML = `<i class="fa-solid fa-location-dot text-emerald-400"></i> Location Verified`;
+                        sessionStorage.setItem('hrcdi_lat', lat);
+                        sessionStorage.setItem('hrcdi_lng', lng);
 
-                        openDashboard();
+                        openDashboard(lat, lng);
                     },
                     (error) => {
-                        alert("Unable to fetch GPS position. Accessing dashboard without location verification.");
-                        bypassLocation();
-                    }
+                        statusText.innerText = "Location permission denied. Please allow location access in your browser settings to continue.";
+                        statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
                 );
             } else {
-                alert("Geolocation is not supported by your browser.");
-                bypassLocation();
+                statusText.innerText = "Geolocation is not supported by your browser.";
+                statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
             }
         }
 
-        function bypassLocation() {
-            const badge = document.getElementById('location-badge');
-            badge.className = "bg-amber-950 text-amber-400 border border-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1";
-            badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Location Unverified`;
-            openDashboard();
-        }
-
-        function openDashboard() {
+        function openDashboard(lat, lng) {
+            document.getElementById('coords-text').innerText = `Latitude: ${lat} | Longitude: ${lng}`;
             document.getElementById('location-modal').classList.add('hidden');
             document.getElementById('location-modal').classList.remove('flex');
             document.getElementById('staff-content').classList.remove('hidden');
@@ -182,13 +176,15 @@
 
         function logoutStaff() {
             sessionStorage.removeItem('hrcdi_staff_authed');
+            sessionStorage.removeItem('hrcdi_lat');
+            sessionStorage.removeItem('hrcdi_lng');
             location.reload();
         }
 
-        // Session Auto-restore
-        if (sessionStorage.getItem('hrcdi_staff_authed') === 'true') {
+        // Restore session if already verified in current browser session
+        if (sessionStorage.getItem('hrcdi_staff_authed') === 'true' && sessionStorage.getItem('hrcdi_lat')) {
             document.getElementById('login-card').classList.add('hidden');
-            document.getElementById('staff-content').classList.remove('hidden');
+            openDashboard(sessionStorage.getItem('hrcdi_lat'), sessionStorage.getItem('hrcdi_lng'));
         }
     </script>
 </body>
