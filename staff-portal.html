@@ -34,7 +34,7 @@
         </form>
     </div>
 
-    <!-- 2. MANDATORY LOCATION MODAL -->
+    <!-- 2. MANDATORY LOCATION MODAL WITH MULTI-BROWSER DETECTION -->
     <div id="location-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 z-50">
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center space-y-5 shadow-2xl">
             <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-3xl border border-emerald-500/20">
@@ -46,9 +46,12 @@
                     HRCDI security protocols require staff location verification to log active field sessions and protect organizational records.
                 </p>
             </div>
+
+            <!-- Dynamic Multi-Browser Mode Indicator -->
+            <div id="browser-mode-indicator" class="hidden"></div>
             
             <div class="pt-2">
-                <button onclick="requestLocation()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+                <button id="location-btn" onclick="requestLocation()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-crosshairs"></i> Accept & Share Location
                 </button>
             </div>
@@ -272,9 +275,43 @@
         </div>
     </div>
 
-    <!-- SCRIPT LOGIC -->
+    <!-- SCRIPT LOGIC (OPTIMIZED FOR ALL BROWSERS) -->
     <script>
         const STAFF_PIN = "HRCDI2026";
+
+        // Multi-Browser Private Mode Detection (Chrome, Safari, Firefox, Edge, Opera)
+        function detectPrivateBrowsing(callback) {
+            const ua = navigator.userAgent;
+
+            // 1. Safari WebKit check
+            const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+            if (isSafari) {
+                try {
+                    window.openDatabase(null, null, null, null);
+                } catch (e) {
+                    return callback(true);
+                }
+            }
+
+            // 2. Chromium / Android Chrome quota check
+            if ('storage' in navigator && 'estimate' in navigator.storage) {
+                navigator.storage.estimate().then(({ quota }) => {
+                    // Private mode caps storage space severely (< 120MB)
+                    callback(quota < 120000000);
+                }).catch(() => callback(false));
+                return;
+            }
+
+            // 3. Firefox check
+            if ('IndexedDB' in window && /Firefox/.test(ua)) {
+                const db = indexedDB.open('test');
+                db.onerror = () => callback(true);
+                db.onsuccess = () => callback(false);
+                return;
+            }
+
+            callback(false);
+        }
 
         function authenticateStaff(e) {
             e.preventDefault();
@@ -286,12 +323,26 @@
                 document.getElementById('login-card').classList.add('hidden');
                 document.getElementById('location-modal').classList.remove('hidden');
                 document.getElementById('location-modal').classList.add('flex');
+
+                detectPrivateBrowsing((isPrivate) => {
+                    const indicator = document.getElementById('browser-mode-indicator');
+                    indicator.classList.remove('hidden');
+
+                    if (isPrivate) {
+                        indicator.className = "bg-amber-950/80 border border-amber-800 text-amber-300 p-2.5 rounded-xl text-[11px] flex items-center justify-center gap-2";
+                        indicator.innerHTML = `<i class="fa-solid fa-user-ninja text-amber-400 text-sm"></i> <span><strong>Private / Incognito Mode Active</strong><br>Please switch to a standard tab if GPS does not prompt.</span>`;
+                    } else {
+                        indicator.className = "bg-slate-900 border border-slate-700 text-slate-400 p-2 rounded-lg text-[11px] flex items-center justify-center gap-2";
+                        indicator.innerHTML = `<i class="fa-solid fa-globe text-emerald-400"></i> Standard Browser Session Detected`;
+                    }
+                });
+
             } else {
-                errorMsg.classList.add('hidden'); // Clear previous
                 errorMsg.classList.remove('hidden');
             }
         }
 
+        // Multi-Browser Geolocation Handler with Automatic Coarse Fallback
         function requestLocation() {
             const statusText = document.getElementById('geo-status');
             statusText.innerText = "Requesting GPS coordinates...";
@@ -303,33 +354,52 @@
                 return;
             }
 
-            // Standard options without forcing an abrupt timeout error
-            const options = {
+            // Primary Fast Attempt (Cellular / Network Triangulation)
+            const fastOptions = {
                 enableHighAccuracy: false,
-                timeout: 20000,
+                timeout: 8000,
                 maximumAge: 60000
             };
 
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const lat = position.coords.latitude.toFixed(4);
-                    const lng = position.coords.longitude.toFixed(4);
-                    
-                    sessionStorage.setItem('hrcdi_lat', lat);
-                    sessionStorage.setItem('hrcdi_lng', lng);
+            // High Precision Fallback (Hardware GPS)
+            const accurateOptions = {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 0
+            };
 
-                    openDashboard(lat, lng);
-                },
-                (error) => {
-                    if (error.code === error.PERMISSION_DENIED) {
-                        statusText.innerText = "Location permission denied. Please allow location access in your browser settings.";
-                    } else {
-                        statusText.innerText = "Unable to fetch GPS. Please open in a normal (non-private) browser tab.";
-                    }
+            function handleSuccess(position) {
+                const lat = position.coords.latitude.toFixed(4);
+                const lng = position.coords.longitude.toFixed(4);
+                
+                sessionStorage.setItem('hrcdi_lat', lat);
+                sessionStorage.setItem('hrcdi_lng', lng);
+
+                openDashboard(lat, lng);
+            }
+
+            function handleError(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    statusText.innerText = "Location permission denied. Please allow location access in your browser or device settings.";
                     statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
-                },
-                options
-            );
+                } else if (error.code === error.TIMEOUT) {
+                    // Try second pass with High Accuracy if low-accuracy timed out
+                    statusText.innerText = "Refining location signal...";
+                    navigator.geolocation.getCurrentPosition(
+                        handleSuccess,
+                        () => {
+                            statusText.innerText = "Unable to lock GPS position. Please ensure Location is enabled on your phone/browser.";
+                            statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
+                        },
+                        accurateOptions
+                    );
+                } else {
+                    statusText.innerText = "Unable to fetch GPS. Ensure Location Services are turned on in your device settings.";
+                    statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
+                }
+            }
+
+            navigator.geolocation.getCurrentPosition(handleSuccess, handleError, fastOptions);
         }
 
         function openDashboard(lat, lng) {
