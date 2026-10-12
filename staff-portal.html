@@ -34,7 +34,7 @@
         </form>
     </div>
 
-    <!-- 2. MANDATORY LOCATION MODAL (Clean Design) -->
+    <!-- 2. MANDATORY LOCATION MODAL -->
     <div id="location-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 z-50">
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center space-y-5 shadow-2xl">
             <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-3xl border border-emerald-500/20">
@@ -287,6 +287,7 @@
                 document.getElementById('location-modal').classList.remove('hidden');
                 document.getElementById('location-modal').classList.add('flex');
             } else {
+                errorMsg.classList.add('hidden'); // Clear previous
                 errorMsg.classList.remove('hidden');
             }
         }
@@ -302,20 +303,15 @@
                 return;
             }
 
-            const locationTimeout = setTimeout(() => {
-                statusText.innerHTML = "GPS request timed out. Please ensure you are not in Private/Incognito mode and Location is allowed.";
-                statusText.className = "text-[11px] text-red-400 mt-2 leading-tight";
-            }, 6000);
-
+            // Standard options without forcing an abrupt timeout error
             const options = {
                 enableHighAccuracy: false,
-                timeout: 5000,
+                timeout: 20000,
                 maximumAge: 60000
             };
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    clearTimeout(locationTimeout);
                     const lat = position.coords.latitude.toFixed(4);
                     const lng = position.coords.longitude.toFixed(4);
                     
@@ -325,11 +321,10 @@
                     openDashboard(lat, lng);
                 },
                 (error) => {
-                    clearTimeout(locationTimeout);
                     if (error.code === error.PERMISSION_DENIED) {
-                        statusText.innerText = "Location permission denied. Please enable location services in your browser settings.";
+                        statusText.innerText = "Location permission denied. Please allow location access in your browser settings.";
                     } else {
-                        statusText.innerText = "Unable to lock GPS. Please try again in a normal tab.";
+                        statusText.innerText = "Unable to fetch GPS. Please open in a normal (non-private) browser tab.";
                     }
                     statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
                 },
