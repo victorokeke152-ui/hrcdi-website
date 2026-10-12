@@ -45,6 +45,9 @@
                 <p class="text-xs text-slate-300 leading-relaxed mt-2">
                     HRCDI security protocols require staff location verification to log active field sessions and protect organizational records.
                 </p>
+                <p class="text-[11px] text-amber-300 font-medium mt-2 bg-amber-950/50 p-2 rounded-lg border border-amber-800/50">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i> Please ensure you are in a <strong>Normal Browser Tab</strong> (not Private/Incognito mode).
+                </p>
             </div>
             
             <div class="pt-2">
@@ -150,14 +153,21 @@
                 return;
             }
 
+            // Safety timeout to prevent infinite hanging if Private Browsing blocks location
+            const locationTimeout = setTimeout(() => {
+                statusText.innerHTML = "GPS request timed out.<br><span class='text-amber-400'>Make sure you are not in Private/Incognito mode and Location is allowed.</span>";
+                statusText.className = "text-[11px] text-red-400 mt-2 leading-tight";
+            }, 6000);
+
             const options = {
                 enableHighAccuracy: false,
-                timeout: 15000,
+                timeout: 5000,
                 maximumAge: 60000
             };
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
+                    clearTimeout(locationTimeout);
                     const lat = position.coords.latitude.toFixed(4);
                     const lng = position.coords.longitude.toFixed(4);
                     
@@ -167,10 +177,11 @@
                     openDashboard(lat, lng);
                 },
                 (error) => {
+                    clearTimeout(locationTimeout);
                     if (error.code === error.PERMISSION_DENIED) {
-                        statusText.innerText = "Location access denied. Please enable location permissions in Safari settings.";
+                        statusText.innerText = "Location permission denied. Please enable location services in your phone/browser settings.";
                     } else {
-                        statusText.innerText = "Unable to lock GPS. Please tap 'Accept & Share Location' again.";
+                        statusText.innerText = "Unable to lock GPS. Please ensure you are in a normal tab and try again.";
                     }
                     statusText.className = "text-[11px] text-red-400 mt-2 font-medium";
                 },
