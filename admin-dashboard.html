@@ -14,31 +14,31 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
 
-    <!-- TOP NAVIGATION BAR -->
+    <!-- TOP NAVIGATION BAR (FIXED MOBILE OVERLAP) -->
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-emerald-600/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold border border-emerald-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3 min-w-0">
+                <div class="w-10 h-10 bg-emerald-600/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold border border-emerald-500/30 shrink-0">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <div>
-                    <h1 class="text-sm font-extrabold text-white tracking-wide">HRCDI EXECUTIVE COMMAND</h1>
-                    <p class="text-[10px] text-slate-400 font-mono">Trustee Governance & Field Authorization Portal</p>
+                <div class="truncate">
+                    <h1 class="text-xs sm:text-sm font-extrabold text-white tracking-wide truncate">HRCDI EXECUTIVE COMMAND</h1>
+                    <p class="text-[9px] sm:text-[10px] text-slate-400 font-mono truncate">Trustee Governance & Field Authorization</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
-                <a href="staff-portal.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-3 py-2 rounded-lg border border-slate-700 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Staff Portal
+            <div class="flex items-center space-x-2 shrink-0">
+                <a href="staff-portal.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] sm:text-xs px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg border border-slate-700 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden xs:inline">Staff Portal</span>
                 </a>
-                <button onclick="exportCSVData()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-lg shadow-md transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-download"></i> Export Audit CSV
+                <button onclick="exportCSVData()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] sm:text-xs font-bold px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg shadow-md transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-download"></i> Export CSV
                 </button>
             </div>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
         <!-- STATS KPI CARDS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -92,11 +92,10 @@
                     <i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i> Interactive Map Active
                 </span>
             </div>
-            <!-- Leaflet Map Container -->
             <div id="field-map" class="w-full h-72 rounded-xl border border-slate-800 z-10"></div>
         </div>
 
-        <!-- SUBMISSIONS LOGS & AUDIT TABLE WITH TWO-TIER APPROVAL -->
+        <!-- SUBMISSIONS LOGS & AUDIT TABLE -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
             
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
@@ -156,20 +155,15 @@
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
             </div>
             
-            <div id="modal-content" class="space-y-3 text-xs text-slate-300">
-                <!-- Dynamic Content Populated by JS -->
-            </div>
+            <div id="modal-content" class="space-y-3 text-xs text-slate-300"></div>
 
-            <div id="approval-actions" class="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-slate-800">
-                <!-- Approval Action Buttons Populated by JS -->
-            </div>
+            <div id="approval-actions" class="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-slate-800"></div>
         </div>
     </div>
 
     <!-- Leaflet JS Map Engine -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Sample institutional database with written location names and two-tier approval tracking
         let reportsData = [
             { 
                 id: 1, 
@@ -223,14 +217,12 @@
 
         let activeReviewId = null;
 
-        // Initialize Leaflet Map centered over Borno State
         const map = L.map('field-map').setView([11.8333, 13.1500], 8);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
             maxZoom: 19
         }).addTo(map);
 
-        // Add visual map pins
         reportsData.forEach(rep => {
             const markerColor = rep.type === 'PSEA' ? '#ef4444' : '#10b981';
             const customIcon = L.divIcon({
@@ -247,12 +239,10 @@
             tbody.innerHTML = '';
 
             data.forEach(rep => {
-                // Supervisor badge styles
                 let supBadge = rep.supervisorStatus.includes('Endorsed') 
                     ? "bg-emerald-950/80 text-emerald-400 border border-emerald-800" 
                     : "bg-slate-800 text-slate-400 border border-slate-700";
 
-                // Executive badge styles
                 let execBadge = "bg-amber-950/80 text-amber-300 border border-amber-800";
                 if (rep.execStatus.includes('Approved')) execBadge = "bg-emerald-950 text-emerald-400 border border-emerald-800";
                 if (rep.execStatus.includes('Awaiting Supervisor')) execBadge = "bg-slate-900 text-slate-500 border border-slate-800";
@@ -323,7 +313,6 @@
                 </div>
             `;
 
-            // Action Buttons
             const actionsContainer = document.getElementById('approval-actions');
             actionsContainer.innerHTML = `
                 <button onclick="updateWorkflow('Endorsed by Supervisor', 'Pending Executive Sign-off')" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-800 px-3 py-2 rounded-xl text-xs font-semibold">
@@ -370,7 +359,6 @@
             document.body.removeChild(link);
         }
 
-        // Initial table load
         renderTable(reportsData);
     </script>
 </body>
