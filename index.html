@@ -6,7 +6,7 @@
     <title>Hope Rising Community Development Initiative (HRCDI)</title>
     
     <!-- SEO & Social Preview Meta Tags -->
-    <meta name="description" content="Hope Rising Community Development Initiative (HRCDI) is a non-governmental organization advancing rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.">
+    <meta name="description" content="Hope Rising Community Development Initiative (HRCDI) is a non-governmental organization advancing rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Borno State, Nigeria.">
     <meta property="og:title" content="Hope Rising Community Development Initiative (HRCDI)">
     <meta property="og:description" content="Empowering vulnerable communities through sustainable development, youth empowerment, healthcare, and economic support across Nigeria.">
     <meta property="og:image" content="https://hrcdi.org.ng/IMG_2369.png">
@@ -39,17 +39,42 @@
             }
         }
     </script>
+
+    <!-- Google Search & AI Verification Structured Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Hope Rising Community Development Initiative",
+      "alternateName": "HRCDI",
+      "url": "https://hrcdi.org.ng",
+      "logo": "https://hrcdi.org.ng/IMG_2369.png",
+      "email": "info@hrcdi.org.ng",
+      "telephone": "+2349030700643",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Maiduguri",
+        "addressRegion": "Borno State",
+        "addressCountry": "NG"
+      },
+      "description": "A non-governmental organization advancing rural infrastructure, youth empowerment, healthcare relief, and community welfare in Borno State, Nigeria.",
+      "foundingDate": "2026",
+      "sameAs": [
+        "https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr"
+      ]
+    }
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden">
 
-    <!-- Top Announcement Bar (Legal Status & Fast Contacts) -->
-    <div class="bg-emerald-950 text-emerald-200 text-[11px] py-2 px-4 border-b border-emerald-900/60">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4 text-center sm:text-left">
-            <div class="flex items-center justify-center sm:justify-start gap-2">
+    <!-- Top Announcement Bar (CAC Legal Governance Notice & Quick Contact) -->
+    <div class="bg-emerald-950 text-emerald-200 text-[11px] py-2 px-3 border-b border-emerald-900/60">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 text-center sm:text-left">
+            <div class="flex items-center justify-center sm:justify-start gap-1.5">
                 <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
                 <span class="font-medium text-emerald-100">CAC Incorporated Trustee Filing • Statutory Notice Period Pending Nov 2, 2026 Maturity</span>
             </div>
-            <div class="flex items-center justify-center gap-4 text-emerald-300">
+            <div class="flex items-center justify-center gap-3 text-emerald-300">
                 <a href="tel:09030700643" class="hover:text-white transition-colors flex items-center gap-1 font-semibold text-emerald-100">
                     <i class="fa-solid fa-phone text-emerald-400 text-[10px]"></i> 09030700643
                 </a>
@@ -58,7 +83,7 @@
                     <i class="fa-regular fa-envelope text-[10px]"></i> info@hrcdi.org.ng
                 </a>
                 <span class="text-emerald-800">|</span>
-                <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1" aria-label="Facebook Page">
+                <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1" aria-label="Facebook">
                     <i class="fa-brands fa-facebook-f text-[10px]"></i>
                 </a>
             </div>
@@ -69,13 +94,22 @@
     <nav class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Brand Logo -->
+                <!-- Brand Logo & Combined Name -->
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center gap-3 group">
                         <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
                         <div class="flex flex-col">
-                            <span class="font-extrabold text-lg text-emerald-950 tracking-tight leading-none">HRCDI</span>
-                            <span class="text-[10px] text-emerald-700 font-bold tracking-wider">HOPE RISING</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-extrabold text-xs sm:text-sm text-emerald-950 tracking-tight leading-tight">
+                                    HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE
+                                </span>
+                                <span class="hidden sm:inline-block bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded shrink-0">
+                                    HRCDI
+                                </span>
+                            </div>
+                            <span class="text-[10px] text-emerald-700 font-semibold tracking-wider">
+                                Non-Governmental Organization • Borno State, Nigeria
+                            </span>
                         </div>
                     </a>
                 </div>
@@ -115,11 +149,14 @@
         <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <span class="inline-flex items-center gap-2 bg-emerald-900/80 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-emerald-700/60 mb-6 backdrop-blur-sm">
-                <i class="fa-solid fa-shield-heart text-emerald-400"></i> Non-Governmental Organization • Borno State, Nigeria
+                <i class="fa-solid fa-shield-heart text-emerald-400"></i> NGO Registration • Maiduguri, Borno State
             </span>
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
                 Hope Rising Community Development Initiative
             </h1>
+            <p class="text-emerald-400 font-bold text-base sm:text-xl mb-6 tracking-wide uppercase">
+                (HRCDI)
+            </p>
             <p class="text-slate-300 text-sm sm:text-lg lg:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-8 sm:mb-10">
                 Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
@@ -165,7 +202,7 @@
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">Our Core Program Objectives</h2>
                 <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-4"></div>
                 <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-base leading-relaxed">
-                    Targeted non-profit interventions designed to foster community self-reliance and humanitarian relief across Borno State.
+                    Targeted non-profit interventions designed by Hope Rising Community Development Initiative (HRCDI) to foster community self-reliance and humanitarian relief across Borno State.
                 </p>
             </div>
 
@@ -314,7 +351,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-white">Institutional Enquiries</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">
-                            Request our Organizational Capability Profile, Trustee Governance Guidelines, or propose a joint grant project.
+                            Request our Organizational Capability Profile, Trustee Governance Guidelines, or propose a joint grant project with Hope Rising Community Development Initiative.
                         </p>
                         <div class="pt-2 space-y-3">
                             <a href="mailto:info@hrcdi.org.ng?subject=Institutional%20Partnership%20Enquiry%20-%20HRCDI" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs sm:text-sm transition-all shadow-md">
@@ -421,7 +458,7 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        HRCDI is filed under Part F (Incorporated Trustees) of the Companies and Allied Matters Act (CAMA 2020) with the Corporate Affairs Commission (CAC), Nigeria. It is currently completing its statutory 28-day public newspaper notice publication window maturing on November 2, 2026.
+                        Hope Rising Community Development Initiative (HRCDI) is filed under Part F (Incorporated Trustees) of the Companies and Allied Matters Act (CAMA 2020) with the Corporate Affairs Commission (CAC), Nigeria. It is currently completing its statutory 28-day public newspaper notice publication window maturing on November 2, 2026.
                     </p>
                 </details>
 
@@ -474,7 +511,8 @@
     <footer class="bg-slate-950 text-slate-400 text-center py-12 px-4 mt-auto border-t border-slate-900">
         <div class="max-w-4xl mx-auto space-y-4">
             <div class="flex justify-center items-center gap-2">
-                <span class="font-extrabold text-white text-xl tracking-tight">HRCDI</span>
+                <span class="font-extrabold text-white text-base sm:text-lg tracking-tight">HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE</span>
+                <span class="bg-emerald-900 text-emerald-300 text-[10px] font-bold px-1.5 py-0.5 rounded">HRCDI</span>
             </div>
             
             <div class="flex justify-center items-center gap-6 py-2 text-sm">
@@ -497,7 +535,7 @@
             </div>
 
             <p class="text-xs text-slate-600 pt-6 border-t border-slate-900">
-                &copy; 2026 Hope Rising Community Development Initiative. All rights reserved.
+                &copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.
             </p>
         </div>
     </footer>
