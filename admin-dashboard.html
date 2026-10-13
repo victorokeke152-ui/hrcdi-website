@@ -3,451 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executive Command & Governance Dashboard | HRCDI</title>
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" type="image/png" href="IMG_2369.png">
+    <title>HRCDI — Governance & Staff Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Leaflet.js Map CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center space-x-3 min-w-0">
-                <div class="w-10 h-10 bg-emerald-600/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold border border-emerald-500/30 shrink-0">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div class="truncate">
-                    <h1 class="text-xs sm:text-sm font-extrabold text-white tracking-wide truncate">HRCDI EXECUTIVE COMMAND</h1>
-                    <p class="text-[9px] sm:text-[10px] text-slate-400 font-mono truncate">Compliance, Telemetry & Trustee Oversight</p>
-                </div>
+    <div class="max-w-5xl mx-auto space-y-6">
+        <!-- HEADER -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-5">
+            <div>
+                <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-emerald-400"></i> HRCDI Governance Dashboard
+                </h1>
+                <p class="text-xs text-slate-400">Executive Trustee Staff Appointment & Access Control</p>
             </div>
-
-            <!-- RBAC Role Switcher & Actions -->
-            <div class="flex flex-wrap items-center gap-2 shrink-0">
-                <div class="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
-                    <span class="text-[10px] text-slate-400 uppercase font-bold">Active Role:</span>
-                    <select id="rbac-role" onchange="switchRole(this.value)" class="bg-transparent text-emerald-400 font-bold text-xs focus:outline-none cursor-pointer">
-                        <option value="Executive Trustee">👑 Executive Trustee (Master)</option>
-                        <option value="Compliance Auditor">🛡️ Compliance Auditor (Read)</option>
-                        <option value="Field Supervisor">📋 Field Supervisor (Regional)</option>
-                    </select>
-                </div>
-                <button onclick="toggleAnonymization()" id="anonymize-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] px-3 py-1.5 rounded-lg border border-slate-700 transition-colors flex items-center gap-1.5" title="NDPR Donor Anonymization">
-                    <i class="fa-solid fa-user-secret"></i> <span class="hidden md:inline">NDPR Redaction: Off</span>
-                </button>
-                <a href="staff-portal.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden xs:inline">Staff Portal</span>
-                </a>
-                <button onclick="exportCSVData()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg shadow-md transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-download"></i> Export CSV
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
-
-        <!-- STATS KPI CARDS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-xl space-y-2">
-                <div class="flex justify-between items-center text-slate-400">
-                    <span class="text-xs font-medium">Total Field Reports</span>
-                    <i class="fa-solid fa-file-lines text-emerald-400"></i>
-                </div>
-                <div class="text-2xl font-extrabold text-white" id="stat-total">18</div>
-                <p class="text-[10px] text-emerald-400"><i class="fa-solid fa-arrow-trend-up mr-1"></i> Telemetry active</p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-xl space-y-2">
-                <div class="flex justify-between items-center text-slate-400">
-                    <span class="text-xs font-medium">SLA Escalation Alerts</span>
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
-                </div>
-                <div class="text-2xl font-extrabold text-amber-400" id="stat-sla">2</div>
-                <p class="text-[10px] text-amber-300"><i class="fa-solid fa-clock mr-1"></i> Pending > 48 Hours</p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-xl space-y-2">
-                <div class="flex justify-between items-center text-slate-400">
-                    <span class="text-xs font-medium">Executive Approved</span>
-                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                </div>
-                <div class="text-2xl font-extrabold text-emerald-400" id="stat-approved">15</div>
-                <p class="text-[10px] text-slate-400">Donor Audit-Ready Logs</p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-xl space-y-2">
-                <div class="flex justify-between items-center text-slate-400">
-                    <span class="text-xs font-medium">PSEA Safeguarding Vault</span>
-                    <i class="fa-solid fa-shield-cat text-red-400"></i>
-                </div>
-                <div class="text-2xl font-extrabold text-red-400" id="stat-psea">1</div>
-                <p class="text-[10px] text-red-400"><i class="fa-solid fa-user-lock mr-1"></i> Restricted Trustee Access</p>
-            </div>
-
+            <button onclick="loadStaffDirectory()" class="bg-slate-800 hover:bg-slate-700 text-xs px-4 py-2 rounded-xl transition-colors">
+                <i class="fa-solid fa-rotate-right mr-1"></i> Refresh List
+            </button>
         </div>
 
-        <!-- MAPPING & GEOLOCATION OVERVIEW -->
+        <!-- FORM: APPOINT NEW STAFF -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <h2 class="text-sm font-bold text-emerald-400 flex items-center gap-2">
+                <i class="fa-solid fa-user-plus"></i> Authorize & Appoint Staff Member
+            </h2>
+            <form id="appoint-form" onsubmit="appointStaff(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div>
-                    <h2 class="text-base font-bold text-white"><i class="fa-solid fa-map-location-dot text-emerald-400 mr-2"></i>Field Telemetry & Geofence Verification</h2>
-                    <p class="text-xs text-slate-400">Live operational mapping across Bama, Maiduguri, Jere, and Biu deployment zones.</p>
+                    <label class="block text-slate-400 mb-1">Full Name</label>
+                    <input type="text" id="staff-name" required placeholder="e.g. John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
                 </div>
-                <span class="text-[11px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1 rounded-lg font-mono">
-                    <i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i> Leaflet GPS Active
-                </span>
-            </div>
-            <div id="field-map" class="w-full h-72 rounded-xl border border-slate-800 z-10"></div>
-        </div>
-
-        <!-- SUBMISSIONS LOGS & AUDIT TABLE -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
                 <div>
-                    <h2 class="text-base font-bold text-white">Institutional Reports & Two-Tier Approval Queue</h2>
-                    <p class="text-xs text-slate-400">Review written locations, exact latitude/longitude, supervisor endorsements, and executive sign-off.</p>
+                    <label class="block text-slate-400 mb-1">11-Digit National Identification Number (NIN)</label>
+                    <input type="text" id="staff-nin-input" maxlength="11" required placeholder="12345678901" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white font-mono">
                 </div>
-
-                <!-- Filters & Search -->
-                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
-                    <div class="relative flex-1 md:w-64">
-                        <i class="fa-solid fa-search absolute left-3 top-3 text-xs text-slate-500"></i>
-                        <input type="text" id="search-input" onkeyup="filterTable()" placeholder="Search staff, location (e.g. Bama)..." 
-                            class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <select id="category-filter" onchange="filterTable()" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-emerald-500">
-                        <option value="ALL">All Categories</option>
-                        <option value="Field Log">Field Activity Logs</option>
-                        <option value="Distribution">Beneficiary Distributions</option>
-                        <option value="PSEA">PSEA Safeguarding Reports</option>
+                <div>
+                    <label class="block text-slate-400 mb-1">Assigned Role</label>
+                    <select id="staff-role" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
+                        <option value="Field Officer">Field Officer</option>
+                        <option value="Field Supervisor">Field Supervisor</option>
+                        <option value="Executive Trustee">Executive Trustee</option>
                     </select>
                 </div>
-            </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Phone Number</label>
+                    <input type="text" id="staff-phone" required placeholder="+234..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Appointed By (Trustee Name)</label>
+                    <input type="text" id="appointed-by" required placeholder="e.g. Victor Okeke" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" id="submit-appoint-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold text-white py-3 rounded-xl transition-colors">
+                        Register & Activate Staff Profile
+                    </button>
+                </div>
+            </form>
+        </div>
 
-            <!-- Table -->
+        <!-- STAFF DIRECTORY TABLE -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+            <h2 class="text-sm font-bold text-slate-200">Active Directory & Access Protocol</h2>
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse text-xs">
-                    <thead>
-                        <tr class="border-b border-slate-800 text-slate-400 font-semibold bg-slate-950/50">
-                            <th class="p-3.5 rounded-l-xl">WAT Timestamp</th>
-                            <th class="p-3.5">Staff Submitter</th>
-                            <th class="p-3.5">Category</th>
-                            <th class="p-3.5">Written Location</th>
-                            <th class="p-3.5">Exact Telemetry</th>
-                            <th class="p-3.5">Supervisor Status</th>
-                            <th class="p-3.5">Executive Status</th>
-                            <th class="p-3.5 rounded-r-xl text-right">Actions / Immutable Audit</th>
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+                        <tr>
+                            <th class="p-3">Staff Name</th>
+                            <th class="p-3">NIN</th>
+                            <th class="p-3">Role</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="reports-table-body" class="divide-y divide-slate-800/60 text-slate-300">
-                        <!-- Populated by JavaScript -->
+                    <tbody id="staff-table-body" class="divide-y divide-slate-800">
+                        <tr><td colspan="5" class="p-4 text-center text-slate-500">Loading directory...</td></tr>
                     </tbody>
                 </table>
             </div>
-
-        </div>
-
-    </main>
-
-    <!-- TWO-TIER APPROVAL & IMMUTABLE AUDIT MODAL -->
-    <div id="review-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-xl w-full space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-fingerprint text-emerald-400"></i> Immutable Telemetry & Approval Audit
-                </h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
-            </div>
-            
-            <div id="modal-content" class="space-y-4 text-xs text-slate-300"></div>
-
-            <div id="approval-actions" class="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-slate-800"></div>
         </div>
     </div>
 
-    <!-- Leaflet JS Map Engine -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Institutional Database with Immutable Telemetry & PSEA Lifecycles
-        let reportsData = [
-            { 
-                id: 1, 
-                timestamp: "2026-10-12 10:30:14 WAT", 
-                staff: "Aisha Bello", 
-                type: "Field Log", 
-                locationName: "Bama Outreach Center", 
-                lat: "11.5221", 
-                lng: "13.6856", 
-                gpsAccuracy: "±4.2m",
-                userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Mobile/15E148 Safari",
-                detail: "Community mobilization and youth protection assessment in Bama Local Government Area.", 
-                supervisorStatus: "Endorsed by Supervisor", 
-                execStatus: "Approved by Executive",
-                slaHours: 12,
-                auditTrail: [
-                    { time: "10:30:14 WAT", action: "Submitted by Aisha Bello from Mobile Safari" },
-                    { time: "11:15:00 WAT", action: "Endorsed by Regional Supervisor Ibrahim Umar" },
-                    { time: "14:20:10 WAT", action: "Final Sign-off granted by Executive Trustee" }
-                ]
-            },
-            { 
-                id: 2, 
-                timestamp: "2026-10-11 14:15:00 WAT", 
-                staff: "Ibrahim Umar", 
-                type: "Distribution", 
-                locationName: "Maiduguri Central", 
-                lat: "11.8333", 
-                lng: "13.1500", 
-                gpsAccuracy: "±3.1m",
-                userAgent: "Mozilla/5.0 (Linux; Android 14; SM-S918B) Chrome/120.0",
-                detail: "Distributed 450 educational support packages to registered youth participants.", 
-                supervisorStatus: "Endorsed by Supervisor", 
-                execStatus: "Pending Executive Sign-off",
-                slaHours: 34,
-                auditTrail: [
-                    { time: "14:15:00 WAT", action: "Submitted by Ibrahim Umar via Android Chrome" },
-                    { time: "16:00:22 WAT", action: "Endorsed by Supervisor" }
-                ]
-            },
-            { 
-                id: 3, 
-                timestamp: "2026-10-09 09:00:45 WAT", 
-                staff: "Fatima Maina", 
-                type: "Field Log", 
-                locationName: "Jere IDP Outreach", 
-                lat: "11.8500", 
-                lng: "13.1600", 
-                gpsAccuracy: "±6.5m",
-                userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/121.0",
-                detail: "Field assessment for community development initiative programs.", 
-                supervisorStatus: "Pending Supervisor Review", 
-                execStatus: "Awaiting Supervisor Clearance",
-                slaHours: 74, // Exceeds 48h SLA
-                auditTrail: [
-                    { time: "09:00:45 WAT", action: "Submitted by Fatima Maina" }
-                ]
-            },
-            { 
-                id: 4, 
-                timestamp: "2026-10-10 16:45:12 WAT", 
-                staff: "Anonymous Staff", 
-                type: "PSEA", 
-                locationName: "Biu Regional Hub", 
-                lat: "10.6122", 
-                lng: "12.1946", 
-                gpsAccuracy: "±2.8m",
-                userAgent: "Secure Encrypted Terminal / Private Session",
-                detail: "Confidential safeguarding inquiry regarding field operating guidelines compliance.", 
-                supervisorStatus: "Restricted Trustee Vault", 
-                execStatus: "Under Confidential Investigation",
-                slaHours: 40,
-                auditTrail: [
-                    { time: "16:45:12 WAT", action: "Secure PSEA Whistleblower Submission Received" },
-                    { time: "17:00:00 WAT", action: "Routed to Board Trustees Vault (Encrypted)" }
-                ]
-            }
-        ];
+        const API_BASE = 'https://hrcdi.org.ng';
 
-        let activeReviewId = null;
-        let isAnonymized = false;
-        let currentRole = "Executive Trustee";
+        document.addEventListener('DOMContentLoaded', loadStaffDirectory);
 
-        function switchRole(role) {
-            currentRole = role;
-            renderTable(reportsData);
+        function loadStaffDirectory() {
+            fetch(`${API_BASE}/manage-staff.php?action=list`)
+                .then(res => res.json())
+                .then(res => {
+                    const tbody = document.getElementById('staff-table-body');
+                    tbody.innerHTML = '';
+
+                    if (res.status === 'success' && res.data.length > 0) {
+                        res.data.forEach(staff => {
+                            let statusBadge = '';
+                            if (staff.access_status === 'Active') {
+                                statusBadge = `<span class="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-1 rounded-md text-[10px]">Active</span>`;
+                            } else if (staff.access_status === 'Official Meeting Scheduled') {
+                                statusBadge = `<span class="bg-amber-950 text-amber-300 border border-amber-800 px-2 py-1 rounded-md text-[10px]">Meeting Required</span>`;
+                            } else {
+                                statusBadge = `<span class="bg-red-950 text-red-400 border border-red-800 px-2 py-1 rounded-md text-[10px]">Revoked</span>`;
+                            }
+
+                            tbody.innerHTML += `
+                                <tr class="hover:bg-slate-950/50">
+                                    <td class="p-3 font-semibold text-white">${staff.full_name}</td>
+                                    <td class="p-3 font-mono">${staff.nin}</td>
+                                    <td class="p-3">${staff.role}</td>
+                                    <td class="p-3">${statusBadge}</td>
+                                    <td class="p-3 space-x-2">
+                                        <button onclick="updateStatus(${staff.id}, 'Official Meeting Scheduled')" class="bg-amber-900/40 hover:bg-amber-900 text-amber-300 px-2 py-1 rounded text-[10px]">Schedule Meeting</button>
+                                        <button onclick="updateStatus(${staff.id}, 'Revoked')" class="bg-red-900/40 hover:bg-red-900 text-red-300 px-2 py-1 rounded text-[10px]">Revoke Access</button>
+                                        <button onclick="updateStatus(${staff.id}, 'Active')" class="bg-emerald-900/40 hover:bg-emerald-900 text-emerald-300 px-2 py-1 rounded text-[10px]">Reactivate</button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                    } else {
+                        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No staff members appointed yet.</td></tr>`;
+                    }
+                });
         }
 
-        function toggleAnonymization() {
-            isAnonymized = !isAnonymized;
-            const btn = document.getElementById('anonymize-btn');
-            btn.innerHTML = isAnonymized ? `<i class="fa-solid fa-user-secret text-emerald-400"></i> NDPR Redaction: On` : `<i class="fa-solid fa-user-secret"></i> NDPR Redaction: Off`;
-            renderTable(reportsData);
+        function appointStaff(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-appoint-btn');
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('action', 'appoint');
+            formData.append('full_name', document.getElementById('staff-name').value);
+            formData.append('nin', document.getElementById('staff-nin-input').value);
+            formData.append('role', document.getElementById('staff-role').value);
+            formData.append('phone', document.getElementById('staff-phone').value);
+            formData.append('appointed_by', document.getElementById('appointed-by').value);
+
+            fetch(`${API_BASE}/manage-staff.php`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(res => {
+                    btn.disabled = false;
+                    alert(res.message);
+                    if (res.status === 'success') {
+                        document.getElementById('appoint-form').reset();
+                        loadStaffDirectory();
+                    }
+                });
         }
 
-        // Initialize Leaflet Map centered over Borno State
-        const map = L.map('field-map').setView([11.8333, 13.1500], 8);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-            maxZoom: 19
-        }).addTo(map);
-
-        reportsData.forEach(rep => {
-            const markerColor = rep.type === 'PSEA' ? '#ef4444' : '#10b981';
-            const customIcon = L.divIcon({
-                className: 'custom-pin',
-                html: `<div style="background-color: ${markerColor}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>`
-            });
-
-            L.marker([parseFloat(rep.lat), parseFloat(rep.lng)], { icon: customIcon }).addTo(map)
-              .bindPopup(`<b>${rep.locationName}</b><br>Staff: ${isAnonymized ? 'REDACTED [NDPR]' : rep.staff}<br>${rep.type}`);
-        });
-
-        function renderTable(data) {
-            const tbody = document.getElementById('reports-table-body');
-            tbody.innerHTML = '';
-
-            data.forEach(rep => {
-                // Restrict PSEA visibility for non-trustees / non-auditors if desired, or show with vault badge
-                let displayName = isAnonymized ? "REDACTED [NDPR ID #" + rep.id + "]" : rep.staff;
-                if (rep.type === 'PSEA' && currentRole === 'Field Supervisor') {
-                    displayName = "🔒 [RESTRICTED VAULT]";
-                }
-
-                let supBadge = rep.supervisorStatus.includes('Endorsed') 
-                    ? "bg-emerald-950/80 text-emerald-400 border border-emerald-800" 
-                    : "bg-slate-800 text-slate-400 border border-slate-700";
-
-                let execBadge = "bg-amber-950/80 text-amber-300 border border-amber-800";
-                if (rep.execStatus.includes('Approved')) execBadge = "bg-emerald-950 text-emerald-400 border border-emerald-800";
-                if (rep.execStatus.includes('Investigation')) execBadge = "bg-red-950 text-red-400 border border-red-800";
-
-                // SLA 48h Warning Indicator
-                let slaHTML = '';
-                if (rep.slaHours > 48 && rep.execStatus.includes('Pending')) {
-                    slaHTML = `<span class="bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded text-[9px] font-bold animate-pulse ml-1"><i class="fa-solid fa-triangle-exclamation"></i> >48h SLA</span>`;
-                }
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-950/40 transition-colors";
-                tr.innerHTML = `
-                    <td class="p-3.5 font-mono text-slate-400 text-[11px]">${rep.timestamp}</td>
-                    <td class="p-3.5 font-bold text-white">${displayName}</td>
-                    <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-emerald-400 border border-slate-700">${rep.type}</span></td>
-                    <td class="p-3.5 font-semibold text-emerald-300"><i class="fa-solid fa-location-dot mr-1"></i> ${rep.locationName}</td>
-                    <td class="p-3.5 font-mono text-[11px] text-slate-300">Lat: ${rep.lat} | Lng: ${rep.lng}</td>
-                    <td class="p-3.5"><span class="px-2 py-1 rounded-md text-[10px] font-medium ${supBadge}">${rep.supervisorStatus}</span></td>
-                    <td class="p-3.5"><span class="px-2 py-1 rounded-md text-[10px] font-bold ${execBadge}">${rep.execStatus}</span> ${slaHTML}</td>
-                    <td class="p-3.5 text-right">
-                        <button onclick="openReviewModal(${rep.id})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 text-[11px] font-medium transition-colors">
-                            Audit & Approvals &rarr;
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function filterTable() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const cat = document.getElementById('category-filter').value;
-
-            const filtered = reportsData.filter(r => {
-                const matchesQuery = r.staff.toLowerCase().includes(query) || 
-                                     r.locationName.toLowerCase().includes(query) || 
-                                     r.detail.toLowerCase().includes(query);
-                const matchesCat = cat === 'ALL' || r.type === cat;
-                return matchesQuery && matchesCat;
-            });
-
-            renderTable(filtered);
-        }
-
-        function openReviewModal(id) {
-            activeReviewId = id;
-            const rep = reportsData.find(r => r.id === id);
-            if (!rep) return;
-
-            // Build Audit Trail HTML
-            let auditTrailHTML = rep.auditTrail.map(a => `<div class="flex justify-between text-[10px] border-b border-slate-800/60 py-1"><span class="text-slate-400 font-mono">${a.time}</span> <span class="text-emerald-300">${a.action}</span></div>`).join('');
-
-            document.getElementById('modal-content').innerHTML = `
-                <div class="grid grid-cols-2 gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px]">
-                    <div><span class="text-slate-500 block">STAFF SUBMITTER</span> <strong class="text-white">${rep.staff}</strong></div>
-                    <div><span class="text-slate-500 block">WRITTEN LOCATION</span> <strong class="text-emerald-400">${rep.locationName}</strong></div>
-                    <div><span class="text-slate-500 block">LATITUDE / LONGITUDE</span> <strong class="text-white font-mono">${rep.lat}, ${rep.lng}</strong></div>
-                    <div><span class="text-slate-500 block">GPS TELEMETRY ACCURACY</span> <strong class="text-emerald-400 font-mono">${rep.gpsAccuracy}</strong></div>
-                </div>
-
-                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span class="text-slate-500 text-[10px] block font-bold uppercase">Work Order & Field Activity Details</span>
-                    <p class="text-slate-200 leading-relaxed">${rep.detail}</p>
-                </div>
-
-                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span class="text-slate-500 text-[10px] block font-bold uppercase">Device User-Agent Telemetry</span>
-                    <p class="text-[10px] font-mono text-slate-400 bg-slate-900 p-2 rounded">${rep.userAgent}</p>
-                </div>
-
-                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
-                    <span class="text-slate-500 text-[10px] block font-bold uppercase">Immutable Action History Trail</span>
-                    <div class="space-y-1 max-h-28 overflow-y-auto">${auditTrailHTML}</div>
-                </div>
-
-                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
-                    <div class="flex justify-between items-center text-[11px]">
-                        <span class="text-slate-400">1. Supervisor Review Status:</span>
-                        <strong class="text-emerald-400">${rep.supervisorStatus}</strong>
-                    </div>
-                    <div class="flex justify-between items-center text-[11px]">
-                        <span class="text-slate-400">2. Executive Final Sign-off:</span>
-                        <strong class="text-amber-300">${rep.execStatus}</strong>
-                    </div>
-                </div>
-            `;
-
-            const actionsContainer = document.getElementById('approval-actions');
-            if (currentRole === 'Compliance Auditor') {
-                actionsContainer.innerHTML = `<span class="text-slate-400 text-xs italic">Compliance Auditors have read-only inspection clearance under NDPR.</span>`;
-            } else {
-                actionsContainer.innerHTML = `
-                    <button onclick="updateWorkflow('Endorsed by Supervisor', 'Pending Executive Sign-off')" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-800 px-3 py-2 rounded-xl text-xs font-semibold">
-                        Step 1: Supervisor Endorsement
-                    </button>
-                    <button onclick="updateWorkflow('Endorsed by Supervisor', 'Approved by Executive')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold">
-                        Step 2: Executive Final Approval
-                    </button>
-                `;
+        function updateStatus(staffId, status) {
+            let reason = '';
+            if (status === 'Revoked' || status === 'Official Meeting Scheduled') {
+                reason = prompt(`Enter reason or notes for setting status to "${status}":`);
+                if (reason === null) return;
             }
 
-            const m = document.getElementById('review-modal');
-            m.classList.remove('hidden');
-            m.classList.add('flex');
-        }
+            const formData = new FormData();
+            formData.append('action', 'update_status');
+            formData.append('staff_id', staffId);
+            formData.append('access_status', status);
+            formData.append('revocation_reason', reason);
 
-        function closeModal() {
-            const m = document.getElementById('review-modal');
-            m.classList.add('hidden');
-            m.classList.remove('flex');
+            fetch(`${API_BASE}/manage-staff.php`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(res => {
+                    alert(res.message);
+                    loadStaffDirectory();
+                });
         }
-
-        function updateWorkflow(supState, execState) {
-            const rep = reportsData.find(r => r.id === activeReviewId);
-            if (rep) {
-                rep.supervisorStatus = supState;
-                rep.execStatus = execState;
-                const nowTime = new Date().toLocaleTimeString() + " WAT";
-                rep.auditTrail.push({ time: nowTime, action: `Status updated by ${currentRole}: Supervisor [${supState}], Executive [${execState}]` });
-                renderTable(reportsData);
-                closeModal();
-                alert(`Order updated successfully under role: ${currentRole}!`);
-            }
-        }
-
-        function exportCSVData() {
-            let csvContent = "data:text/csv;charset=utf-8,Timestamp,Staff,Category,Written_Location,Latitude,Longitude,GPS_Accuracy,Supervisor_Status,Executive_Status,Details\n";
-            reportsData.forEach(r => {
-                let sName = isAnonymized ? "REDACTED" : r.staff;
-                csvContent += `"${r.timestamp}","${sName}","${r.type}","${r.locationName}","${r.lat}","${r.lng}","${r.gpsAccuracy}","${r.supervisorStatus}","${r.execStatus}","${r.detail.replace(/"/g, '""')}"\n`;
-            });
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "HRCDI_Executive_Audit_Report.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        renderTable(reportsData);
     </script>
 </body>
 </html>
