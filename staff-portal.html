@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRCDI — Staff Portal & Beneficiary Tracking</title>
+    <title>HRCDI — Institutional Governance & Task Operations</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- VIEW 1: FIELD OFFICER / VOLUNTEER WORKSPACE -->
-    <div id="field-portal-view" class="hidden max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-5">
+    <div id="field-portal-view" class="hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-5">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <div>
                 <h2 id="field-staff-name" class="text-sm font-bold text-white"></h2>
@@ -50,6 +50,9 @@
             </button>
             <button id="field-tab-btn-aid" onclick="switchFieldTab('aid')" class="pb-2 font-bold text-slate-400 hover:text-white">
                 <i class="fa-solid fa-hand-holding-heart mr-1"></i> Log Aid Beneficiary
+            </button>
+            <button id="field-tab-btn-tasks" onclick="switchFieldTab('tasks')" class="pb-2 font-bold text-slate-400 hover:text-white">
+                <i class="fa-solid fa-list-check mr-1"></i> My Assigned Tasks
             </button>
         </div>
 
@@ -112,6 +115,26 @@
                 Log Beneficiary Distribution
             </button>
         </form>
+
+        <!-- FIELD TAB 3: ASSIGNED TASKS -->
+        <div id="field-tasks-view" class="hidden space-y-3 text-xs">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+                        <tr>
+                            <th class="p-3">Task Title & Details</th>
+                            <th class="p-3">Assigned By</th>
+                            <th class="p-3">Due Date</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="my-tasks-table-body" class="divide-y divide-slate-800">
+                        <tr><td colspan="5" class="p-4 text-center text-slate-500">Loading your tasks...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- VIEW 2: MANAGEMENT & EXECUTIVE OVERSIGHT DASHBOARD -->
@@ -125,7 +148,7 @@
                 <button onclick="exportReportsPDF()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5">
                     <i class="fa-solid fa-file-pdf"></i> Export Executive PDF Report
                 </button>
-                <button onclick="loadAllReports(); loadBeneficiaries();" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-xl">Refresh Logs</button>
+                <button onclick="loadAllReports(); loadBeneficiaries(); loadAllTasks();" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-xl">Refresh Logs</button>
                 <button onclick="logoutStaff()" class="text-xs text-slate-400 hover:text-red-400 p-2"><i class="fa-solid fa-right-from-bracket"></i> Exit</button>
             </div>
         </div>
@@ -137,6 +160,9 @@
             </button>
             <button id="tab-btn-aid" onclick="switchTab('aid')" class="pb-2 font-bold text-slate-400 hover:text-white">
                 <i class="fa-solid fa-hand-holding-heart mr-1"></i> Beneficiary Aid Distribution
+            </button>
+            <button id="tab-btn-tasks" onclick="switchTab('tasks')" class="pb-2 font-bold text-slate-400 hover:text-white">
+                <i class="fa-solid fa-list-check mr-1"></i> Project & Task Tracker
             </button>
             <button id="tab-btn-vault" onclick="switchTab('vault')" class="pb-2 font-bold text-slate-400 hover:text-white">
                 <i class="fa-solid fa-box-archive mr-1"></i> Policy & Document Vault
@@ -183,7 +209,41 @@
             </div>
         </div>
 
-        <!-- TAB 3: DIGITAL DOCUMENT VAULT -->
+        <!-- TAB 3: PROJECT TASKS TRACKER -->
+        <div id="tab-content-tasks" class="hidden space-y-4 text-xs">
+            <!-- CREATE TASK FORM -->
+            <form id="assign-task-form" onsubmit="assignTask(event)" class="bg-slate-950 p-4 border border-slate-800 rounded-xl space-y-3">
+                <div class="font-bold text-white text-xs"><i class="fa-solid fa-plus text-emerald-400 mr-1"></i> Assign New Project Task / Milestone</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <input type="text" id="task-title" required placeholder="Task Title" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
+                    <input type="text" id="task-assignee-nin" maxlength="11" required placeholder="Assignee Staff NIN" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-mono">
+                    <input type="date" id="task-due-date" required class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
+                </div>
+                <textarea id="task-desc" placeholder="Task details or specific guidelines..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white" rows="2"></textarea>
+                <button type="submit" id="assign-task-btn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl transition-colors">
+                    Assign Task & Dispatch SMS Alert
+                </button>
+            </form>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+                        <tr>
+                            <th class="p-3">Task Title</th>
+                            <th class="p-3">Assigned To</th>
+                            <th class="p-3">Assigned By</th>
+                            <th class="p-3">Due Date</th>
+                            <th class="p-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-tasks-table-body" class="divide-y divide-slate-800">
+                        <tr><td colspan="5" class="p-4 text-center text-slate-500">Loading project tasks...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 4: DIGITAL DOCUMENT VAULT -->
         <div id="tab-content-vault" class="hidden space-y-4 text-xs">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
@@ -207,6 +267,7 @@
     <script>
         const API_BASE = 'https://hrcdi.org.ng';
         let loggedInStaffNIN = '';
+        let loggedInStaffName = '';
         let currentLat = '';
         let currentLng = '';
         let fetchedReportsData = [];
@@ -234,6 +295,8 @@
                     if (res.status === 'success') {
                         document.getElementById('auth-box').classList.add('hidden');
                         const staff = res.data;
+                        loggedInStaffName = staff.full_name;
+
                         const executiveRoles = [
                             'Board of Trustees (BoT)', 'Executive Director', 'Deputy Executive Director', 
                             'Programme Manager', 'Project Manager', 'Project Coordinator'
@@ -245,11 +308,13 @@
                             document.getElementById('mgmt-staff-role').innerText = staff.role + ' (Executive Access)';
                             loadAllReports();
                             loadBeneficiaries();
+                            loadAllTasks();
                         } else {
                             document.getElementById('field-portal-view').classList.remove('hidden');
                             document.getElementById('field-staff-name').innerText = staff.full_name;
                             document.getElementById('field-staff-role').innerText = staff.role + ' (Field Access)';
                             initGeolocation();
+                            loadMyTasks();
                         }
                     } else {
                         msgBox.className = 'text-center text-xs p-3 rounded-xl border bg-red-950 text-red-400 border-red-800';
@@ -318,6 +383,31 @@
                 });
         }
 
+        function assignTask(e) {
+            e.preventDefault();
+            const btn = document.getElementById('assign-task-btn');
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('action', 'assign');
+            formData.append('task_title', document.getElementById('task-title').value);
+            formData.append('assigned_to_nin', document.getElementById('task-assignee-nin').value);
+            formData.append('due_date', document.getElementById('task-due-date').value);
+            formData.append('task_description', document.getElementById('task-desc').value);
+            formData.append('assigned_by_name', loggedInStaffName);
+
+            fetch(`${API_BASE}/manage-tasks.php`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(res => {
+                    btn.disabled = false;
+                    alert(res.message);
+                    if (res.status === 'success') {
+                        document.getElementById('assign-task-form').reset();
+                        loadAllTasks();
+                    }
+                });
+        }
+
         function loadAllReports() {
             fetch(`${API_BASE}/submit-report.php?action=list`)
                 .then(res => res.json())
@@ -358,37 +448,103 @@
                                     <td class="p-3 text-slate-400">${b.field_officer_name}<br><span class="text-[10px]">${b.created_at}</span></td>
                                 </tr>`;
                         });
-                    } else {
-                        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No aid distribution records logged yet.</td></tr>`;
                     }
                 });
         }
 
+        function loadAllTasks() {
+            fetch(`${API_BASE}/manage-tasks.php?action=list_all`)
+                .then(res => res.json())
+                .then(res => {
+                    const tbody = document.getElementById('all-tasks-table-body');
+                    tbody.innerHTML = '';
+                    if (res.status === 'success' && res.data.length > 0) {
+                        res.data.forEach(t => {
+                            let badge = 'bg-amber-950 text-amber-400 border-amber-800';
+                            if (t.status === 'In Progress') badge = 'bg-blue-950 text-blue-400 border-blue-800';
+                            if (t.status === 'Completed') badge = 'bg-emerald-950 text-emerald-400 border-emerald-800';
+
+                            tbody.innerHTML += `
+                                <tr class="hover:bg-slate-950/50 align-top">
+                                    <td class="p-3 font-semibold text-white">${t.task_title}<br><span class="text-[10px] text-slate-400">${t.task_description}</span></td>
+                                    <td class="p-3 text-slate-300">${t.assigned_to_name}</td>
+                                    <td class="p-3 text-slate-400">${t.assigned_by_name}</td>
+                                    <td class="p-3 font-mono text-slate-400">${t.due_date}</td>
+                                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] border ${badge}">${t.status}</span></td>
+                                </tr>`;
+                        });
+                    }
+                });
+        }
+
+        function loadMyTasks() {
+            fetch(`${API_BASE}/manage-tasks.php?action=list_my&nin=${loggedInStaffNIN}`)
+                .then(res => res.json())
+                .then(res => {
+                    const tbody = document.getElementById('my-tasks-table-body');
+                    tbody.innerHTML = '';
+                    if (res.status === 'success' && res.data.length > 0) {
+                        res.data.forEach(t => {
+                            tbody.innerHTML += `
+                                <tr class="hover:bg-slate-950/50 align-top">
+                                    <td class="p-3 font-semibold text-white">${t.task_title}<br><span class="text-[10px] text-slate-400">${t.task_description}</span></td>
+                                    <td class="p-3 text-slate-400">${t.assigned_by_name}</td>
+                                    <td class="p-3 font-mono text-slate-400">${t.due_date}</td>
+                                    <td class="p-3 font-semibold text-emerald-400">${t.status}</td>
+                                    <td class="p-3">
+                                        <select onchange="updateTaskStatus(${t.id}, this.value)" class="bg-slate-950 border border-slate-800 p-1 rounded text-white text-[10px]">
+                                            <option value="Pending" ${t.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                            <option value="In Progress" ${t.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                                            <option value="Completed" ${t.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>`;
+                        });
+                    } else {
+                        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No tasks currently assigned to you.</td></tr>`;
+                    }
+                });
+        }
+
+        function updateTaskStatus(taskId, status) {
+            const formData = new FormData();
+            formData.append('action', 'update_status');
+            formData.append('task_id', taskId);
+            formData.append('status', status);
+
+            fetch(`${API_BASE}/manage-tasks.php`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(res => alert(res.message));
+        }
+
         function switchFieldTab(tab) {
-            const reportForm = document.getElementById('field-report-form');
-            const aidForm = document.getElementById('beneficiary-form');
-            const btnReport = document.getElementById('field-tab-btn-report');
-            const btnAid = document.getElementById('field-tab-btn-aid');
+            document.getElementById('field-report-form').classList.add('hidden');
+            document.getElementById('beneficiary-form').classList.add('hidden');
+            document.getElementById('field-tasks-view').classList.add('hidden');
+            document.getElementById('field-tab-btn-report').className = "pb-2 font-bold text-slate-400 hover:text-white";
+            document.getElementById('field-tab-btn-aid').className = "pb-2 font-bold text-slate-400 hover:text-white";
+            document.getElementById('field-tab-btn-tasks').className = "pb-2 font-bold text-slate-400 hover:text-white";
 
             if (tab === 'report') {
-                reportForm.classList.remove('hidden');
-                aidForm.classList.add('hidden');
-                btnReport.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
-                btnAid.className = "pb-2 font-bold text-slate-400 hover:text-white";
+                document.getElementById('field-report-form').classList.remove('hidden');
+                document.getElementById('field-tab-btn-report').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+            } else if (tab === 'aid') {
+                document.getElementById('beneficiary-form').classList.remove('hidden');
+                document.getElementById('field-tab-btn-aid').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
             } else {
-                reportForm.classList.add('hidden');
-                aidForm.classList.remove('hidden');
-                btnAid.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
-                btnReport.className = "pb-2 font-bold text-slate-400 hover:text-white";
+                document.getElementById('field-tasks-view').classList.remove('hidden');
+                document.getElementById('field-tab-btn-tasks').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
             }
         }
 
         function switchTab(tab) {
             document.getElementById('tab-content-reports').classList.add('hidden');
             document.getElementById('tab-content-aid').classList.add('hidden');
+            document.getElementById('tab-content-tasks').classList.add('hidden');
             document.getElementById('tab-content-vault').classList.add('hidden');
             document.getElementById('tab-btn-reports').className = "pb-2 font-bold text-slate-400 hover:text-white";
             document.getElementById('tab-btn-aid').className = "pb-2 font-bold text-slate-400 hover:text-white";
+            document.getElementById('tab-btn-tasks').className = "pb-2 font-bold text-slate-400 hover:text-white";
             document.getElementById('tab-btn-vault').className = "pb-2 font-bold text-slate-400 hover:text-white";
 
             if (tab === 'reports') {
@@ -397,6 +553,9 @@
             } else if (tab === 'aid') {
                 document.getElementById('tab-content-aid').classList.remove('hidden');
                 document.getElementById('tab-btn-aid').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+            } else if (tab === 'tasks') {
+                document.getElementById('tab-content-tasks').classList.remove('hidden');
+                document.getElementById('tab-btn-tasks').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
             } else {
                 document.getElementById('tab-content-vault').classList.remove('hidden');
                 document.getElementById('tab-btn-vault').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
