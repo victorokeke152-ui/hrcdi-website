@@ -39,10 +39,23 @@
                 </div>
                 <div>
                     <label class="block text-slate-400 mb-1">Assigned Role</label>
-                    <select id="staff-role" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
-                        <option value="Field Officer">Field Officer</option>
-                        <option value="Field Supervisor">Field Supervisor</option>
-                        <option value="Executive Trustee">Executive Trustee</option>
+                    <select id="staff-role" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                        <optgroup label="Executive & Governance" class="bg-slate-900 text-emerald-400">
+                            <option value="Board of Trustees (BoT)">Board of Trustees (BoT)</option>
+                            <option value="Executive Director">Executive Director</option>
+                            <option value="Deputy Executive Director">Deputy Executive Director</option>
+                        </optgroup>
+                        <optgroup label="Management & Coordination" class="bg-slate-900 text-emerald-400">
+                            <option value="Programme Manager">Programme Manager</option>
+                            <option value="Project Manager">Project Manager</option>
+                            <option value="Project Coordinator">Project Coordinator</option>
+                        </optgroup>
+                        <optgroup label="Field Operations" class="bg-slate-900 text-emerald-400">
+                            <option value="Project Officer">Project Officer</option>
+                            <option value="Field Officer">Field Officer</option>
+                            <option value="Community Mobilizer">Community Mobilizer</option>
+                            <option value="Volunteers">Volunteers</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div>
