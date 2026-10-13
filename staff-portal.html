@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRCDI — Institutional Governance & Task Operations</title>
+    <title>HRCDI — Institutional Portal & Operations</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
@@ -281,6 +281,7 @@
 
             btn.disabled = true;
             btn.innerText = "Authenticating NIN...";
+            msgBox.className = 'hidden';
 
             const formData = new FormData();
             formData.append('nin', nin);
@@ -290,7 +291,6 @@
                 .then(res => {
                     btn.disabled = false;
                     btn.innerText = "Verify Credentials & Access Portal";
-                    msgBox.className = 'hidden text-center text-xs p-3 rounded-xl border';
 
                     if (res.status === 'success') {
                         document.getElementById('auth-box').classList.add('hidden');
@@ -320,6 +320,12 @@
                         msgBox.className = 'text-center text-xs p-3 rounded-xl border bg-red-950 text-red-400 border-red-800';
                         msgBox.innerText = res.message;
                     }
+                })
+                .catch(() => {
+                    btn.disabled = false;
+                    btn.innerText = "Verify Credentials & Access Portal";
+                    msgBox.className = 'text-center text-xs p-3 rounded-xl border bg-red-950 text-red-400 border-red-800';
+                    msgBox.innerText = "Connection error. Unable to reach backend server.";
                 });
         }
 
