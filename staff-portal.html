@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRCDI — Staff Portal & Field Operations</title>
+    <title>HRCDI — Staff Portal & Institutional Governance</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
 
@@ -13,7 +16,7 @@
     <div id="auth-box" class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
         <div class="text-center space-y-1">
             <h1 class="text-lg font-bold text-white flex items-center justify-center gap-2">
-                <i class="fa-solid fa-shield-halved text-emerald-400"></i> HRCDI Staff Portal
+                <i class="fa-solid fa-shield-halved text-emerald-400"></i> HRCDI Portal
             </h1>
             <p class="text-xs text-slate-400">Hope Rising Community Development Initiative</p>
         </div>
@@ -68,20 +71,33 @@
     </div>
 
     <!-- VIEW 2: MANAGEMENT & EXECUTIVE OVERSIGHT DASHBOARD -->
-    <div id="management-portal-view" class="hidden max-w-4xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-5">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+    <div id="management-portal-view" class="hidden max-w-5xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
             <div>
-                <h2 id="mgmt-staff-name" class="text-sm font-bold text-white"></h2>
-                <p id="mgmt-staff-role" class="text-[11px] text-emerald-400 font-medium"></p>
+                <h2 id="mgmt-staff-name" class="text-base font-bold text-white"></h2>
+                <p id="mgmt-staff-role" class="text-xs text-emerald-400 font-medium"></p>
             </div>
-            <div class="space-x-3">
-                <button onclick="loadAllReports()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-1.5 rounded-xl">Refresh Logs</button>
-                <button onclick="logoutStaff()" class="text-xs text-slate-400 hover:text-red-400"><i class="fa-solid fa-right-from-bracket"></i> Exit</button>
+            <div class="flex items-center gap-2">
+                <button onclick="exportReportsPDF()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-pdf"></i> Export Executive PDF Report
+                </button>
+                <button onclick="loadAllReports()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-xl">Refresh Logs</button>
+                <button onclick="logoutStaff()" class="text-xs text-slate-400 hover:text-red-400 p-2"><i class="fa-solid fa-right-from-bracket"></i> Exit</button>
             </div>
         </div>
 
-        <div class="space-y-3">
-            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Submitted Field Reports & Activity Logs</h3>
+        <!-- TABS HEADER -->
+        <div class="flex border-b border-slate-800 text-xs gap-4">
+            <button id="tab-btn-reports" onclick="switchTab('reports')" class="pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400">
+                <i class="fa-solid fa-clipboard-list mr-1"></i> Field Activity Logs
+            </button>
+            <button id="tab-btn-vault" onclick="switchTab('vault')" class="pb-2 font-bold text-slate-400 hover:text-white">
+                <i class="fa-solid fa-box-archive mr-1"></i> Digital Policy & Document Vault
+            </button>
+        </div>
+
+        <!-- TAB 1: REPORTS TABLE -->
+        <div id="tab-content-reports" class="space-y-3">
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs text-slate-300">
                     <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
@@ -99,6 +115,41 @@
                 </table>
             </div>
         </div>
+
+        <!-- TAB 2: DIGITAL DOCUMENT VAULT -->
+        <div id="tab-content-vault" class="hidden space-y-4 text-xs">
+            <p class="text-slate-400">Centralized storage for official institutional governance documents, constitutions, and policies.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-file-shield text-emerald-400 mr-2"></i> HRCDI Constitution & By-Laws</div>
+                        <div class="text-[10px] text-slate-500">Official Trustee Board Rules</div>
+                    </div>
+                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-building-columns text-emerald-400 mr-2"></i> CAC Registration Certificate</div>
+                        <div class="text-[10px] text-slate-500">Status: Active Non-Profit Status</div>
+                    </div>
+                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-hand-holding-heart text-emerald-400 mr-2"></i> Safeguarding & Field Policy</div>
+                        <div class="text-[10px] text-slate-500">Community Outreach Operations</div>
+                    </div>
+                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-briefcase text-emerald-400 mr-2"></i> Financial Oversight Guidelines</div>
+                        <div class="text-[10px] text-slate-500">Grant & Expenditure Protocols</div>
+                    </div>
+                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -106,6 +157,7 @@
         let loggedInStaffNIN = '';
         let currentLat = '';
         let currentLng = '';
+        let fetchedReportsData = [];
 
         function verifyStaffNIN(e) {
             e.preventDefault();
@@ -140,13 +192,11 @@
                         ];
 
                         if (executiveRoles.includes(staff.role)) {
-                            // Show Management & Oversight View
                             document.getElementById('management-portal-view').classList.remove('hidden');
                             document.getElementById('mgmt-staff-name').innerText = staff.full_name;
-                            document.getElementById('mgmt-staff-role').innerText = staff.role + ' (Executive Access)';
+                            document.getElementById('mgmt-staff-role').innerText = staff.role + ' (Executive Oversight Access)';
                             loadAllReports();
                         } else {
-                            // Show Field Operations View
                             document.getElementById('field-portal-view').classList.remove('hidden');
                             document.getElementById('field-staff-name').innerText = staff.full_name;
                             document.getElementById('field-staff-role').innerText = staff.role + ' (Field Access)';
@@ -180,8 +230,6 @@
                     },
                     { timeout: 10000 }
                 );
-            } else {
-                gpsStatus.innerText = "Not supported by browser";
             }
         }
 
@@ -217,6 +265,7 @@
                     tbody.innerHTML = '';
 
                     if (res.status === 'success' && res.data.length > 0) {
+                        fetchedReportsData = res.data;
                         res.data.forEach(rep => {
                             const gpsText = rep.latitude ? `${rep.latitude}, ${rep.longitude}` : 'No GPS';
                             tbody.innerHTML += `
@@ -236,6 +285,71 @@
                         tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No field reports submitted yet.</td></tr>`;
                     }
                 });
+        }
+
+        // ONE-CLICK EXECUTIVE PDF GENERATION
+        function exportReportsPDF() {
+            if (fetchedReportsData.length === 0) {
+                alert("No activity reports available to export.");
+                return;
+            }
+
+            const tableRows = [
+                [{ text: 'Staff Name', style: 'tableHeader' }, { text: 'Role', style: 'tableHeader' }, { text: 'Category', style: 'tableHeader' }, { text: 'Summary', style: 'tableHeader' }, { text: 'GPS / Time', style: 'tableHeader' }]
+            ];
+
+            fetchedReportsData.forEach(r => {
+                const gps = r.latitude ? `${r.latitude}, ${r.longitude}` : 'N/A';
+                tableRows.push([
+                    { text: r.full_name, fontSize: 9, bold: true },
+                    { text: r.role, fontSize: 8, color: '#059669' },
+                    { text: r.report_type, fontSize: 8 },
+                    { text: r.report_details, fontSize: 8 },
+                    { text: `${gps}\n${r.created_at}`, fontSize: 7, color: '#4b5563' }
+                ]);
+            });
+
+            const docDefinition = {
+                content: [
+                    { text: 'HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE', style: 'header' },
+                    { text: 'Executive Field Operations & Activity Log Audit', style: 'subheader' },
+                    { text: `Generated On: ${new Date().toLocaleString()}`, fontSize: 9, color: '#6b7280', margin: [0, 0, 0, 15] },
+                    {
+                        table: {
+                            headerRows: 1,
+                            widths: ['20%', '18%', '18%', '28%', '16%'],
+                            body: tableRows
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: { fontSize: 14, bold: true, color: '#065f46', alignment: 'center' },
+                    subheader: { fontSize: 11, bold: true, alignment: 'center', margin: [0, 2, 0, 5] },
+                    tableHeader: { fontSize: 9, bold: true, color: '#1f2937', fillColor: '#f3f4f6' }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).download(`HRCDI_Executive_Audit_${Date.now()}.pdf`);
+        }
+
+        function switchTab(tab) {
+            const reportsTab = document.getElementById('tab-content-reports');
+            const vaultTab = document.getElementById('tab-content-vault');
+            const btnReports = document.getElementById('tab-btn-reports');
+            const btnVault = document.getElementById('tab-btn-vault');
+
+            if (tab === 'reports') {
+                reportsTab.classList.remove('hidden');
+                vaultTab.classList.add('hidden');
+                btnReports.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+                btnVault.className = "pb-2 font-bold text-slate-400 hover:text-white";
+            } else {
+                reportsTab.classList.add('hidden');
+                vaultTab.classList.remove('hidden');
+                btnVault.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+                btnReports.className = "pb-2 font-bold text-slate-400 hover:text-white";
+            }
         }
 
         function logoutStaff() {
