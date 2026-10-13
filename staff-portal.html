@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRCDI — Staff Portal & Institutional Governance</title>
+    <title>HRCDI — Staff Portal & Beneficiary Tracking</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 </head>
@@ -34,8 +33,8 @@
         <div id="auth-status-message" class="hidden text-center text-xs p-3 rounded-xl border"></div>
     </div>
 
-    <!-- VIEW 1: FIELD OFFICER / VOLUNTEER REPORTING FORM -->
-    <div id="field-portal-view" class="hidden max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-5">
+    <!-- VIEW 1: FIELD OFFICER / VOLUNTEER WORKSPACE -->
+    <div id="field-portal-view" class="hidden max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-5">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <div>
                 <h2 id="field-staff-name" class="text-sm font-bold text-white"></h2>
@@ -44,6 +43,17 @@
             <button onclick="logoutStaff()" class="text-xs text-slate-400 hover:text-red-400"><i class="fa-solid fa-right-from-bracket"></i> Exit</button>
         </div>
 
+        <!-- FIELD TABS -->
+        <div class="flex border-b border-slate-800 text-xs gap-4">
+            <button id="field-tab-btn-report" onclick="switchFieldTab('report')" class="pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400">
+                <i class="fa-solid fa-clipboard-list mr-1"></i> Field Activity Log
+            </button>
+            <button id="field-tab-btn-aid" onclick="switchFieldTab('aid')" class="pb-2 font-bold text-slate-400 hover:text-white">
+                <i class="fa-solid fa-hand-holding-heart mr-1"></i> Log Aid Beneficiary
+            </button>
+        </div>
+
+        <!-- FIELD FORM 1: ACTIVITY REPORT -->
         <form id="field-report-form" onsubmit="submitFieldReport(event)" class="space-y-4 text-xs">
             <div>
                 <label class="block text-slate-400 font-semibold mb-1">Report Category</label>
@@ -53,19 +63,53 @@
                     <option value="Incident Report">Field Incident Report</option>
                 </select>
             </div>
-
             <div>
                 <label class="block text-slate-400 font-semibold mb-1">Activity / Assessment Summary</label>
-                <textarea id="report-details" required rows="4" placeholder="Describe field operations, community engagement, or observations..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white"></textarea>
+                <textarea id="report-details" required rows="4" placeholder="Describe field operations or observations..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white"></textarea>
             </div>
-
             <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl flex items-center justify-between text-slate-400">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-location-crosshairs text-emerald-400"></i> GPS Geolocation Status:</span>
-                <span id="gps-status" class="text-amber-400 font-mono text-[11px]">Acquiring coordinates...</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-location-crosshairs text-emerald-400"></i> GPS Status:</span>
+                <span id="gps-status" class="text-amber-400 font-mono text-[11px]">Acquiring...</span>
             </div>
-
             <button type="submit" id="submit-report-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-colors">
                 Submit Geolocated Field Record
+            </button>
+        </form>
+
+        <!-- FIELD FORM 2: BENEFICIARY LOG -->
+        <form id="beneficiary-form" onsubmit="submitBeneficiaryRecord(event)" class="hidden space-y-4 text-xs">
+            <div>
+                <label class="block text-slate-400 font-semibold mb-1">Beneficiary Full Name</label>
+                <input type="text" id="b-name" required placeholder="e.g. Amina Yusuf" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-slate-400 font-semibold mb-1">NIN / Phone Number</label>
+                    <input type="text" id="b-id-phone" placeholder="Optional for ID verification" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 font-semibold mb-1">Community / Location</label>
+                    <input type="text" id="b-location" required placeholder="e.g. Maiduguri Ward 4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-slate-400 font-semibold mb-1">Resource / Aid Category</label>
+                    <select id="b-category" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+                        <option value="Food & Nutrition Package">Food & Nutrition Package</option>
+                        <option value="Educational / School Kit">Educational / School Kit</option>
+                        <option value="Medical / Hygiene Kit">Medical / Hygiene Kit</option>
+                        <option value="Financial Support Grant">Financial Support Grant</option>
+                        <option value="Agricultural Inputs">Agricultural Inputs</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-slate-400 font-semibold mb-1">Quantity / Unit</label>
+                    <input type="text" id="b-quantity" required placeholder="e.g. 1 Pack / 50kg Bag" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+                </div>
+            </div>
+            <button type="submit" id="submit-b-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-colors">
+                Log Beneficiary Distribution
             </button>
         </form>
     </div>
@@ -81,7 +125,7 @@
                 <button onclick="exportReportsPDF()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5">
                     <i class="fa-solid fa-file-pdf"></i> Export Executive PDF Report
                 </button>
-                <button onclick="loadAllReports()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-xl">Refresh Logs</button>
+                <button onclick="loadAllReports(); loadBeneficiaries();" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-xl">Refresh Logs</button>
                 <button onclick="logoutStaff()" class="text-xs text-slate-400 hover:text-red-400 p-2"><i class="fa-solid fa-right-from-bracket"></i> Exit</button>
             </div>
         </div>
@@ -91,8 +135,11 @@
             <button id="tab-btn-reports" onclick="switchTab('reports')" class="pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400">
                 <i class="fa-solid fa-clipboard-list mr-1"></i> Field Activity Logs
             </button>
+            <button id="tab-btn-aid" onclick="switchTab('aid')" class="pb-2 font-bold text-slate-400 hover:text-white">
+                <i class="fa-solid fa-hand-holding-heart mr-1"></i> Beneficiary Aid Distribution
+            </button>
             <button id="tab-btn-vault" onclick="switchTab('vault')" class="pb-2 font-bold text-slate-400 hover:text-white">
-                <i class="fa-solid fa-box-archive mr-1"></i> Digital Policy & Document Vault
+                <i class="fa-solid fa-box-archive mr-1"></i> Policy & Document Vault
             </button>
         </div>
 
@@ -116,35 +163,40 @@
             </div>
         </div>
 
-        <!-- TAB 2: DIGITAL DOCUMENT VAULT -->
+        <!-- TAB 2: BENEFICIARIES TABLE -->
+        <div id="tab-content-aid" class="hidden space-y-3">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+                        <tr>
+                            <th class="p-3">Beneficiary Name</th>
+                            <th class="p-3">ID / Phone</th>
+                            <th class="p-3">Community</th>
+                            <th class="p-3">Aid Category & Quantity</th>
+                            <th class="p-3">Logged By</th>
+                        </tr>
+                    </thead>
+                    <tbody id="aid-table-body" class="divide-y divide-slate-800">
+                        <tr><td colspan="5" class="p-4 text-center text-slate-500">Loading distribution logs...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: DIGITAL DOCUMENT VAULT -->
         <div id="tab-content-vault" class="hidden space-y-4 text-xs">
-            <p class="text-slate-400">Centralized storage for official institutional governance documents, constitutions, and policies.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
                     <div>
-                        <div class="font-bold text-white"><i class="fa-solid fa-file-shield text-emerald-400 mr-2"></i> HRCDI Constitution & By-Laws</div>
-                        <div class="text-[10px] text-slate-500">Official Trustee Board Rules</div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-file-shield text-emerald-400 mr-2"></i> HRCDI Constitution</div>
+                        <div class="text-[10px] text-slate-500">Board Approved</div>
                     </div>
                     <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
                 </div>
                 <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
                     <div>
-                        <div class="font-bold text-white"><i class="fa-solid fa-building-columns text-emerald-400 mr-2"></i> CAC Registration Certificate</div>
-                        <div class="text-[10px] text-slate-500">Status: Active Non-Profit Status</div>
-                    </div>
-                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
-                </div>
-                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <div class="font-bold text-white"><i class="fa-solid fa-hand-holding-heart text-emerald-400 mr-2"></i> Safeguarding & Field Policy</div>
-                        <div class="text-[10px] text-slate-500">Community Outreach Operations</div>
-                    </div>
-                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
-                </div>
-                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <div class="font-bold text-white"><i class="fa-solid fa-briefcase text-emerald-400 mr-2"></i> Financial Oversight Guidelines</div>
-                        <div class="text-[10px] text-slate-500">Grant & Expenditure Protocols</div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-building-columns text-emerald-400 mr-2"></i> CAC Registration</div>
+                        <div class="text-[10px] text-slate-500">Non-Profit Status Active</div>
                     </div>
                     <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px]">Verified</span>
                 </div>
@@ -183,19 +235,16 @@
                         document.getElementById('auth-box').classList.add('hidden');
                         const staff = res.data;
                         const executiveRoles = [
-                            'Board of Trustees (BoT)', 
-                            'Executive Director', 
-                            'Deputy Executive Director', 
-                            'Programme Manager', 
-                            'Project Manager', 
-                            'Project Coordinator'
+                            'Board of Trustees (BoT)', 'Executive Director', 'Deputy Executive Director', 
+                            'Programme Manager', 'Project Manager', 'Project Coordinator'
                         ];
 
                         if (executiveRoles.includes(staff.role)) {
                             document.getElementById('management-portal-view').classList.remove('hidden');
                             document.getElementById('mgmt-staff-name').innerText = staff.full_name;
-                            document.getElementById('mgmt-staff-role').innerText = staff.role + ' (Executive Oversight Access)';
+                            document.getElementById('mgmt-staff-role').innerText = staff.role + ' (Executive Access)';
                             loadAllReports();
+                            loadBeneficiaries();
                         } else {
                             document.getElementById('field-portal-view').classList.remove('hidden');
                             document.getElementById('field-staff-name').innerText = staff.full_name;
@@ -206,11 +255,6 @@
                         msgBox.className = 'text-center text-xs p-3 rounded-xl border bg-red-950 text-red-400 border-red-800';
                         msgBox.innerText = res.message;
                     }
-                })
-                .catch(() => {
-                    btn.disabled = false;
-                    btn.innerText = "Verify Credentials & Access Portal";
-                    alert("Unable to reach backend server.");
                 });
         }
 
@@ -224,11 +268,7 @@
                         gpsStatus.innerText = `${currentLat}, ${currentLng}`;
                         gpsStatus.className = "text-emerald-400 font-mono text-[11px]";
                     },
-                    () => {
-                        gpsStatus.innerText = "GPS Disabled / Unavailable";
-                        gpsStatus.className = "text-red-400 font-mono text-[11px]";
-                    },
-                    { timeout: 10000 }
+                    () => { gpsStatus.innerText = "GPS Unavailable"; }
                 );
             }
         }
@@ -251,9 +291,30 @@
                 .then(res => {
                     btn.disabled = false;
                     alert(res.message);
-                    if (res.status === 'success') {
-                        document.getElementById('field-report-form').reset();
-                    }
+                    if (res.status === 'success') document.getElementById('field-report-form').reset();
+                });
+        }
+
+        function submitBeneficiaryRecord(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-b-btn');
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('action', 'log');
+            formData.append('field_officer_nin', loggedInStaffNIN);
+            formData.append('beneficiary_name', document.getElementById('b-name').value);
+            formData.append('national_id_phone', document.getElementById('b-id-phone').value);
+            formData.append('community_location', document.getElementById('b-location').value);
+            formData.append('aid_category', document.getElementById('b-category').value);
+            formData.append('item_quantity', document.getElementById('b-quantity').value);
+
+            fetch(`${API_BASE}/manage-beneficiaries.php`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(res => {
+                    btn.disabled = false;
+                    alert(res.message);
+                    if (res.status === 'success') document.getElementById('beneficiary-form').reset();
                 });
         }
 
@@ -263,7 +324,6 @@
                 .then(res => {
                     const tbody = document.getElementById('reports-table-body');
                     tbody.innerHTML = '';
-
                     if (res.status === 'success' && res.data.length > 0) {
                         fetchedReportsData = res.data;
                         res.data.forEach(rep => {
@@ -274,87 +334,102 @@
                                     <td class="p-3 text-emerald-400">${rep.role}</td>
                                     <td class="p-3">${rep.report_type}</td>
                                     <td class="p-3 max-w-xs break-words text-slate-300">${rep.report_details}</td>
-                                    <td class="p-3 font-mono text-[10px] text-slate-400">
-                                        <div><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i>${gpsText}</div>
-                                        <div class="mt-1"><i class="fa-solid fa-clock text-slate-500 mr-1"></i>${rep.created_at}</div>
-                                    </td>
-                                </tr>
-                            `;
+                                    <td class="p-3 font-mono text-[10px] text-slate-400">${gpsText}<br>${rep.created_at}</td>
+                                </tr>`;
                         });
-                    } else {
-                        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No field reports submitted yet.</td></tr>`;
                     }
                 });
         }
 
-        // ONE-CLICK EXECUTIVE PDF GENERATION
-        function exportReportsPDF() {
-            if (fetchedReportsData.length === 0) {
-                alert("No activity reports available to export.");
-                return;
+        function loadBeneficiaries() {
+            fetch(`${API_BASE}/manage-beneficiaries.php?action=list`)
+                .then(res => res.json())
+                .then(res => {
+                    const tbody = document.getElementById('aid-table-body');
+                    tbody.innerHTML = '';
+                    if (res.status === 'success' && res.data.length > 0) {
+                        res.data.forEach(b => {
+                            tbody.innerHTML += `
+                                <tr class="hover:bg-slate-950/50 align-top">
+                                    <td class="p-3 font-semibold text-white">${b.beneficiary_name}</td>
+                                    <td class="p-3 font-mono text-slate-400">${b.national_id_phone || 'N/A'}</td>
+                                    <td class="p-3">${b.community_location}</td>
+                                    <td class="p-3 text-emerald-400 font-semibold">${b.aid_category} (${b.item_quantity})</td>
+                                    <td class="p-3 text-slate-400">${b.field_officer_name}<br><span class="text-[10px]">${b.created_at}</span></td>
+                                </tr>`;
+                        });
+                    } else {
+                        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No aid distribution records logged yet.</td></tr>`;
+                    }
+                });
+        }
+
+        function switchFieldTab(tab) {
+            const reportForm = document.getElementById('field-report-form');
+            const aidForm = document.getElementById('beneficiary-form');
+            const btnReport = document.getElementById('field-tab-btn-report');
+            const btnAid = document.getElementById('field-tab-btn-aid');
+
+            if (tab === 'report') {
+                reportForm.classList.remove('hidden');
+                aidForm.classList.add('hidden');
+                btnReport.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+                btnAid.className = "pb-2 font-bold text-slate-400 hover:text-white";
+            } else {
+                reportForm.classList.add('hidden');
+                aidForm.classList.remove('hidden');
+                btnAid.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+                btnReport.className = "pb-2 font-bold text-slate-400 hover:text-white";
             }
+        }
 
-            const tableRows = [
-                [{ text: 'Staff Name', style: 'tableHeader' }, { text: 'Role', style: 'tableHeader' }, { text: 'Category', style: 'tableHeader' }, { text: 'Summary', style: 'tableHeader' }, { text: 'GPS / Time', style: 'tableHeader' }]
-            ];
+        function switchTab(tab) {
+            document.getElementById('tab-content-reports').classList.add('hidden');
+            document.getElementById('tab-content-aid').classList.add('hidden');
+            document.getElementById('tab-content-vault').classList.add('hidden');
+            document.getElementById('tab-btn-reports').className = "pb-2 font-bold text-slate-400 hover:text-white";
+            document.getElementById('tab-btn-aid').className = "pb-2 font-bold text-slate-400 hover:text-white";
+            document.getElementById('tab-btn-vault').className = "pb-2 font-bold text-slate-400 hover:text-white";
 
+            if (tab === 'reports') {
+                document.getElementById('tab-content-reports').classList.remove('hidden');
+                document.getElementById('tab-btn-reports').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+            } else if (tab === 'aid') {
+                document.getElementById('tab-content-aid').classList.remove('hidden');
+                document.getElementById('tab-btn-aid').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+            } else {
+                document.getElementById('tab-content-vault').classList.remove('hidden');
+                document.getElementById('tab-btn-vault').className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
+            }
+        }
+
+        function exportReportsPDF() {
+            if (fetchedReportsData.length === 0) return alert("No activity reports available.");
+            const tableRows = [[
+                { text: 'Staff Name', style: 'tableHeader' }, { text: 'Role', style: 'tableHeader' }, 
+                { text: 'Category', style: 'tableHeader' }, { text: 'Summary', style: 'tableHeader' }, 
+                { text: 'GPS / Time', style: 'tableHeader' }
+            ]];
             fetchedReportsData.forEach(r => {
-                const gps = r.latitude ? `${r.latitude}, ${r.longitude}` : 'N/A';
                 tableRows.push([
                     { text: r.full_name, fontSize: 9, bold: true },
                     { text: r.role, fontSize: 8, color: '#059669' },
                     { text: r.report_type, fontSize: 8 },
                     { text: r.report_details, fontSize: 8 },
-                    { text: `${gps}\n${r.created_at}`, fontSize: 7, color: '#4b5563' }
+                    { text: `${r.latitude ? r.latitude + ', ' + r.longitude : 'N/A'}\n${r.created_at}`, fontSize: 7 }
                 ]);
             });
-
-            const docDefinition = {
+            pdfMake.createPdf({
                 content: [
                     { text: 'HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE', style: 'header' },
-                    { text: 'Executive Field Operations & Activity Log Audit', style: 'subheader' },
-                    { text: `Generated On: ${new Date().toLocaleString()}`, fontSize: 9, color: '#6b7280', margin: [0, 0, 0, 15] },
-                    {
-                        table: {
-                            headerRows: 1,
-                            widths: ['20%', '18%', '18%', '28%', '16%'],
-                            body: tableRows
-                        },
-                        layout: 'lightHorizontalLines'
-                    }
+                    { text: 'Executive Operations Audit', style: 'subheader' },
+                    { table: { headerRows: 1, widths: ['20%', '18%', '18%', '28%', '16%'], body: tableRows } }
                 ],
-                styles: {
-                    header: { fontSize: 14, bold: true, color: '#065f46', alignment: 'center' },
-                    subheader: { fontSize: 11, bold: true, alignment: 'center', margin: [0, 2, 0, 5] },
-                    tableHeader: { fontSize: 9, bold: true, color: '#1f2937', fillColor: '#f3f4f6' }
-                }
-            };
-
-            pdfMake.createPdf(docDefinition).download(`HRCDI_Executive_Audit_${Date.now()}.pdf`);
+                styles: { header: { fontSize: 14, bold: true, alignment: 'center' }, subheader: { fontSize: 11, alignment: 'center' } }
+            }).download(`HRCDI_Executive_Audit_${Date.now()}.pdf`);
         }
 
-        function switchTab(tab) {
-            const reportsTab = document.getElementById('tab-content-reports');
-            const vaultTab = document.getElementById('tab-content-vault');
-            const btnReports = document.getElementById('tab-btn-reports');
-            const btnVault = document.getElementById('tab-btn-vault');
-
-            if (tab === 'reports') {
-                reportsTab.classList.remove('hidden');
-                vaultTab.classList.add('hidden');
-                btnReports.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
-                btnVault.className = "pb-2 font-bold text-slate-400 hover:text-white";
-            } else {
-                reportsTab.classList.add('hidden');
-                vaultTab.classList.remove('hidden');
-                btnVault.className = "pb-2 font-bold text-emerald-400 border-b-2 border-emerald-400";
-                btnReports.className = "pb-2 font-bold text-slate-400 hover:text-white";
-            }
-        }
-
-        function logoutStaff() {
-            location.reload();
-        }
+        function logoutStaff() { location.reload(); }
     </script>
 </body>
 </html>
