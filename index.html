@@ -56,26 +56,26 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden w-full">
 
-    <!-- STATUTORY REGISTRATION BAR -->
-    <div class="bg-[#011c16] text-emerald-100 text-[11px] py-2.5 px-4 text-center font-medium border-b border-emerald-900/60 w-full space-y-1 sm:space-y-0">
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-            <span class="flex items-center gap-1.5">
+    <!-- TOP ANNOUNCEMENT & CONTACT BAR -->
+    <div class="bg-[#011c16] text-emerald-100 text-[11px] py-2 px-4 text-center font-medium border-b border-emerald-900/60 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5 mx-auto sm:mx-0">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                CAC Incorporated Trustee Filing &bull; Statutory Notice Period Pending Nov 2, 2026 Maturity
-            </span>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-emerald-200/90 text-[11px]">
-            <a href="tel:09030700643" class="hover:text-white transition flex items-center gap-1">
-                <i class="fa-solid fa-phone text-[10px]"></i> 09030700643
-            </a>
-            <span>|</span>
-            <a href="mailto:info@hrcdi.org.ng" class="hover:text-white transition flex items-center gap-1">
-                <i class="fa-solid fa-envelope text-[10px]"></i> info@hrcdi.org.ng
-            </a>
-            <span>|</span>
-            <a href="portal.html" class="hover:text-white transition flex items-center gap-1 font-semibold text-emerald-400">
-                <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
-            </a>
+                <span>CAC Incorporated Trustee Filing &bull; Statutory Notice Pending Nov 2, 2026 Maturity</span>
+            </div>
+            <div class="flex items-center justify-center gap-4 text-emerald-200/90 text-[11px] mx-auto sm:mx-0">
+                <a href="tel:09030700643" class="hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-phone text-[10px]"></i> 09030700643
+                </a>
+                <span>|</span>
+                <a href="mailto:info@hrcdi.org.ng" class="hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-envelope text-[10px]"></i> info@hrcdi.org.ng
+                </a>
+                <span>|</span>
+                <a href="portal.html" class="hover:text-white transition flex items-center gap-1 font-semibold text-emerald-400">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
+                </a>
+            </div>
         </div>
     </div>
 
@@ -101,9 +101,9 @@
                 <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
             </nav>
 
-            <!-- ACTION BUTTONS -->
+            <!-- SUBTLE STAFF PORTAL HEADER BUTTON -->
             <div class="flex items-center gap-3">
-                <a href="portal.html" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 shadow-sm">
+                <a href="portal.html" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 shadow-sm">
                     <i class="fa-solid fa-lock text-[10px]"></i>
                     <span>Staff Portal</span>
                 </a>
@@ -123,13 +123,13 @@
             <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Contact</a>
             <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
                 <a href="portal.html" class="w-full text-center py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200">
-                    <i class="fa-solid fa-lock mr-1"></i> Staff Portal Access
+                    <i class="fa-solid fa-lock mr-1"></i> Staff Portal Login
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (PROPER PUBLIC NGO CTAs) -->
     <section class="bg-pattern text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 w-full block">
         <div class="max-w-3xl mx-auto text-center space-y-6">
             
@@ -154,22 +154,16 @@
                 Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
 
-            <!-- CALL TO ACTION BUTTONS -->
-            <div class="flex flex-col gap-3 pt-4 max-w-md mx-auto">
-                <a href="portal.html" class="w-full px-6 py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2 border border-emerald-500/40">
-                    <i class="fa-solid fa-lock text-emerald-300"></i>
-                    <span>Staff Portal Access</span>
+            <!-- PUBLIC-FACING ACTION BUTTONS (CALL & PARTNERSHIP ENQUIRIES) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 max-w-md mx-auto">
+                <a href="mailto:info@hrcdi.org.ng" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Partner & Grant Enquiries</span>
                 </a>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
-                    <a href="tel:09030700643" class="w-full sm:w-auto flex-1 px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition shadow-md flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>Call Us</span>
-                    </a>
-                    <a href="mailto:info@hrcdi.org.ng" class="w-full sm:w-auto flex-1 px-5 py-3 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-xs sm:text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Partnership Enquiries</span>
-                    </a>
-                </div>
+                <a href="tel:09030700643" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Call Us: 09030700643</span>
+                </a>
             </div>
 
         </div>
@@ -207,7 +201,6 @@
                     Hope Rising Community Development Initiative works directly with local stakeholders, community leaders, and field teams to implement tailored welfare and development programs that foster long-term self-reliance.
                 </p>
 
-                <!-- MISSION & VISION CARDS MATCHING SCREENSHOT DESIGN -->
                 <div class="space-y-4 pt-2">
                     <div class="p-5 bg-emerald-50/60 rounded-2xl border border-emerald-100 shadow-sm space-y-1.5">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-brand-700">
@@ -227,7 +220,6 @@
                 </div>
             </div>
 
-            <!-- CORE PILLARS CARD MATCHING SCREENSHOT DESIGN -->
             <div class="bg-[#022c22] text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 border border-emerald-900">
                 <h3 class="text-2xl font-bold text-emerald-400">Core Pillars of Action</h3>
                 <div class="space-y-5">
