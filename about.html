@@ -3,119 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Hope Rising Community Development Initiative</title>
+    <title>About Us - Hope Rising Community Development Initiative (HRCDI)</title>
     <link rel="icon" type="image/png" href="IMG_2369.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        emerald: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
-                            950: '#022c22',
-                        }
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } } } }
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Header / Navbar -->
-    <nav class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+    <!-- Header Navigation -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center gap-3 group">
-                        <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
-                        <div class="flex flex-col">
-                            <span class="font-extrabold text-lg text-emerald-950 tracking-tight leading-none">HRCDI</span>
-                            <span class="text-[10px] text-emerald-700 font-semibold tracking-wider">HOPE RISING</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center gap-7">
-                    <a href="index.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Home</a>
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="IMG_2369.png" alt="HRCDI Logo" class="h-10 w-auto object-contain" onerror="this.src='https://via.placeholder.com/40x40?text=HRCDI'">
+                    <span class="font-extrabold text-xs sm:text-sm text-emerald-950">HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="index.html" class="text-slate-600 hover:text-emerald-700 font-medium">Home</a>
                     <a href="about.html" class="text-emerald-700 font-bold border-b-2 border-emerald-600 py-1">About Us</a>
-                    <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium transition-colors">Contact Us</a>
-                    <a href="index.html#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors shadow-sm shadow-emerald-200">Donate & Support</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-emerald-800 focus:outline-none p-2" aria-label="Toggle navigation">
-                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
-                    </button>
+                    <a href="volunteer.html" class="text-slate-600 hover:text-emerald-700 font-medium">HR & Careers</a>
+                    <a href="contact.html" class="text-slate-600 hover:text-emerald-700 font-medium">Contact Us</a>
                 </div>
             </div>
-        </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
-            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
-            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-700 bg-emerald-50">About Us</a>
-            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Contact Us</a>
-            <a href="index.html#donate" class="block px-3 py-2 text-center rounded-md text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700">Donate & Support</a>
         </div>
     </nav>
 
-    <!-- Page Banner -->
-    <header class="relative bg-emerald-950 text-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">About HRCDI</h1>
-            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                Learn about our vision, mission, and commitment to sustainable community transformation across Nigeria.
-            </p>
+    <!-- Main Content -->
+    <main class="flex-grow py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3">About HRCDI</h1>
+            <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-4"></div>
+            <p class="text-slate-600 text-sm sm:text-base">Dedicated to sustainable community empowerment, healthcare intervention, and youth advocacy across Borno State, Nigeria.</p>
         </div>
-    </header>
 
-    <main class="flex-grow">
-        <!-- Mission & Vision -->
-        <section class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl border-l-4 border-emerald-600 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Our Mission</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-                        To empower vulnerable and marginalized communities through sustainable development programs, access to quality education, healthcare initiatives, and economic growth opportunities.
-                    </p>
-                </div>
+        <div class="space-y-8 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200/80 shadow-sm">
+            <section>
+                <h2 class="text-xl font-bold text-emerald-900 mb-2">Our Mission</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">To uplift vulnerable rural and urban populations in Nigeria through structured social infrastructure, vocational capacity building, healthcare relief, and ethical community leadership.</p>
+            </section>
 
-                <div class="bg-white p-8 rounded-2xl border-l-4 border-emerald-600 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Our Vision</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-                        A resilient society where every individual, regardless of socioeconomic background, has equal opportunity to thrive, contribute, and live with dignity.
-                    </p>
-                </div>
-            </div>
-        </section>
+            <section>
+                <h2 class="text-xl font-bold text-emerald-900 mb-2">Our Vision</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">A resilient Nigerian society where underserved communities have equal access to economic self-reliance, basic healthcare support, and dignified living conditions.</p>
+            </section>
 
-        <!-- Core Values -->
-        <section class="py-16 bg-slate-100/70 border-y border-slate-200/80">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-center text-slate-900 mb-2">Our Core Values</h2>
-                <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full mb-10"></div>
+            <section>
+                <h2 class="text-xl font-bold text-emerald-900 mb-2">Legal & Governance Framework</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">HRCDI operates as an Incorporated Trustee under Part F of the Companies and Allied Matters Act (CAMA 2020), committed to maximum financial accountability, safeguarding protocols, and regulatory compliance.</p>
+            </section>
+        </div>
+    </main>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/80 text-center hover:-translate-y-1 transition-all duration-200 shadow-sm hover:shadow-md">
-                        <i class="fa-solid fa-hand-holding-heart text-3xl text-emerald-600 mb-3"></i>
-                        <h4 class="font-bold text-slate-800 text-lg">Compassion</h4>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Putting people and communities at the heart of everything we do.</p>
-                    </div>
-                    <div class="bg-white p
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800 text-center">
+        <p>&copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
