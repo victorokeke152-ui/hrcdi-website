@@ -331,11 +331,12 @@
     <script>
         // DEFAULT DATA & ACCOUNTS
         let defaultAccounts = [
-            { email: 'admin@hrcdi.org.ng', name: 'Victor Oluebube Okeke', role: 'Admin', pass: 'password123' },
-            { email: 'rejoice@hrcdi.org.ng', name: 'Rejoice Obinna', role: 'Program Manager', pass: 'password123' }
+            { email: 'admin@hrcdi.org.ng', name: 'Victor Oluebube Okeke', role: 'Admin', pass: 'HRCDI2003!' },
+            { email: 'rejoice@hrcdi.org.ng', name: 'Rejoice Ifechukwu Obinna', role: 'Program Manager', pass: 'HRCDI2026!' },
+            { email: 'isaac@hrcdi.org.ng', name: 'Isaac Hassan', role: 'Board Trustee Advisor', pass: 'isaacword123' }
         ];
 
-        let defaultAuthorized = ['admin@hrcdi.org.ng', 'rejoice@hrcdi.org.ng'];
+        let defaultAuthorized = ['admin@hrcdi.org.ng', 'rejoice@hrcdi.org.ng', 'isaac@hrcdi.org.ng'];
 
         let accounts = JSON.parse(localStorage.getItem('hrcdi_accounts')) || defaultAccounts;
         let authorizedEmails = JSON.parse(localStorage.getItem('hrcdi_auth_emails')) || defaultAuthorized;
