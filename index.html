@@ -56,14 +56,14 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden w-full">
 
-    <!-- TOP ANNOUNCEMENT & CONTACT BAR -->
-    <div class="bg-[#011c16] text-emerald-100 text-[11px] py-2 px-4 text-center font-medium border-b border-emerald-900/60 w-full">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div class="flex items-center gap-1.5 mx-auto sm:mx-0">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>CAC Incorporated Trustee Filing &bull; Statutory Notice Pending Nov 2, 2026 Maturity</span>
+    <!-- TOP STATUTORY & CONTACT BAR -->
+    <div class="bg-[#011c16] text-emerald-100 text-[11px] py-2 px-4 border-b border-emerald-900/60 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4 text-center sm:text-left">
+            <div class="flex items-center justify-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+                <span>CAC Incorporated Trustee Filing &bull; Notice Period Maturity: Nov 2, 2026</span>
             </div>
-            <div class="flex items-center justify-center gap-4 text-emerald-200/90 text-[11px] mx-auto sm:mx-0">
+            <div class="hidden sm:flex items-center justify-center gap-4 text-emerald-200/90 text-[11px]">
                 <a href="tel:09030700643" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-phone text-[10px]"></i> 09030700643
                 </a>
@@ -81,19 +81,19 @@
 
     <!-- NAVIGATION HEADER -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm w-full">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
             
             <!-- BRAND LOGO & TITLE -->
-            <a href="index.html" class="flex items-center gap-3.5">
+            <a href="index.html" class="flex items-center gap-3">
                 <img src="IMG_2369.png" alt="HRCDI Logo" class="w-12 h-12 sm:w-14 sm:h-14 object-contain sharp-logo flex-shrink-0">
-                <div>
-                    <span class="font-extrabold text-slate-900 text-xs sm:text-base leading-tight block tracking-tight uppercase">HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE</span>
-                    <span class="text-[10px] sm:text-[11px] text-brand-700 font-bold block mt-0.5">Non-Governmental Organization &bull; Borno State, Nigeria</span>
+                <div class="min-w-0">
+                    <span class="font-extrabold text-slate-900 text-xs sm:text-base leading-tight block tracking-tight uppercase truncate sm:whitespace-normal">HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE</span>
+                    <span class="text-[10px] sm:text-[11px] text-brand-700 font-bold block mt-0.5 truncate sm:whitespace-normal">Non-Governmental Organization &bull; Borno State, Nigeria</span>
                 </div>
             </a>
 
             <!-- DESKTOP NAVIGATION -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 flex-shrink-0">
                 <a href="#about" class="hover:text-brand-700 transition">About Us</a>
                 <a href="#programs" class="hover:text-brand-700 transition">Thematic Areas</a>
                 <a href="#leadership" class="hover:text-brand-700 transition">Governance</a>
@@ -101,35 +101,46 @@
                 <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
             </nav>
 
-            <!-- SUBTLE STAFF PORTAL HEADER BUTTON -->
-            <div class="flex items-center gap-3">
+            <!-- ACTION BUTTONS -->
+            <div class="flex items-center gap-2 flex-shrink-0">
                 <a href="portal.html" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 shadow-sm">
                     <i class="fa-solid fa-lock text-[10px]"></i>
                     <span>Staff Portal</span>
                 </a>
 
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 rounded-lg">
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slate-700 hover:text-slate-900 rounded-lg bg-slate-100 hover:bg-slate-200 transition" aria-label="Toggle Navigation">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- MOBILE MENU DROPDOWN -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
-            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">About Us</a>
-            <a href="#programs" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Thematic Areas</a>
-            <a href="#leadership" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Governance</a>
-            <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Media Gallery</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Contact</a>
-            <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
-                <a href="portal.html" class="w-full text-center py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200">
-                    <i class="fa-solid fa-lock mr-1"></i> Staff Portal Login
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 shadow-lg">
+            <a href="#about" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                <i class="fa-solid fa-circle-info w-5 text-emerald-700 text-center"></i> About Us
+            </a>
+            <a href="#programs" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                <i class="fa-solid fa-layer-group w-5 text-emerald-700 text-center"></i> Thematic Areas
+            </a>
+            <a href="#leadership" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                <i class="fa-solid fa-user-shield w-5 text-emerald-700 text-center"></i> Governance
+            </a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                <i class="fa-solid fa-images w-5 text-emerald-700 text-center"></i> Media Gallery
+            </a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                <i class="fa-solid fa-envelope w-5 text-emerald-700 text-center"></i> Contact
+            </a>
+            
+            <div class="pt-3 border-t border-slate-100 space-y-2">
+                <a href="portal.html" class="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-emerald-800 bg-emerald-50 rounded-lg border border-emerald-200">
+                    <i class="fa-solid fa-lock text-[11px]"></i> Staff Portal Access
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION (PROPER PUBLIC NGO CTAs) -->
+    <!-- HERO SECTION -->
     <section class="bg-pattern text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 w-full block">
         <div class="max-w-3xl mx-auto text-center space-y-6">
             
@@ -154,7 +165,7 @@
                 Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
 
-            <!-- PUBLIC-FACING ACTION BUTTONS (CALL & PARTNERSHIP ENQUIRIES) -->
+            <!-- PUBLIC-FACING ACTION BUTTONS -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 max-w-md mx-auto">
                 <a href="mailto:info@hrcdi.org.ng" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-envelope"></i>
