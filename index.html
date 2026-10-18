@@ -51,7 +51,6 @@
         .sharp-logo {
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
         }
     </style>
 </head>
@@ -80,16 +79,16 @@
         </div>
     </div>
 
-    <!-- NAVIGATION HEADER WITH PROMINENT LOGO -->
+    <!-- NAVIGATION HEADER MATCHING SCREENSHOT EXACTLY -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm w-full">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
-            <!-- BRAND LOGO & TITLE (PROMINENT LARGE VIEW) -->
-            <a href="index.html" class="flex items-center gap-3.5 group py-1">
-                <img src="IMG_2369.png" alt="HRCDI Logo" class="w-16 h-16 sm:w-20 sm:h-20 object-contain sharp-logo flex-shrink-0 transition-transform group-hover:scale-105">
-                <div class="min-w-0">
-                    <span class="font-extrabold text-slate-900 text-xs sm:text-lg leading-snug block tracking-tight uppercase">HOPE RISING COMMUNITY DEVELOPMENT INITIATIVE</span>
-                    <span class="text-[10px] sm:text-xs text-brand-700 font-bold block mt-0.5">Non-Governmental Organization &bull; Borno State, Nigeria</span>
+            <!-- BRAND LOGO & TEXT MATCHING SCREENSHOT -->
+            <a href="index.html" class="flex items-center gap-3 group py-1">
+                <img src="IMG_2369.png" alt="HRCDI Logo" class="h-11 sm:h-13 w-auto object-contain sharp-logo flex-shrink-0">
+                <div class="flex flex-col justify-center">
+                    <span class="font-extrabold text-slate-900 text-lg sm:text-xl leading-none tracking-tight uppercase">HRCDI</span>
+                    <span class="text-[11px] sm:text-xs text-brand-700 font-bold tracking-wider uppercase mt-0.5">HOPE RISING</span>
                 </div>
             </a>
 
@@ -109,8 +108,8 @@
                     <span>Staff Portal</span>
                 </a>
 
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 text-slate-700 hover:text-slate-900 rounded-xl bg-slate-100 hover:bg-slate-200 transition" aria-label="Toggle Navigation">
-                    <i class="fa-solid fa-bars text-xl"></i>
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slate-700 hover:text-slate-900 rounded-lg transition" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
@@ -148,7 +147,7 @@
             <!-- BADGE -->
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/50 text-emerald-300 text-xs font-medium">
                 <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                <span>NGO Registration &bull; Maiduguri, Borno State</span>
+                <span>Non-Governmental Organization &bull; Borno State, Nigeria</span>
             </div>
 
             <!-- MAIN HEADING -->
@@ -163,18 +162,18 @@
 
             <!-- PARAGRAPH -->
             <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-                Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
+                Advancing rural lives through sustainable economic empowerment, youth vocational support, emergency relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
 
             <!-- PUBLIC-FACING ACTION BUTTONS -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 max-w-md mx-auto">
-                <a href="mailto:info@hrcdi.org.ng" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Partner & Grant Enquiries</span>
+                <a href="#programs" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>View Field Reports & Impact</span>
                 </a>
-                <a href="tel:09030700643" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>Call Us: 09030700643</span>
+                <a href="mailto:info@hrcdi.org.ng" class="w-full sm:w-auto flex-1 px-6 py-3.5 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Partner Inquiry Portal</span>
                 </a>
             </div>
 
