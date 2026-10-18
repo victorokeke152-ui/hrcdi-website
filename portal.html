@@ -23,10 +23,6 @@
                             700: '#15803d',
                             800: '#166534',
                             900: '#14532d',
-                        },
-                        navy: {
-                            800: '#0f172a',
-                            900: '#020617',
                         }
                     },
                     fontFamily: {
@@ -39,7 +35,7 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- LOGIN SCREEN -->
+    <!-- AUTH SCREEN (LOGIN & REGISTRATION) -->
     <div id="login-view" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
             <div class="bg-gradient-to-r from-brand-800 to-brand-600 p-6 text-center text-white">
@@ -50,12 +46,19 @@
                 <p class="text-emerald-100 text-sm mt-1">Hope Rising Community Development Initiative</p>
             </div>
             
+            <!-- AUTH TAB CONTROLS -->
+            <div class="flex border-b border-slate-200 bg-slate-50 text-xs font-semibold">
+                <button type="button" id="tab-login-btn" onclick="switchAuthTab('login')" class="flex-1 py-3 text-brand-700 border-b-2 border-brand-700 bg-white">Sign In</button>
+                <button type="button" id="tab-register-btn" onclick="switchAuthTab('register')" class="flex-1 py-3 text-slate-500 hover:text-slate-800">Register Account</button>
+            </div>
+
+            <!-- LOGIN FORM -->
             <form id="login-form" onsubmit="handleLogin(event)" class="p-6 space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Email Address</label>
                     <div class="relative">
                         <i class="fa-solid fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="email" id="login-email" required placeholder="staff@hrcdi.org.ng" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm">
+                        <input type="email" id="login-email" required placeholder="admin@hrcdi.org.ng" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
                     </div>
                 </div>
 
@@ -63,29 +66,46 @@
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Password</label>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm">
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between text-xs text-slate-500">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500"> Remember me
-                    </label>
-                    <a href="#" class="text-brand-700 hover:underline">Forgot password?</a>
-                </div>
-
-                <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 rounded-lg transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm">
+                <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 rounded-lg transition shadow-md flex items-center justify-center gap-2 text-sm">
                     <span>Sign In to Portal</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
 
                 <div class="border-t border-slate-100 pt-4 mt-4">
-                    <p class="text-xs text-center text-slate-400 mb-2">Quick Demo Quick Logins:</p>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button type="button" onclick="fillQuickLogin('admin@hrcdi.org.ng')" class="text-xs py-1.5 px-2 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 transition">Admin Account</button>
-                        <button type="button" onclick="fillQuickLogin('staff@hrcdi.org.ng')" class="text-xs py-1.5 px-2 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 transition">Field Officer</button>
-                    </div>
+                    <p class="text-xs text-center text-slate-400 mb-2">Default Admin Account:</p>
+                    <button type="button" onclick="fillQuickLogin('admin@hrcdi.org.ng')" class="w-full text-xs py-1.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 font-medium">Auto-Fill Admin Account</button>
                 </div>
+            </form>
+
+            <!-- REGISTER FORM -->
+            <form id="register-form" onsubmit="handleRegister(event)" class="p-6 space-y-4 hidden">
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-xs text-amber-800 flex items-start gap-2">
+                    <i class="fa-solid fa-shield-halved mt-0.5 text-amber-600"></i>
+                    <span>Registration is restricted. Your email address must first be authorized by an Admin.</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Full Name</label>
+                    <input type="text" id="reg-name" required placeholder="e.g. Rejoice Obinna" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Authorized Email</label>
+                    <input type="email" id="reg-email" required placeholder="staff@hrcdi.org.ng" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Create Password</label>
+                    <input type="password" id="reg-password" required placeholder="••••••••" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500">
+                </div>
+
+                <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 rounded-lg transition shadow-md text-sm">
+                    Register Account
+                </button>
             </form>
         </div>
     </div>
@@ -107,17 +127,8 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <button class="relative p-2 text-slate-500 hover:text-slate-700 rounded-full hover:bg-slate-100">
-                        <i class="fa-regular fa-bell text-lg"></i>
-                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full"></span>
-                    </button>
-                    
-                    <div class="h-6 w-px bg-slate-200"></div>
-
                     <div class="flex items-center gap-3">
-                        <div id="user-avatar" class="w-9 h-9 rounded-full bg-brand-100 text-brand-800 border border-brand-200 flex items-center justify-center font-bold text-sm">
-                            --
-                        </div>
+                        <div id="user-avatar" class="w-9 h-9 rounded-full bg-brand-100 text-brand-800 border border-brand-200 flex items-center justify-center font-bold text-sm">--</div>
                         <div class="hidden sm:block text-left">
                             <div id="user-name-display" class="text-sm font-semibold text-slate-800 leading-tight">User</div>
                             <div id="user-role-display" class="text-xs text-slate-500 capitalize">Role</div>
@@ -150,15 +161,11 @@
                     </button>
                     <button onclick="switchTab('requests')" id="nav-requests" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
                         <i class="fa-solid fa-paper-plane w-5 text-center"></i>
-                        <span>Leave & Field Requests</span>
+                        <span>Requests</span>
                     </button>
                     <button onclick="switchTab('directory')" id="nav-directory" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
                         <i class="fa-solid fa-address-book w-5 text-center"></i>
-                        <span>Staff Directory</span>
-                    </button>
-                    <button onclick="switchTab('documents')" id="nav-documents" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
-                        <i class="fa-solid fa-folder-open w-5 text-center"></i>
-                        <span>Resource Center</span>
+                        <span>Staff Directory & Access</span>
                     </button>
                 </nav>
             </aside>
@@ -168,98 +175,31 @@
                 
                 <!-- TAB 1: DASHBOARD -->
                 <div id="tab-dashboard" class="tab-content space-y-6">
-                    <!-- HERO BANNER -->
-                    <div class="bg-gradient-to-r from-brand-800 to-slate-900 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
-                        <div class="relative z-10">
-                            <h2 class="text-2xl font-bold">Welcome back, <span id="dash-user-name">Staff Member</span>!</h2>
-                            <p class="text-slate-300 text-sm mt-1 max-w-xl">
-                                Access your team objectives, view official organization announcements, submit field reports, or manage your daily active tasks.
-                            </p>
-                        </div>
+                    <div class="bg-gradient-to-r from-brand-800 to-slate-900 rounded-2xl p-6 text-white shadow-md">
+                        <h2 class="text-2xl font-bold">Welcome back, <span id="dash-user-name">Staff Member</span>!</h2>
+                        <p class="text-slate-300 text-sm mt-1">Access organizational updates, submit field requests, or update assigned tasks.</p>
                     </div>
 
-                    <!-- STATS GRID -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
-                            <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-bullhorn"></i>
-                            </div>
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-bullhorn"></i></div>
                             <div>
                                 <div class="text-2xl font-bold text-slate-800" id="stat-announcements">0</div>
-                                <div class="text-xs font-medium text-slate-500">Active Notices</div>
+                                <div class="text-xs font-medium text-slate-500">Notices</div>
                             </div>
                         </div>
-
                         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-tasks"></i>
-                            </div>
+                            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-tasks"></i></div>
                             <div>
                                 <div class="text-2xl font-bold text-slate-800" id="stat-tasks">0</div>
                                 <div class="text-xs font-medium text-slate-500">Pending Tasks</div>
                             </div>
                         </div>
-
                         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
-                            <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-clock-rotate-left"></i>
-                            </div>
+                            <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-users"></i></div>
                             <div>
-                                <div class="text-2xl font-bold text-slate-800" id="stat-requests">0</div>
-                                <div class="text-xs font-medium text-slate-500">Pending Requests</div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
-                            <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-users"></i>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-slate-800">12</div>
-                                <div class="text-xs font-medium text-slate-500">Active Staff</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DASHBOARD CONTENT SPLIT -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- RECENT ANNOUNCEMENTS -->
-                        <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                                    <i class="fa-solid fa-bullhorn text-brand-600"></i>
-                                    Latest Announcements
-                                </h3>
-                                <button onclick="switchTab('announcements')" class="text-xs font-semibold text-brand-700 hover:underline">View All</button>
-                            </div>
-                            <div id="recent-announcements-list" class="space-y-3">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
-
-                        <!-- QUICK LINKS & ACTIONS -->
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
-                            <h3 class="font-bold text-slate-800 text-base">Quick Shortcuts</h3>
-                            <div class="space-y-2">
-                                <button onclick="switchTab('requests')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
-                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">Submit Leave / Field Request</span>
-                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
-                                </button>
-                                <button onclick="switchTab('tasks')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
-                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">View Active Tasks</span>
-                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
-                                </button>
-                                <button onclick="switchTab('documents')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
-                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">Download HR Policies</span>
-                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
-                                </button>
-                            </div>
-
-                            <div class="pt-2 border-t border-slate-100">
-                                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200/60">
-                                    <div class="text-xs font-bold text-slate-700 mb-1">Official Contact:</div>
-                                    <p class="text-xs text-slate-500">info@hrcdi.org.ng</p>
-                                </div>
+                                <div class="text-2xl font-bold text-slate-800" id="stat-users">0</div>
+                                <div class="text-xs font-medium text-slate-500">Registered Staff</div>
                             </div>
                         </div>
                     </div>
@@ -267,301 +207,163 @@
 
                 <!-- TAB 2: ANNOUNCEMENTS -->
                 <div id="tab-announcements" class="tab-content hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <h2 class="text-xl font-bold text-slate-900">Notice Board & Announcements</h2>
-                            <p class="text-xs text-slate-500 mt-0.5">Stay updated with official organizational news and policy updates.</p>
-                        </div>
-                        <button id="btn-add-announcement" onclick="toggleModal('modal-announcement')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>Post Announcement</span>
-                        </button>
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-slate-900">Notice Board</h2>
+                        <button id="btn-add-announcement" onclick="toggleModal('modal-announcement')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">Post Notice</button>
                     </div>
-
-                    <div id="announcements-container" class="space-y-4">
-                        <!-- Populated dynamically -->
-                    </div>
+                    <div id="announcements-container" class="space-y-4"></div>
                 </div>
 
-                <!-- TAB 3: TASK MANAGER -->
+                <!-- TAB 3: TASKS -->
                 <div id="tab-tasks" class="tab-content hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <h2 class="text-xl font-bold text-slate-900">Task Manager</h2>
-                            <p class="text-xs text-slate-500 mt-0.5">Track and update field activities and project milestones.</p>
-                        </div>
-                        <button onclick="toggleModal('modal-task')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>New Task</span>
-                        </button>
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-slate-900">Task Manager</h2>
+                        <button onclick="toggleModal('modal-task')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">New Task</button>
                     </div>
-
-                    <!-- TASK COLUMNS -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- TO DO -->
-                        <div class="bg-slate-100/70 p-4 rounded-xl border border-slate-200">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-slate-400"></span> To Do
-                                </span>
-                                <span id="count-todo" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-slate-600">0</span>
-                            </div>
-                            <div id="col-todo" class="space-y-3 min-h-[200px]"></div>
-                        </div>
-
-                        <!-- IN PROGRESS -->
-                        <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200/60">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="font-bold text-amber-800 text-sm flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span> In Progress
-                                </span>
-                                <span id="count-inprogress" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-amber-700">0</span>
-                            </div>
-                            <div id="col-inprogress" class="space-y-3 min-h-[200px]"></div>
-                        </div>
-
-                        <!-- COMPLETED -->
-                        <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200/60">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="font-bold text-emerald-800 text-sm flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Completed
-                                </span>
-                                <span id="count-completed" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-emerald-700">0</span>
-                            </div>
-                            <div id="col-completed" class="space-y-3 min-h-[200px]"></div>
-                        </div>
+                        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200"><h4 class="font-bold text-xs mb-3">TO DO</h4><div id="col-todo" class="space-y-3"></div></div>
+                        <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200/60"><h4 class="font-bold text-xs mb-3 text-amber-800">IN PROGRESS</h4><div id="col-inprogress" class="space-y-3"></div></div>
+                        <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200/60"><h4 class="font-bold text-xs mb-3 text-emerald-800">COMPLETED</h4><div id="col-completed" class="space-y-3"></div></div>
                     </div>
                 </div>
 
-                <!-- TAB 4: LEAVE & FIELD REQUESTS -->
+                <!-- TAB 4: REQUESTS -->
                 <div id="tab-requests" class="tab-content hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <h2 class="text-xl font-bold text-slate-900">Leave & Field Requests</h2>
-                            <p class="text-xs text-slate-500 mt-0.5">Submit formal requests for annual leave, field trips, or equipment log.</p>
-                        </div>
-                        <button onclick="toggleModal('modal-request')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>New Request</span>
-                        </button>
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-slate-900">Leave & Field Requests</h2>
+                        <button onclick="toggleModal('modal-request')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">New Request</button>
                     </div>
-
-                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left text-xs text-slate-600">
-                                <thead class="bg-slate-50 text-slate-700 font-semibold uppercase border-b border-slate-200">
-                                    <tr>
-                                        <th class="px-4 py-3">Type</th>
-                                        <th class="px-4 py-3">Requested By</th>
-                                        <th class="px-4 py-3">Details / Dates</th>
-                                        <th class="px-4 py-3">Status</th>
-                                        <th class="px-4 py-3">Submitted</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="requests-table-body" class="divide-y divide-slate-100">
-                                    <!-- Populated dynamically -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                        <table class="w-full text-left text-xs text-slate-600">
+                            <thead class="bg-slate-50 uppercase text-slate-700 border-b border-slate-200">
+                                <tr>
+                                    <th class="p-3">Type</th>
+                                    <th class="p-3">Requester</th>
+                                    <th class="p-3">Details</th>
+                                    <th class="p-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="requests-table-body" class="divide-y divide-slate-100"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- TAB 5: STAFF DIRECTORY -->
+                <!-- TAB 5: STAFF DIRECTORY & ADMIN AUTHORIZATION -->
                 <div id="tab-directory" class="tab-content hidden space-y-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Staff Directory</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Team members and key organizational officers.</p>
+                        <p class="text-xs text-slate-500">Active team members registered in the system.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="staff-directory-grid">
-                        <!-- DIRECTORY CARDS -->
-                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
-                                VO
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-sm">Victor Oluebube Okeke</h4>
-                                <p class="text-xs text-brand-700 font-medium">Executive Director / IT Lead</p>
-                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng</p>
-                            </div>
+                    <!-- ADMIN AUTHORIZATION PANEL (Visible to Admin only) -->
+                    <div id="admin-auth-panel" class="bg-brand-50 border border-brand-200 rounded-xl p-4 shadow-sm space-y-3 hidden">
+                        <div class="flex items-center gap-2 text-brand-900 font-bold text-sm">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Admin Control: Authorize New Staff Registration</span>
                         </div>
-
-                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
-                                RO
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-sm">Rejoice Obinna</h4>
-                                <p class="text-xs text-brand-700 font-medium">Program Manager</p>
-                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> rejoice@hrcdi.org.ng</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
-                                DH
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-sm">Dr. Haruna</h4>
-                                <p class="text-xs text-brand-700 font-medium">Board Trustee Advisor</p>
-                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> board@hrcdi.org.ng</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 6: RESOURCE & DOCUMENT CENTER -->
-                <div id="tab-documents" class="tab-content hidden space-y-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-900">Resource & Document Center</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Download official HR policies, field reporting templates, and brand assets.</p>
+                        <form onsubmit="authorizeNewEmail(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <input type="email" id="auth-email" required placeholder="staff@hrcdi.org.ng" class="px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white">
+                            <select id="auth-role" class="px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white">
+                                <option value="Program Officer">Program Officer</option>
+                                <option value="Field Officer">Field Officer</option>
+                                <option value="Finance Officer">Finance Officer</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <button type="submit" class="bg-brand-700 hover:bg-brand-800 text-white font-semibold text-xs py-2 rounded-lg transition">Authorize Email</button>
+                        </form>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-slate-800">HRCDI Staff Constitution & Policy</h4>
-                                    <span class="text-[10px] text-slate-400">PDF • 1.2 MB</span>
-                                </div>
-                            </div>
-                            <button onclick="alert('Downloading document...')" class="text-brand-700 hover:text-brand-800 text-xs font-semibold p-2">
-                                <i class="fa-solid fa-download"></i>
-                            </button>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-file-word"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-slate-800">Field Activity Report Template</h4>
-                                    <span class="text-[10px] text-slate-400">DOCX • 450 KB</span>
-                                </div>
-                            </div>
-                            <button onclick="alert('Downloading document...')" class="text-brand-700 hover:text-brand-800 text-xs font-semibold p-2">
-                                <i class="fa-solid fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="staff-directory-grid"></div>
                 </div>
 
             </main>
         </div>
     </div>
 
-    <!-- MODAL: ADD ANNOUNCEMENT -->
+    <!-- MODALS -->
     <div id="modal-announcement" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <h3 class="font-bold text-slate-800 text-sm">Post New Announcement</h3>
-                <button onclick="toggleModal('modal-announcement')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="saveAnnouncement(event)" class="p-4 space-y-3">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Title</label>
-                    <input type="text" id="ann-title" required class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Priority</label>
-                    <select id="ann-priority" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
-                        <option value="normal">Normal Priority</option>
-                        <option value="high">High Priority</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Message Content</label>
-                    <textarea id="ann-content" required rows="4" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500"></textarea>
-                </div>
-                <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="toggleModal('modal-announcement')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Publish Notice</button>
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-5">
+            <h3 class="font-bold text-slate-800 text-sm mb-3">Publish Announcement</h3>
+            <form onsubmit="saveAnnouncement(event)" class="space-y-3">
+                <input type="text" id="ann-title" required placeholder="Title" class="w-full p-2 border rounded-lg text-xs">
+                <textarea id="ann-content" required placeholder="Message details..." class="w-full p-2 border rounded-lg text-xs" rows="3"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="toggleModal('modal-announcement')" class="px-3 py-1.5 text-xs text-slate-600">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 bg-brand-700 text-white text-xs font-semibold rounded-lg">Publish</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: ADD TASK -->
     <div id="modal-task" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <h3 class="font-bold text-slate-800 text-sm">Create Task</h3>
-                <button onclick="toggleModal('modal-task')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="saveTask(event)" class="p-4 space-y-3">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Task Title</label>
-                    <input type="text" id="task-title" required class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Assignee</label>
-                    <input type="text" id="task-assignee" required placeholder="e.g. Victor Okeke" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
-                </div>
-                <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="toggleModal('modal-task')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Add Task</button>
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-5">
+            <h3 class="font-bold text-slate-800 text-sm mb-3">Add New Task</h3>
+            <form onsubmit="saveTask(event)" class="space-y-3">
+                <input type="text" id="task-title" required placeholder="Task Name" class="w-full p-2 border rounded-lg text-xs">
+                <input type="text" id="task-assignee" required placeholder="Assign To (Name)" class="w-full p-2 border rounded-lg text-xs">
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="toggleModal('modal-task')" class="px-3 py-1.5 text-xs text-slate-600">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 bg-brand-700 text-white text-xs font-semibold rounded-lg">Add Task</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: ADD REQUEST -->
     <div id="modal-request" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <h3 class="font-bold text-slate-800 text-sm">Submit Leave or Field Request</h3>
-                <button onclick="toggleModal('modal-request')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="saveRequest(event)" class="p-4 space-y-3">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Request Type</label>
-                    <select id="req-type" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
-                        <option value="Annual Leave">Annual Leave</option>
-                        <option value="Field Trip Approval">Field Trip Approval</option>
-                        <option value="Equipment Request">Equipment Request</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Details / Travel Dates</label>
-                    <textarea id="req-details" required placeholder="Specify dates or equipment needed..." class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500"></textarea>
-                </div>
-                <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="toggleModal('modal-request')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Submit Request</button>
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-5">
+            <h3 class="font-bold text-slate-800 text-sm mb-3">Submit Request</h3>
+            <form onsubmit="saveRequest(event)" class="space-y-3">
+                <select id="req-type" class="w-full p-2 border rounded-lg text-xs">
+                    <option value="Annual Leave">Annual Leave</option>
+                    <option value="Field Outreach Approval">Field Outreach Approval</option>
+                    <option value="Equipment / Logistics">Equipment / Logistics</option>
+                </select>
+                <textarea id="req-details" required placeholder="Provide reasons and dates..." class="w-full p-2 border rounded-lg text-xs" rows="3"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="toggleModal('modal-request')" class="px-3 py-1.5 text-xs text-slate-600">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 bg-brand-700 text-white text-xs font-semibold rounded-lg">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- APP SCRIPT LOGIC -->
+    <!-- PORTAL JAVASCRIPT LOGIC -->
     <script>
-        // DATA INITIALIZATION
+        // DEFAULT DATA & ACCOUNTS
+        let defaultAccounts = [
+            { email: 'admin@hrcdi.org.ng', name: 'Victor Oluebube Okeke', role: 'Admin', pass: 'password123' },
+            { email: 'rejoice@hrcdi.org.ng', name: 'Rejoice Obinna', role: 'Program Manager', pass: 'password123' }
+        ];
+
+        let defaultAuthorized = ['admin@hrcdi.org.ng', 'rejoice@hrcdi.org.ng'];
+
+        let accounts = JSON.parse(localStorage.getItem('hrcdi_accounts')) || defaultAccounts;
+        let authorizedEmails = JSON.parse(localStorage.getItem('hrcdi_auth_emails')) || defaultAuthorized;
         let currentUser = JSON.parse(localStorage.getItem('hrcdi_user')) || null;
 
-        let defaultAnnouncements = [
-            { id: 1, title: "Quarterly Board Meeting Scheduled", content: "The Q3 board review will take place on Friday via Google Meet.", priority: "high", author: "Victor Okeke", date: "2026-10-15" },
-            { id: 2, title: "New Field Operations Guidelines", content: "Updated safety procedures for community visits have been uploaded to the Document Center.", priority: "normal", author: "Rejoice Obinna", date: "2026-10-10" }
+        let announcements = JSON.parse(localStorage.getItem('hrcdi_announcements')) || [
+            { id: 1, title: 'Quarterly Board Meeting', content: 'Scheduled for Friday via Google Meet.', author: 'Victor Okeke', date: '2026-10-15' }
         ];
-
-        let defaultTasks = [
-            { id: 1, title: "Submit Monthly Financial Summary", assignee: "Victor Okeke", status: "todo" },
-            { id: 2, title: "Community Field Outreach Survey", assignee: "Rejoice Obinna", status: "inprogress" },
-            { id: 3, title: "cPanel & GitHub Deployment", assignee: "Victor Okeke", status: "completed" }
+        let tasks = JSON.parse(localStorage.getItem('hrcdi_tasks')) || [
+            { id: 1, title: 'Field Outreach Report', assignee: 'Rejoice Obinna', status: 'inprogress' }
         ];
+        let requests = JSON.parse(localStorage.getItem('hrcdi_requests')) || [];
 
-        let defaultRequests = [
-            { id: 1, type: "Field Trip Approval", requester: "Rejoice Obinna", details: "Maiduguri Outreach Visit (Oct 24-26)", status: "Approved", date: "2026-10-12" }
-        ];
+        // AUTHENTICATION TAB TOGGLE
+        function switchAuthTab(tab) {
+            if (tab === 'login') {
+                document.getElementById('login-form').classList.remove('hidden');
+                document.getElementById('register-form').classList.add('hidden');
+                document.getElementById('tab-login-btn').className = 'flex-1 py-3 text-brand-700 border-b-2 border-brand-700 bg-white';
+                document.getElementById('tab-register-btn').className = 'flex-1 py-3 text-slate-500 hover:text-slate-800';
+            } else {
+                document.getElementById('login-form').classList.add('hidden');
+                document.getElementById('register-form').classList.remove('hidden');
+                document.getElementById('tab-register-btn').className = 'flex-1 py-3 text-brand-700 border-b-2 border-brand-700 bg-white';
+                document.getElementById('tab-login-btn').className = 'flex-1 py-3 text-slate-500 hover:text-slate-800';
+            }
+        }
 
-        let announcements = JSON.parse(localStorage.getItem('hrcdi_announcements')) || defaultAnnouncements;
-        let tasks = JSON.parse(localStorage.getItem('hrcdi_tasks')) || defaultTasks;
-        let requests = JSON.parse(localStorage.getItem('hrcdi_requests')) || defaultRequests;
-
-        // AUTHENTICATION LOGIC
         function fillQuickLogin(email) {
             document.getElementById('login-email').value = email;
             document.getElementById('login-password').value = 'password123';
@@ -569,13 +371,61 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const role = email.includes('admin') ? 'Admin' : 'Field Officer';
-            const name = email.includes('admin') ? 'Victor Oluebube Okeke' : 'Staff Officer';
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const pass = document.getElementById('login-password').value;
 
-            currentUser = { email, name, role };
-            localStorage.setItem('hrcdi_user', JSON.stringify(currentUser));
-            initApp();
+            const user = accounts.find(a => a.email.toLowerCase() === email && a.pass === pass);
+
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('hrcdi_user', JSON.stringify(currentUser));
+                initApp();
+            } else {
+                alert('Invalid email or password. If you are new staff, please register your authorized email address.');
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const pass = document.getElementById('reg-password').value;
+
+            // Check if authorized by Admin
+            if (!authorizedEmails.includes(email)) {
+                alert('Access Denied: Your email has not been pre-authorized by an Admin. Please contact Admin for authorization.');
+                return;
+            }
+
+            // Check if already registered
+            if (accounts.some(a => a.email.toLowerCase() === email)) {
+                alert('Account already exists! Please log in.');
+                switchAuthTab('login');
+                return;
+            }
+
+            const newAccount = { name, email, pass, role: 'Staff Officer' };
+            accounts.push(newAccount);
+            localStorage.setItem('hrcdi_accounts', JSON.stringify(accounts));
+
+            alert('Account registered successfully! You can now log in.');
+            switchAuthTab('login');
+            fillQuickLogin(email);
+        }
+
+        function authorizeNewEmail(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value.trim().toLowerCase();
+            const role = document.getElementById('auth-role').value;
+
+            if (!authorizedEmails.includes(email)) {
+                authorizedEmails.push(email);
+                localStorage.setItem('hrcdi_auth_emails', JSON.stringify(authorizedEmails));
+                alert(`Authorized ${email} for registration!`);
+                document.getElementById('auth-email').value = '';
+            } else {
+                alert('Email is already authorized.');
+            }
         }
 
         function handleLogout() {
@@ -587,7 +437,6 @@
 
         function initApp() {
             if (!currentUser) return;
-
             document.getElementById('login-view').classList.add('hidden');
             document.getElementById('app-view').classList.remove('hidden');
 
@@ -598,182 +447,135 @@
             const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2);
             document.getElementById('user-avatar').innerText = initials;
 
-            // Restrict admin controls
-            if (currentUser.role !== 'Admin') {
-                document.getElementById('btn-add-announcement')?.classList.add('hidden');
+            if (currentUser.role === 'Admin') {
+                document.getElementById('admin-auth-panel')?.classList.remove('hidden');
             } else {
-                document.getElementById('btn-add-announcement')?.classList.remove('hidden');
+                document.getElementById('admin-auth-panel')?.classList.add('hidden');
             }
 
             renderAll();
         }
 
-        // NAVIGATION SWITCHER
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.nav-btn').forEach(el => {
-                el.classList.remove('text-brand-700', 'bg-brand-50', 'active');
-                el.classList.add('text-slate-600');
-            });
-
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('text-brand-700', 'bg-brand-50'));
             document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`nav-${tabName}`);
-            activeBtn.classList.add('text-brand-700', 'bg-brand-50', 'active');
-            activeBtn.classList.remove('text-slate-600');
+            document.getElementById(`nav-${tabName}`).classList.add('text-brand-700', 'bg-brand-50');
         }
 
-        // RENDER FUNCTIONS
         function renderAll() {
-            renderAnnouncements();
-            renderTasks();
-            renderRequests();
-            updateStats();
-        }
-
-        function updateStats() {
+            // Stats
             document.getElementById('stat-announcements').innerText = announcements.length;
             document.getElementById('stat-tasks').innerText = tasks.filter(t => t.status !== 'completed').length;
-            document.getElementById('stat-requests').innerText = requests.filter(r => r.status === 'Pending').length;
-        }
+            document.getElementById('stat-users').innerText = accounts.length;
 
-        function renderAnnouncements() {
-            const container = document.getElementById('announcements-container');
-            const recentContainer = document.getElementById('recent-announcements-list');
-
-            let html = announcements.map(a => `
+            // Announcements
+            document.getElementById('announcements-container').innerHTML = announcements.map(a => `
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-xs font-bold text-slate-800">${a.title}</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full ${a.priority === 'high' ? 'bg-rose-100 text-rose-700 font-bold' : 'bg-slate-100 text-slate-600'}">${a.priority.toUpperCase()}</span>
-                    </div>
-                    <p class="text-xs text-slate-600 my-2">${a.content}</p>
-                    <div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">
-                        <span>By ${a.author}</span>
-                        <span>${a.date}</span>
-                    </div>
+                    <h4 class="font-bold text-sm text-slate-800">${a.title}</h4>
+                    <p class="text-xs text-slate-600 my-1">${a.content}</p>
+                    <div class="text-[10px] text-slate-400 mt-2">Posted by ${a.author} &bull; ${a.date}</div>
                 </div>
             `).join('');
 
-            container.innerHTML = html || `<p class="text-xs text-slate-400">No announcements found.</p>`;
-            recentContainer.innerHTML = html;
-        }
-
-        function renderTasks() {
-            const todoCol = document.getElementById('col-todo');
-            const inprogressCol = document.getElementById('col-inprogress');
-            const completedCol = document.getElementById('col-completed');
-
+            // Tasks
             let todo = '', inprogress = '', completed = '';
-
             tasks.forEach(t => {
                 const card = `
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm space-y-2">
-                        <div class="text-xs font-bold text-slate-800">${t.title}</div>
-                        <div class="text-[10px] text-slate-500"><i class="fa-regular fa-user"></i> ${t.assignee}</div>
-                        <div class="flex gap-1 pt-1 border-t border-slate-100">
-                            ${t.status !== 'todo' ? `<button onclick="moveTask(${t.id}, 'todo')" class="text-[10px] px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded">To Do</button>` : ''}
-                            ${t.status !== 'inprogress' ? `<button onclick="moveTask(${t.id}, 'inprogress')" class="text-[10px] px-2 py-1 bg-amber-100 text-amber-800 hover:bg-amber-200 rounded">In Progress</button>` : ''}
-                            ${t.status !== 'completed' ? `<button onclick="moveTask(${t.id}, 'completed')" class="text-[10px] px-2 py-1 bg-emerald-100 text-emerald-800 hover:bg-emerald-200 rounded">Complete</button>` : ''}
+                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm space-y-1">
+                        <div class="text-xs font-bold">${t.title}</div>
+                        <div class="text-[10px] text-slate-500">Assignee: ${t.assignee}</div>
+                        <div class="flex gap-1 pt-1">
+                            ${t.status !== 'todo' ? `<button onclick="moveTask(${t.id}, 'todo')" class="text-[9px] px-1.5 py-0.5 bg-slate-100 rounded">To Do</button>` : ''}
+                            ${t.status !== 'inprogress' ? `<button onclick="moveTask(${t.id}, 'inprogress')" class="text-[9px] px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded">In Progress</button>` : ''}
+                            ${t.status !== 'completed' ? `<button onclick="moveTask(${t.id}, 'completed')" class="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded">Done</button>` : ''}
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 if (t.status === 'todo') todo += card;
                 if (t.status === 'inprogress') inprogress += card;
                 if (t.status === 'completed') completed += card;
             });
+            document.getElementById('col-todo').innerHTML = todo;
+            document.getElementById('col-inprogress').innerHTML = inprogress;
+            document.getElementById('col-completed').innerHTML = completed;
 
-            todoCol.innerHTML = todo;
-            inprogressCol.innerHTML = inprogress;
-            completedCol.innerHTML = completed;
+            // Requests
+            document.getElementById('requests-table-body').innerHTML = requests.map(r => `
+                <tr>
+                    <td class="p-3 font-semibold">${r.type}</td>
+                    <td class="p-3">${r.requester}</td>
+                    <td class="p-3">${r.details}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-700">${r.status}</span></td>
+                </tr>
+            `).join('');
 
-            document.getElementById('count-todo').innerText = tasks.filter(t => t.status === 'todo').length;
-            document.getElementById('count-inprogress').innerText = tasks.filter(t => t.status === 'inprogress').length;
-            document.getElementById('count-completed').innerText = tasks.filter(t => t.status === 'completed').length;
+            // Directory
+            document.getElementById('staff-directory-grid').innerHTML = accounts.map(a => `
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-bold text-xs">${a.name.substring(0, 2).toUpperCase()}</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-xs">${a.name}</h4>
+                        <p class="text-[11px] text-brand-700 font-medium">${a.role}</p>
+                        <p class="text-[10px] text-slate-400">${a.email}</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function moveTask(id, newStatus) {
             tasks = tasks.map(t => t.id === id ? { ...t, status: newStatus } : t);
             localStorage.setItem('hrcdi_tasks', JSON.stringify(tasks));
-            renderTasks();
-            updateStats();
+            renderAll();
         }
 
-        function renderRequests() {
-            const tableBody = document.getElementById('requests-table-body');
-            tableBody.innerHTML = requests.map(r => `
-                <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">${r.type}</td>
-                    <td class="px-4 py-3">${r.requester}</td>
-                    <td class="px-4 py-3">${r.details}</td>
-                    <td class="px-4 py-3">
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${r.status === 'Approved' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}">${r.status}</span>
-                    </td>
-                    <td class="px-4 py-3 text-slate-400">${r.date}</td>
-                </tr>
-            `).join('');
-        }
-
-        // MODAL HANDLERS
         function toggleModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.toggle('hidden');
-            modal.classList.toggle('flex');
+            document.getElementById(id).classList.toggle('hidden');
+            document.getElementById(id).classList.toggle('flex');
         }
 
         function saveAnnouncement(e) {
             e.preventDefault();
-            const newAnn = {
+            announcements.unshift({
                 id: Date.now(),
                 title: document.getElementById('ann-title').value,
-                priority: document.getElementById('ann-priority').value,
                 content: document.getElementById('ann-content').value,
                 author: currentUser.name,
                 date: new Date().toISOString().split('T')[0]
-            };
-            announcements.unshift(newAnn);
+            });
             localStorage.setItem('hrcdi_announcements', JSON.stringify(announcements));
             toggleModal('modal-announcement');
-            renderAnnouncements();
-            updateStats();
+            renderAll();
         }
 
         function saveTask(e) {
             e.preventDefault();
-            const newTask = {
+            tasks.push({
                 id: Date.now(),
                 title: document.getElementById('task-title').value,
                 assignee: document.getElementById('task-assignee').value,
                 status: 'todo'
-            };
-            tasks.push(newTask);
+            });
             localStorage.setItem('hrcdi_tasks', JSON.stringify(tasks));
             toggleModal('modal-task');
-            renderTasks();
-            updateStats();
+            renderAll();
         }
 
         function saveRequest(e) {
             e.preventDefault();
-            const newReq = {
+            requests.unshift({
                 id: Date.now(),
                 type: document.getElementById('req-type').value,
                 requester: currentUser.name,
                 details: document.getElementById('req-details').value,
-                status: 'Pending',
-                date: new Date().toISOString().split('T')[0]
-            };
-            requests.unshift(newReq);
+                status: 'Pending'
+            });
             localStorage.setItem('hrcdi_requests', JSON.stringify(requests));
             toggleModal('modal-request');
-            renderRequests();
-            updateStats();
+            renderAll();
         }
 
-        // AUTO-LOGIN CHECK ON LOAD
         window.onload = function() {
-            if (currentUser) {
-                initApp();
-            }
+            if (currentUser) initApp();
         };
     </script>
 </body>
