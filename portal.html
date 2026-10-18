@@ -1,1 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRCDI Staff Portal | Hope Rising Community Development Initiative</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
 
+    <!-- LOGIN SCREEN -->
+    <div id="login-view" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div class="bg-gradient-to-r from-brand-800 to-brand-600 p-6 text-center text-white">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3 backdrop-blur-sm border border-white/20">
+                    <i class="fa-solid fa-hands-holding-child text-3xl text-emerald-300"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight">HRCDI Staff Portal</h1>
+                <p class="text-emerald-100 text-sm mt-1">Hope Rising Community Development Initiative</p>
+            </div>
+            
+            <form id="login-form" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Email Address</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="email" id="login-email" required placeholder="staff@hrcdi.org.ng" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Password</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500"> Remember me
+                    </label>
+                    <a href="#" class="text-brand-700 hover:underline">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 rounded-lg transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm">
+                    <span>Sign In to Portal</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="border-t border-slate-100 pt-4 mt-4">
+                    <p class="text-xs text-center text-slate-400 mb-2">Quick Demo Quick Logins:</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="fillQuickLogin('admin@hrcdi.org.ng')" class="text-xs py-1.5 px-2 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 transition">Admin Account</button>
+                        <button type="button" onclick="fillQuickLogin('staff@hrcdi.org.ng')" class="text-xs py-1.5 px-2 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 transition">Field Officer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="app-view" class="hidden flex-1 flex flex-col min-h-screen">
+        
+        <!-- TOP NAVIGATION BAR -->
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-brand-700 rounded-lg flex items-center justify-center text-white font-bold shadow-sm">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-slate-900 text-lg leading-none block">HRCDI</span>
+                        <span class="text-xs text-slate-500 font-medium">Internal Portal</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="relative p-2 text-slate-500 hover:text-slate-700 rounded-full hover:bg-slate-100">
+                        <i class="fa-regular fa-bell text-lg"></i>
+                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full"></span>
+                    </button>
+                    
+                    <div class="h-6 w-px bg-slate-200"></div>
+
+                    <div class="flex items-center gap-3">
+                        <div id="user-avatar" class="w-9 h-9 rounded-full bg-brand-100 text-brand-800 border border-brand-200 flex items-center justify-center font-bold text-sm">
+                            --
+                        </div>
+                        <div class="hidden sm:block text-left">
+                            <div id="user-name-display" class="text-sm font-semibold text-slate-800 leading-tight">User</div>
+                            <div id="user-role-display" class="text-xs text-slate-500 capitalize">Role</div>
+                        </div>
+                        <button onclick="handleLogout()" class="p-2 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition ml-1" title="Sign Out">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT BODY -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col md:flex-row gap-6">
+            
+            <!-- SIDEBAR NAVIGATION -->
+            <aside class="w-full md:w-64 flex-shrink-0">
+                <nav class="bg-white rounded-xl border border-slate-200 p-2 space-y-1 shadow-sm sticky top-22">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-brand-700 bg-brand-50">
+                        <i class="fa-solid fa-chart-pie w-5 text-center"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button onclick="switchTab('announcements')" id="nav-announcements" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-bullhorn w-5 text-center"></i>
+                        <span>Announcements</span>
+                    </button>
+                    <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-list-check w-5 text-center"></i>
+                        <span>Task Manager</span>
+                    </button>
+                    <button onclick="switchTab('requests')" id="nav-requests" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-paper-plane w-5 text-center"></i>
+                        <span>Leave & Field Requests</span>
+                    </button>
+                    <button onclick="switchTab('directory')" id="nav-directory" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-address-book w-5 text-center"></i>
+                        <span>Staff Directory</span>
+                    </button>
+                    <button onclick="switchTab('documents')" id="nav-documents" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-folder-open w-5 text-center"></i>
+                        <span>Resource Center</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- MAIN CONTENT DISPLAY AREA -->
+            <main class="flex-1 min-w-0">
+                
+                <!-- TAB 1: DASHBOARD -->
+                <div id="tab-dashboard" class="tab-content space-y-6">
+                    <!-- HERO BANNER -->
+                    <div class="bg-gradient-to-r from-brand-800 to-slate-900 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h2 class="text-2xl font-bold">Welcome back, <span id="dash-user-name">Staff Member</span>!</h2>
+                            <p class="text-slate-300 text-sm mt-1 max-w-xl">
+                                Access your team objectives, view official organization announcements, submit field reports, or manage your daily active tasks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- STATS GRID -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-slate-800" id="stat-announcements">0</div>
+                                <div class="text-xs font-medium text-slate-500">Active Notices</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-tasks"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-slate-800" id="stat-tasks">0</div>
+                                <div class="text-xs font-medium text-slate-500">Pending Tasks</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-slate-800" id="stat-requests">0</div>
+                                <div class="text-xs font-medium text-slate-500">Pending Requests</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-slate-800">12</div>
+                                <div class="text-xs font-medium text-slate-500">Active Staff</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DASHBOARD CONTENT SPLIT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- RECENT ANNOUNCEMENTS -->
+                        <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-bullhorn text-brand-600"></i>
+                                    Latest Announcements
+                                </h3>
+                                <button onclick="switchTab('announcements')" class="text-xs font-semibold text-brand-700 hover:underline">View All</button>
+                            </div>
+                            <div id="recent-announcements-list" class="space-y-3">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- QUICK LINKS & ACTIONS -->
+                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
+                            <h3 class="font-bold text-slate-800 text-base">Quick Shortcuts</h3>
+                            <div class="space-y-2">
+                                <button onclick="switchTab('requests')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
+                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">Submit Leave / Field Request</span>
+                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
+                                </button>
+                                <button onclick="switchTab('tasks')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
+                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">View Active Tasks</span>
+                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
+                                </button>
+                                <button onclick="switchTab('documents')" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition flex items-center justify-between group">
+                                    <span class="text-xs font-medium text-slate-700 group-hover:text-brand-800">Download HR Policies</span>
+                                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-600"></i>
+                                </button>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-100">
+                                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200/60">
+                                    <div class="text-xs font-bold text-slate-700 mb-1">Official Contact:</div>
+                                    <p class="text-xs text-slate-500">info@hrcdi.org.ng</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: ANNOUNCEMENTS -->
+                <div id="tab-announcements" class="tab-content hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900">Notice Board & Announcements</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Stay updated with official organizational news and policy updates.</p>
+                        </div>
+                        <button id="btn-add-announcement" onclick="toggleModal('modal-announcement')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Post Announcement</span>
+                        </button>
+                    </div>
+
+                    <div id="announcements-container" class="space-y-4">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- TAB 3: TASK MANAGER -->
+                <div id="tab-tasks" class="tab-content hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900">Task Manager</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Track and update field activities and project milestones.</p>
+                        </div>
+                        <button onclick="toggleModal('modal-task')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>New Task</span>
+                        </button>
+                    </div>
+
+                    <!-- TASK COLUMNS -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- TO DO -->
+                        <div class="bg-slate-100/70 p-4 rounded-xl border border-slate-200">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-slate-400"></span> To Do
+                                </span>
+                                <span id="count-todo" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-slate-600">0</span>
+                            </div>
+                            <div id="col-todo" class="space-y-3 min-h-[200px]"></div>
+                        </div>
+
+                        <!-- IN PROGRESS -->
+                        <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200/60">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-bold text-amber-800 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span> In Progress
+                                </span>
+                                <span id="count-inprogress" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-amber-700">0</span>
+                            </div>
+                            <div id="col-inprogress" class="space-y-3 min-h-[200px]"></div>
+                        </div>
+
+                        <!-- COMPLETED -->
+                        <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200/60">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-bold text-emerald-800 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Completed
+                                </span>
+                                <span id="count-completed" class="text-xs font-semibold bg-white px-2 py-0.5 rounded-full text-emerald-700">0</span>
+                            </div>
+                            <div id="col-completed" class="space-y-3 min-h-[200px]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: LEAVE & FIELD REQUESTS -->
+                <div id="tab-requests" class="tab-content hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900">Leave & Field Requests</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Submit formal requests for annual leave, field trips, or equipment log.</p>
+                        </div>
+                        <button onclick="toggleModal('modal-request')" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>New Request</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-600">
+                                <thead class="bg-slate-50 text-slate-700 font-semibold uppercase border-b border-slate-200">
+                                    <tr>
+                                        <th class="px-4 py-3">Type</th>
+                                        <th class="px-4 py-3">Requested By</th>
+                                        <th class="px-4 py-3">Details / Dates</th>
+                                        <th class="px-4 py-3">Status</th>
+                                        <th class="px-4 py-3">Submitted</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="requests-table-body" class="divide-y divide-slate-100">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: STAFF DIRECTORY -->
+                <div id="tab-directory" class="tab-content hidden space-y-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Staff Directory</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Team members and key organizational officers.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="staff-directory-grid">
+                        <!-- DIRECTORY CARDS -->
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
+                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
+                                VO
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Victor Oluebube Okeke</h4>
+                                <p class="text-xs text-brand-700 font-medium">Executive Director / IT Lead</p>
+                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> info@hrcdi.org.ng</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
+                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
+                                RO
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Rejoice Obinna</h4>
+                                <p class="text-xs text-brand-700 font-medium">Program Manager</p>
+                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> rejoice@hrcdi.org.ng</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center gap-3">
+                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 border border-slate-200">
+                                DH
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Dr. Haruna</h4>
+                                <p class="text-xs text-brand-700 font-medium">Board Trustee Advisor</p>
+                                <p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-envelope"></i> board@hrcdi.org.ng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: RESOURCE & DOCUMENT CENTER -->
+                <div id="tab-documents" class="tab-content hidden space-y-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Resource & Document Center</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Download official HR policies, field reporting templates, and brand assets.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-800">HRCDI Staff Constitution & Policy</h4>
+                                    <span class="text-[10px] text-slate-400">PDF • 1.2 MB</span>
+                                </div>
+                            </div>
+                            <button onclick="alert('Downloading document...')" class="text-brand-700 hover:text-brand-800 text-xs font-semibold p-2">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-file-word"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-800">Field Activity Report Template</h4>
+                                    <span class="text-[10px] text-slate-400">DOCX • 450 KB</span>
+                                </div>
+                            </div>
+                            <button onclick="alert('Downloading document...')" class="text-brand-700 hover:text-brand-800 text-xs font-semibold p-2">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD ANNOUNCEMENT -->
+    <div id="modal-announcement" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm">Post New Announcement</h3>
+                <button onclick="toggleModal('modal-announcement')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="saveAnnouncement(event)" class="p-4 space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Title</label>
+                    <input type="text" id="ann-title" required class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Priority</label>
+                    <select id="ann-priority" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
+                        <option value="normal">Normal Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Message Content</label>
+                    <textarea id="ann-content" required rows="4" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="toggleModal('modal-announcement')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Publish Notice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD TASK -->
+    <div id="modal-task" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm">Create Task</h3>
+                <button onclick="toggleModal('modal-task')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="saveTask(event)" class="p-4 space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Task Title</label>
+                    <input type="text" id="task-title" required class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Assignee</label>
+                    <input type="text" id="task-assignee" required placeholder="e.g. Victor Okeke" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="toggleModal('modal-task')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD REQUEST -->
+    <div id="modal-request" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm">Submit Leave or Field Request</h3>
+                <button onclick="toggleModal('modal-request')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="saveRequest(event)" class="p-4 space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Request Type</label>
+                    <select id="req-type" class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500">
+                        <option value="Annual Leave">Annual Leave</option>
+                        <option value="Field Trip Approval">Field Trip Approval</option>
+                        <option value="Equipment Request">Equipment Request</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Details / Travel Dates</label>
+                    <textarea id="req-details" required placeholder="Specify dates or equipment needed..." class="w-full px-3 py-2 border rounded-lg text-xs focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="toggleModal('modal-request')" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-brand-700 hover:bg-brand-800 text-white rounded-lg">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- APP SCRIPT LOGIC -->
+    <script>
+        // DATA INITIALIZATION
+        let currentUser = JSON.parse(localStorage.getItem('hrcdi_user')) || null;
+
+        let defaultAnnouncements = [
+            { id: 1, title: "Quarterly Board Meeting Scheduled", content: "The Q3 board review will take place on Friday via Google Meet.", priority: "high", author: "Victor Okeke", date: "2026-10-15" },
+            { id: 2, title: "New Field Operations Guidelines", content: "Updated safety procedures for community visits have been uploaded to the Document Center.", priority: "normal", author: "Rejoice Obinna", date: "2026-10-10" }
+        ];
+
+        let defaultTasks = [
+            { id: 1, title: "Submit Monthly Financial Summary", assignee: "Victor Okeke", status: "todo" },
+            { id: 2, title: "Community Field Outreach Survey", assignee: "Rejoice Obinna", status: "inprogress" },
+            { id: 3, title: "cPanel & GitHub Deployment", assignee: "Victor Okeke", status: "completed" }
+        ];
+
+        let defaultRequests = [
+            { id: 1, type: "Field Trip Approval", requester: "Rejoice Obinna", details: "Maiduguri Outreach Visit (Oct 24-26)", status: "Approved", date: "2026-10-12" }
+        ];
+
+        let announcements = JSON.parse(localStorage.getItem('hrcdi_announcements')) || defaultAnnouncements;
+        let tasks = JSON.parse(localStorage.getItem('hrcdi_tasks')) || defaultTasks;
+        let requests = JSON.parse(localStorage.getItem('hrcdi_requests')) || defaultRequests;
+
+        // AUTHENTICATION LOGIC
+        function fillQuickLogin(email) {
+            document.getElementById('login-email').value = email;
+            document.getElementById('login-password').value = 'password123';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const role = email.includes('admin') ? 'Admin' : 'Field Officer';
+            const name = email.includes('admin') ? 'Victor Oluebube Okeke' : 'Staff Officer';
+
+            currentUser = { email, name, role };
+            localStorage.setItem('hrcdi_user', JSON.stringify(currentUser));
+            initApp();
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('hrcdi_user');
+            currentUser = null;
+            document.getElementById('app-view').classList.add('hidden');
+            document.getElementById('login-view').classList.remove('hidden');
+        }
+
+        function initApp() {
+            if (!currentUser) return;
+
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('app-view').classList.remove('hidden');
+
+            document.getElementById('user-name-display').innerText = currentUser.name;
+            document.getElementById('dash-user-name').innerText = currentUser.name;
+            document.getElementById('user-role-display').innerText = currentUser.role;
+
+            const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+            document.getElementById('user-avatar').innerText = initials;
+
+            // Restrict admin controls
+            if (currentUser.role !== 'Admin') {
+                document.getElementById('btn-add-announcement')?.classList.add('hidden');
+            } else {
+                document.getElementById('btn-add-announcement')?.classList.remove('hidden');
+            }
+
+            renderAll();
+        }
+
+        // NAVIGATION SWITCHER
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('text-brand-700', 'bg-brand-50', 'active');
+                el.classList.add('text-slate-600');
+            });
+
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            activeBtn.classList.add('text-brand-700', 'bg-brand-50', 'active');
+            activeBtn.classList.remove('text-slate-600');
+        }
+
+        // RENDER FUNCTIONS
+        function renderAll() {
+            renderAnnouncements();
+            renderTasks();
+            renderRequests();
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('stat-announcements').innerText = announcements.length;
+            document.getElementById('stat-tasks').innerText = tasks.filter(t => t.status !== 'completed').length;
+            document.getElementById('stat-requests').innerText = requests.filter(r => r.status === 'Pending').length;
+        }
+
+        function renderAnnouncements() {
+            const container = document.getElementById('announcements-container');
+            const recentContainer = document.getElementById('recent-announcements-list');
+
+            let html = announcements.map(a => `
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-slate-800">${a.title}</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full ${a.priority === 'high' ? 'bg-rose-100 text-rose-700 font-bold' : 'bg-slate-100 text-slate-600'}">${a.priority.toUpperCase()}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 my-2">${a.content}</p>
+                    <div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-100">
+                        <span>By ${a.author}</span>
+                        <span>${a.date}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html || `<p class="text-xs text-slate-400">No announcements found.</p>`;
+            recentContainer.innerHTML = html;
+        }
+
+        function renderTasks() {
+            const todoCol = document.getElementById('col-todo');
+            const inprogressCol = document.getElementById('col-inprogress');
+            const completedCol = document.getElementById('col-completed');
+
+            let todo = '', inprogress = '', completed = '';
+
+            tasks.forEach(t => {
+                const card = `
+                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm space-y-2">
+                        <div class="text-xs font-bold text-slate-800">${t.title}</div>
+                        <div class="text-[10px] text-slate-500"><i class="fa-regular fa-user"></i> ${t.assignee}</div>
+                        <div class="flex gap-1 pt-1 border-t border-slate-100">
+                            ${t.status !== 'todo' ? `<button onclick="moveTask(${t.id}, 'todo')" class="text-[10px] px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded">To Do</button>` : ''}
+                            ${t.status !== 'inprogress' ? `<button onclick="moveTask(${t.id}, 'inprogress')" class="text-[10px] px-2 py-1 bg-amber-100 text-amber-800 hover:bg-amber-200 rounded">In Progress</button>` : ''}
+                            ${t.status !== 'completed' ? `<button onclick="moveTask(${t.id}, 'completed')" class="text-[10px] px-2 py-1 bg-emerald-100 text-emerald-800 hover:bg-emerald-200 rounded">Complete</button>` : ''}
+                        </div>
+                    </div>
+                `;
+                if (t.status === 'todo') todo += card;
+                if (t.status === 'inprogress') inprogress += card;
+                if (t.status === 'completed') completed += card;
+            });
+
+            todoCol.innerHTML = todo;
+            inprogressCol.innerHTML = inprogress;
+            completedCol.innerHTML = completed;
+
+            document.getElementById('count-todo').innerText = tasks.filter(t => t.status === 'todo').length;
+            document.getElementById('count-inprogress').innerText = tasks.filter(t => t.status === 'inprogress').length;
+            document.getElementById('count-completed').innerText = tasks.filter(t => t.status === 'completed').length;
+        }
+
+        function moveTask(id, newStatus) {
+            tasks = tasks.map(t => t.id === id ? { ...t, status: newStatus } : t);
+            localStorage.setItem('hrcdi_tasks', JSON.stringify(tasks));
+            renderTasks();
+            updateStats();
+        }
+
+        function renderRequests() {
+            const tableBody = document.getElementById('requests-table-body');
+            tableBody.innerHTML = requests.map(r => `
+                <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">${r.type}</td>
+                    <td class="px-4 py-3">${r.requester}</td>
+                    <td class="px-4 py-3">${r.details}</td>
+                    <td class="px-4 py-3">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${r.status === 'Approved' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}">${r.status}</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-400">${r.date}</td>
+                </tr>
+            `).join('');
+        }
+
+        // MODAL HANDLERS
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        function saveAnnouncement(e) {
+            e.preventDefault();
+            const newAnn = {
+                id: Date.now(),
+                title: document.getElementById('ann-title').value,
+                priority: document.getElementById('ann-priority').value,
+                content: document.getElementById('ann-content').value,
+                author: currentUser.name,
+                date: new Date().toISOString().split('T')[0]
+            };
+            announcements.unshift(newAnn);
+            localStorage.setItem('hrcdi_announcements', JSON.stringify(announcements));
+            toggleModal('modal-announcement');
+            renderAnnouncements();
+            updateStats();
+        }
+
+        function saveTask(e) {
+            e.preventDefault();
+            const newTask = {
+                id: Date.now(),
+                title: document.getElementById('task-title').value,
+                assignee: document.getElementById('task-assignee').value,
+                status: 'todo'
+            };
+            tasks.push(newTask);
+            localStorage.setItem('hrcdi_tasks', JSON.stringify(tasks));
+            toggleModal('modal-task');
+            renderTasks();
+            updateStats();
+        }
+
+        function saveRequest(e) {
+            e.preventDefault();
+            const newReq = {
+                id: Date.now(),
+                type: document.getElementById('req-type').value,
+                requester: currentUser.name,
+                details: document.getElementById('req-details').value,
+                status: 'Pending',
+                date: new Date().toISOString().split('T')[0]
+            };
+            requests.unshift(newReq);
+            localStorage.setItem('hrcdi_requests', JSON.stringify(requests));
+            toggleModal('modal-request');
+            renderRequests();
+            updateStats();
+        }
+
+        // AUTO-LOGIN CHECK ON LOAD
+        window.onload = function() {
+            if (currentUser) {
+                initApp();
+            }
+        };
+    </script>
+</body>
+</html>
