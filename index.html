@@ -41,7 +41,7 @@
 
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="bg-brand-900 text-brand-100 text-xs py-2 px-4 text-center font-medium">
-        <span>Hope Rising Community Development Initiative &bull; Empowering Communities for Sustainable Future</span>
+        <span>Hope Rising Community Development Initiative &bull; Empowering Communities for a Sustainable Future</span>
     </div>
 
     <!-- NAVIGATION HEADER -->
@@ -63,23 +63,22 @@
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="#about" class="hover:text-brand-700 transition">About Us</a>
                 <a href="#programs" class="hover:text-brand-700 transition">Our Programs</a>
-                <a href="#impact" class="hover:text-brand-700 transition">Impact</a>
+                <a href="#leadership" class="hover:text-brand-700 transition">Leadership</a>
+                <a href="#gallery" class="hover:text-brand-700 transition">Outreach Gallery</a>
                 <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
             </nav>
 
-            <!-- ACTION BUTTONS (INCLUDING STAFF PORTAL) -->
+            <!-- ACTION BUTTONS -->
             <div class="flex items-center gap-3">
-                <!-- STAFF PORTAL BUTTON -->
                 <a href="portal.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 shadow-sm">
                     <i class="fa-solid fa-lock text-[10px]"></i>
                     <span>Staff Portal</span>
                 </a>
 
                 <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition shadow-sm">
-                    <span>Get Involved</span>
+                    <span>Partner With Us</span>
                 </a>
 
-                <!-- MOBILE MENU TOGGLE -->
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-lg">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
@@ -90,7 +89,8 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
             <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">About Us</a>
             <a href="#programs" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Our Programs</a>
-            <a href="#impact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Impact</a>
+            <a href="#leadership" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Leadership</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Outreach Gallery</a>
             <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-slate-700">Contact</a>
             <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
                 <a href="portal.html" class="w-full text-center py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200">
@@ -104,21 +104,43 @@
     <section class="bg-gradient-to-br from-navy-900 via-slate-900 to-brand-950 text-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div class="max-w-5xl mx-auto text-center space-y-6 relative z-10">
             <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-semibold tracking-wide border border-brand-500/30">
-                Non-Governmental & Community Development
+                Incorporated Trustee NGO &bull; Grassroots Development
             </span>
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Restoring Hope, Empowering Lives, Building Sustainable Communities
+                Restoring Hope, Empowering Youth, & Building Resilient Communities
             </h1>
             <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
-                Hope Rising Community Development Initiative is dedicated to driving grassroots development, educational advancement, and social welfare across local communities.
+                Hope Rising Community Development Initiative (HRCDI) delivers sustainable interventions across education, youth empowerment, social welfare, and community health.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
                 <a href="#programs" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
-                    Explore Our Work
+                    Our Impact Projects
                 </a>
                 <a href="#contact" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-sm transition border border-white/20 backdrop-blur-sm">
-                    Contact Us
+                    Get In Touch
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS & IMPACT BAR -->
+    <section class="bg-white border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="space-y-1">
+                <div class="text-3xl font-extrabold text-brand-700">1,200+</div>
+                <div class="text-xs font-medium text-slate-500">Beneficiaries Reached</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl font-extrabold text-brand-700">15+</div>
+                <div class="text-xs font-medium text-slate-500">Community Outreaches</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl font-extrabold text-brand-700">8</div>
+                <div class="text-xs font-medium text-slate-500">Active Programs</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl font-extrabold text-brand-700">100%</div>
+                <div class="text-xs font-medium text-slate-500">Grassroots Focused</div>
             </div>
         </div>
     </section>
@@ -128,55 +150,159 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="space-y-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-brand-700">Who We Are</span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Committed to Positive Grassroots Impact</h2>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Driving Sustainable Grassroots Change</h2>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Hope Rising Community Development Initiative (HRCDI) works directly with community stakeholders, youth groups, and local partners to implement sustainable development projects.
+                    Hope Rising Community Development Initiative works directly with local stakeholders, community leaders, and field teams to implement tailored welfare and development programs that foster long-term self-reliance.
                 </p>
                 <div class="grid grid-cols-2 gap-4 pt-2">
                     <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100">
                         <i class="fa-solid fa-bullseye text-brand-600 text-xl mb-2"></i>
                         <h4 class="font-bold text-slate-800 text-sm">Our Mission</h4>
-                        <p class="text-xs text-slate-500 mt-1">To uplift vulnerable populations through education, skill acquisition, and community empowerment.</p>
+                        <p class="text-xs text-slate-500 mt-1">Uplifting underprivileged households through targeted skills training, youth mentorship, and essential aid.</p>
                     </div>
                     <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100">
                         <i class="fa-solid fa-eye text-brand-600 text-xl mb-2"></i>
                         <h4 class="font-bold text-slate-800 text-sm">Our Vision</h4>
-                        <p class="text-xs text-slate-500 mt-1">A self-sustaining society where every community member has equal opportunity to thrive.</p>
+                        <p class="text-xs text-slate-500 mt-1">A thriving society where every community member has access to education, dignity, and economic growth.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- KEY STATS BOX -->
+            <!-- FOCUS AREAS CARD -->
             <div class="bg-slate-900 text-white rounded-2xl p-8 shadow-xl space-y-6">
-                <h3 class="text-xl font-bold text-brand-400">Key Focus Areas</h3>
+                <h3 class="text-xl font-bold text-brand-400">Core Pillars of Action</h3>
                 <div class="space-y-4">
                     <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">
-                            01
-                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">01</div>
                         <div>
-                            <h4 class="font-bold text-sm">Youth & Education Outreach</h4>
-                            <p class="text-xs text-slate-400 mt-0.5">Educational support, mentorship programs, and vocational skill training.</p>
+                            <h4 class="font-bold text-sm">Youth & Academic Empowerment</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Educational sponsorships, school supplies, and vocational training.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">
-                            02
-                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">02</div>
                         <div>
-                            <h4 class="font-bold text-sm">Community Health Initiatives</h4>
-                            <p class="text-xs text-slate-400 mt-0.5">Health awareness campaigns, hygiene workshops, and medical assistance outreach.</p>
+                            <h4 class="font-bold text-sm">Community Health & Sanitation</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Medical outreach, clean water awareness, and hygiene kit distribution.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">
-                            03
-                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-800/80 flex items-center justify-center text-brand-300 font-bold flex-shrink-0">03</div>
                         <div>
-                            <h4 class="font-bold text-sm">Social Welfare Support</h4>
-                            <p class="text-xs text-slate-400 mt-0.5">Relief interventions and economic development programs for underprivileged households.</p>
+                            <h4 class="font-bold text-sm">Social Welfare & Humanitarian Aid</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Relief support and micro-enterprise guidance for vulnerable families.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROGRAMS -->
+    <section id="programs" class="bg-slate-100/70 py-16 px-4 sm:px-6 lg:px-8 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-700">What We Do</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Featured Field Initiatives</h2>
+                <p class="text-xs sm:text-sm text-slate-600">Discover how HRCDI translates vision into action across local communities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-12 h-12 bg-emerald-100 text-brand-700 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Scholarship & Learning Tools</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Providing underprivileged students with essential learning materials, books, and scholarship support to encourage academic completion.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-kit-medical"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Healthcare & Hygiene Outreach</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Conducting preventive healthcare drives, hygiene workshops, and distributing essential health supplies to rural communities.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Skills & Economic Capacity</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Equipping young adults with practical technical and entrepreneurship skills to facilitate sustainable income generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP SECTION -->
+    <section id="leadership" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-700">Governance</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Leadership & Advisory</h2>
+            <p class="text-xs sm:text-sm text-slate-600">Guided by experienced professionals dedicated to social impact.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
+                <div class="w-20 h-20 bg-brand-100 text-brand-800 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-brand-200">
+                    VO
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-base">Victor Oluebube Okeke</h3>
+                    <p class="text-xs text-brand-700 font-medium">Executive Director / IT Lead</p>
+                </div>
+                <p class="text-xs text-slate-500">Overseeing strategic planning, technology implementation, and organizational growth.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
+                <div class="w-20 h-20 bg-brand-100 text-brand-800 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-brand-200">
+                    RO
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-base">Rejoice Ifechukwu Obinna</h3>
+                    <p class="text-xs text-brand-700 font-medium">Program Manager</p>
+                </div>
+                <p class="text-xs text-slate-500">Leading field operations, community engagement, and program delivery.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
+                <div class="w-20 h-20 bg-brand-100 text-brand-800 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-brand-200">
+                    DH
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-base">Dr. Haruna</h3>
+                    <p class="text-xs text-brand-700 font-medium">Board Trustee Advisor</p>
+                </div>
+                <p class="text-xs text-slate-500">Providing governance oversight and strategic advisory for institutional development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTREACH GALLERY -->
+    <section id="gallery" class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Media</span>
+                <h2 class="text-2xl sm:text-3xl font-bold">Field Outreach Gallery</h2>
+                <p class="text-xs sm:text-sm text-slate-400">Snapshots of our team on the ground in local communities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-slate-800 rounded-xl p-8 text-center border border-slate-700 flex flex-col items-center justify-center min-h-[180px]">
+                    <i class="fa-solid fa-users-line text-3xl text-brand-400 mb-2"></i>
+                    <h4 class="font-bold text-sm">Community Townhalls</h4>
+                    <span class="text-[11px] text-slate-400 mt-1">Stakeholder engagement sessions</span>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-8 text-center border border-slate-700 flex flex-col items-center justify-center min-h-[180px]">
+                    <i class="fa-solid fa-hand-holding-heart text-3xl text-brand-400 mb-2"></i>
+                    <h4 class="font-bold text-sm">Aid Distributions</h4>
+                    <span class="text-[11px] text-slate-400 mt-1">Educational & health supplies drive</span>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-8 text-center border border-slate-700 flex flex-col items-center justify-center min-h-[180px]">
+                    <i class="fa-solid fa-chalkboard-user text-3xl text-brand-400 mb-2"></i>
+                    <h4 class="font-bold text-sm">Youth Workshops</h4>
+                    <span class="text-[11px] text-slate-400 mt-1">Skills acquisition and mentorship</span>
                 </div>
             </div>
         </div>
@@ -188,7 +314,7 @@
             <span class="text-xs font-bold uppercase tracking-wider text-brand-700">Get In Touch</span>
             <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Reach Out to Our Secretariat</h2>
             <p class="text-slate-600 text-sm max-w-lg mx-auto">
-                Have questions or interested in partnering with Hope Rising Community Development Initiative? Send us a message directly.
+                Interested in partnering, volunteering, or learning more about Hope Rising Community Development Initiative?
             </p>
 
             <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 text-left space-y-4">
