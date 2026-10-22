@@ -84,6 +84,10 @@
                 <i class="fa-solid fa-envelope text-[10px]"></i> info@hrcdi.org.ng
             </a>
             <span>|</span>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center gap-1 text-emerald-300 font-semibold">
+                <i class="fa-brands fa-facebook text-[11px]"></i> Facebook
+            </a>
+            <span>|</span>
             <a href="portal.html" class="hover:text-white transition flex items-center gap-1 font-semibold text-emerald-400">
                 <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
             </a>
@@ -104,16 +108,24 @@
             </a>
 
             <!-- DESKTOP NAVIGATION -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 flex-shrink-0">
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 flex-shrink-0">
                 <a href="#about" class="hover:text-brand-700 transition">About Us</a>
                 <a href="#programs" class="hover:text-brand-700 transition">Our Programs</a>
                 <a href="#leadership" class="hover:text-brand-700 transition">Leadership</a>
-                <a href="#gallery" class="hover:text-brand-700 transition">Outreach Gallery</a>
+                <a href="#donate" class="text-emerald-700 font-bold hover:text-emerald-800 transition flex items-center gap-1">
+                    <i class="fa-solid fa-heart text-rose-500"></i> Donate
+                </a>
                 <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1.5 transition">
+                    <i class="fa-brands fa-facebook text-base"></i> Facebook
+                </a>
             </nav>
 
             <!-- HAMBURGER MENU BUTTON -->
             <div class="flex items-center gap-2 flex-shrink-0">
+                <a href="#donate" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition shadow-sm">
+                    <i class="fa-solid fa-heart text-rose-300"></i> Donate
+                </a>
                 <button onclick="toggleMobileMenu()" class="p-2 text-slate-700 hover:text-slate-900 rounded-lg transition" aria-label="Toggle Navigation">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -131,11 +143,14 @@
             <a href="#leadership" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
                 <i class="fa-solid fa-user-shield w-5 text-emerald-700 text-center"></i> Leadership
             </a>
-            <a href="#gallery" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
-                <i class="fa-solid fa-images w-5 text-emerald-700 text-center"></i> Outreach Gallery
+            <a href="#donate" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-emerald-800 bg-emerald-50 border border-emerald-200">
+                <i class="fa-solid fa-heart w-5 text-rose-500 text-center"></i> Donate & Support
             </a>
             <a href="#contact" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
                 <i class="fa-solid fa-envelope w-5 text-emerald-700 text-center"></i> Contact
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50">
+                <i class="fa-brands fa-facebook w-5 text-blue-600 text-center text-lg"></i> Follow us on Facebook
             </a>
             
             <div class="pt-3 border-t border-slate-100 space-y-2">
@@ -173,13 +188,17 @@
 
             <!-- CALL TO ACTION BUTTONS -->
             <div class="flex flex-col gap-3 pt-2 max-w-md mx-auto">
-                <a href="tel:09030700643" class="w-full px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
+                <a href="#donate" class="w-full px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-heart text-rose-700"></i>
+                    <span>Support Our Cause / Donate Now</span>
+                </a>
+                <a href="tel:09030700643" class="w-full px-6 py-3.5 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-phone"></i>
                     <span>Call Us: 09030700643</span>
                 </a>
-                <a href="mailto:info@hrcdi.org.ng" class="w-full px-6 py-3.5 bg-[#011712] hover:bg-[#02241c] text-white font-semibold rounded-xl text-sm transition border border-emerald-800/80 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Partner & Grant Enquiries</span>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-full px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-brands fa-facebook text-base"></i>
+                    <span>Visit Facebook Page</span>
                 </a>
             </div>
 
@@ -303,6 +322,92 @@
         </div>
     </section>
 
+    <!-- DONATION SECTION -->
+    <section id="donate" class="bg-emerald-900 text-white py-16 px-4 sm:px-6 lg:px-8 w-full border-y border-emerald-950">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="inline-block px-3 py-1 rounded-full bg-emerald-800/80 text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-700">
+                    <i class="fa-solid fa-heart text-rose-400 mr-1"></i> Make A Difference
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Support Our NGO Mission</h2>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                    Your financial contribution empowers youth training, educational scholarship drives, and community health projects in Borno State.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- BANK TRANSFER CARD -->
+                <div class="bg-[#011c16] rounded-2xl p-6 sm:p-8 border border-emerald-700/60 shadow-xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-emerald-800/80 pb-4">
+                            <h3 class="font-bold text-lg text-emerald-300 flex items-center gap-2">
+                                <i class="fa-solid fa-[#011c16] fa-building-columns text-emerald-400"></i> Direct Bank Transfer
+                            </h3>
+                            <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-1 rounded border border-emerald-800">Naira (NGN) Account</span>
+                        </div>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Account Name:</span>
+                                <span class="font-bold text-white text-base">Hope Rising Community Dev Initiative</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Bank Name:</span>
+                                <span class="font-semibold text-emerald-200">[ Insert Official Bank Name ]</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Account Number:</span>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span id="account-num" class="font-mono text-xl font-bold tracking-wider text-emerald-400 bg-emerald-950/90 px-3 py-1.5 rounded border border-emerald-800/80">
+                                        0000000000
+                                    </span>
+                                    <button onclick="copyAccount()" class="px-3 py-2 bg-emerald-800 hover:bg-emerald-700 text-emerald-100 rounded text-xs font-semibold transition flex items-center gap-1">
+                                        <i class="fa-solid fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-emerald-900 text-[11px] text-slate-400">
+                        <i class="fa-solid fa-shield-heart text-emerald-400 mr-1"></i> Official corporate non-profit account dedicated to program implementation and community relief.
+                    </div>
+                </div>
+
+                <!-- ONLINE DONATION / ENQUIRIES CARD -->
+                <div class="bg-white text-slate-800 rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-globe text-emerald-600"></i> Grants & Online Support
+                            </h3>
+                            <span class="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-1 rounded border border-emerald-200">International / Institutional</span>
+                        </div>
+
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            For corporate partnerships, grant disbursements, international donor arrangements, or material donations (equipment, books, medical kits), please reach our finance desk directly.
+                        </p>
+
+                        <div class="space-y-3">
+                            <a href="mailto:info@hrcdi.org.ng?subject=Donation%20Enquiry%20-%20HRCDI" class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 shadow">
+                                <i class="fa-solid fa-envelope"></i> Email Finance Team (info@hrcdi.org.ng)
+                            </a>
+                            <a href="tel:09030700643" class="w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-phone"></i> Call Secretariat: 09030700643
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 text-center">
+                        All financial receipts and donation acknowledgments are issued by our governance secretariat.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- LEADERSHIP SECTION -->
     <section id="leadership" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 w-full">
         <div class="text-center max-w-2xl mx-auto space-y-2">
@@ -407,6 +512,14 @@
                 <p>&copy; 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
             </div>
             <div class="flex items-center gap-4">
+                <a href="#donate" class="text-emerald-400 font-bold hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-heart text-rose-500"></i> Donate
+                </a>
+                <span>|</span>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center gap-1">
+                    <i class="fa-brands fa-facebook text-sm"></i> Facebook
+                </a>
+                <span>|</span>
                 <a href="portal.html" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
                 </a>
@@ -418,6 +531,12 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        }
+
+        function copyAccount() {
+            const num = document.getElementById('account-num').innerText;
+            navigator.clipboard.writeText(num);
+            alert('Account number copied: ' + num);
         }
     </script>
 </body>
