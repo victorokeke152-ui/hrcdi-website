@@ -16,7 +16,7 @@
     }
     </script>
 
-    <!-- Speed up CDN DNS Lookup & Connection -->
+    <!-- Preconnect & CDNs -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,6 +111,9 @@
                     <i class="fa-solid fa-heart text-rose-500"></i> Donate
                 </a>
                 <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
+                <a href="portal.html" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-shield text-emerald-400"></i> Staff Portal
+                </a>
             </nav>
 
             <!-- HAMBURGER MENU BUTTON -->
@@ -118,14 +121,14 @@
                 <a href="#donate" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition shadow-sm">
                     <i class="fa-solid fa-heart text-rose-300"></i> Donate
                 </a>
-                <button onclick="toggleMobileMenu()" class="p-2 text-slate-700 hover:text-slate-900 rounded-lg transition" aria-label="Toggle Navigation">
+                <button onclick="toggleMobileMenu()" class="p-2 text-slate-700 hover:text-slate-900 rounded-lg transition lg:hidden" aria-label="Toggle Navigation">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- MOBILE MENU DROPDOWN -->
-        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 shadow-lg">
+        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 shadow-lg lg:hidden">
             <a href="#about" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
                 <i class="fa-solid fa-circle-info w-5 text-emerald-700 text-center"></i> About Us
             </a>
@@ -144,6 +147,9 @@
             <a href="#contact" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
                 <i class="fa-solid fa-envelope w-5 text-emerald-700 text-center"></i> Contact
             </a>
+            <a href="portal.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-300">
+                <i class="fa-solid fa-user-lock w-5 text-slate-700 text-center"></i> Staff Portal Access
+            </a>
             <a href="https://www.facebook.com/share/1PZ4azFXTm/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50">
                 <i class="fa-brands fa-facebook w-5 text-blue-600 text-center text-lg"></i> Follow us on Facebook
             </a>
@@ -153,24 +159,17 @@
     <!-- HERO SECTION -->
     <section class="bg-pattern text-white py-14 sm:py-20 px-4 sm:px-6 lg:px-8 w-full block">
         <div class="max-w-3xl mx-auto text-center space-y-6">
-            
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/50 text-emerald-300 text-xs font-medium">
                 <i class="fa-solid fa-shield-halved text-emerald-400"></i>
                 <span>NGO Registration &bull; Maiduguri, Borno State</span>
             </div>
-
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white">
                 Hope Rising Community Development Initiative
             </h1>
-
-            <div class="text-emerald-400 font-bold text-xl sm:text-2xl tracking-wide">
-                (HRCDI)
-            </div>
-
+            <div class="text-emerald-400 font-bold text-xl sm:text-2xl tracking-wide">(HRCDI)</div>
             <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
                 Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
-
             <div class="flex flex-col gap-3 pt-2 max-w-md mx-auto">
                 <a href="#donate" class="w-full px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold rounded-xl text-sm transition shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-heart text-rose-700"></i>
@@ -181,7 +180,6 @@
                     <span>Partner & Grant Enquiries</span>
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -194,7 +192,6 @@
                 <p class="text-slate-600 text-sm leading-relaxed">
                     Hope Rising Community Development Initiative works directly with local stakeholders, community leaders, and field teams to implement tailored welfare and development programs that foster long-term self-reliance.
                 </p>
-
                 <div class="space-y-4 pt-2">
                     <div class="p-5 bg-emerald-50/60 rounded-2xl border border-emerald-100 shadow-sm space-y-1.5">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-brand-700">
@@ -203,7 +200,6 @@
                         <h4 class="font-bold text-slate-900 text-sm">Our Mission</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">Uplifting underprivileged households through targeted skills training, youth mentorship, and essential aid.</p>
                     </div>
-
                     <div class="p-5 bg-emerald-50/60 rounded-2xl border border-emerald-100 shadow-sm space-y-1.5">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-brand-700">
                             <i class="fa-solid fa-eye text-sm"></i>
@@ -262,7 +258,6 @@
                         Hope Rising Community Development Initiative (HRCDI) operates as a strict non-profit organization in Borno State, Nigeria. All donated assets and grants are strictly channeled toward humanitarian relief, education, and community welfare programs.
                     </p>
                 </div>
-
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                     <div class="flex items-center gap-3 text-emerald-800">
                         <i class="fa-solid fa-shield-halved text-xl"></i>
@@ -272,7 +267,6 @@
                         All financial contributions are received exclusively through official institutional channels. Official financial statements, project receipts, and donor acknowledgments are managed under the oversight of our Board Trustee Advisory.
                     </p>
                 </div>
-
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                     <div class="flex items-center gap-3 text-emerald-800">
                         <i class="fa-solid fa-users text-xl"></i>
@@ -282,7 +276,6 @@
                         HRCDI upholds zero tolerance for discrimination, exploitation, or political bias during outreach activities. Field projects prioritize vulnerable youth, widows, and underserved rural communities with complete dignity and protection.
                     </p>
                 </div>
-
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                     <div class="flex items-center gap-3 text-emerald-800">
                         <i class="fa-solid fa-lock text-xl"></i>
@@ -313,7 +306,6 @@
                     <h3 class="font-bold text-slate-800 text-base">Scholarship & Learning Tools</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">Providing underprivileged students with essential learning materials, books, and scholarship support to encourage academic completion.</p>
                 </div>
-
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
                     <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl">
                         <i class="fa-solid fa-kit-medical"></i>
@@ -321,7 +313,6 @@
                     <h3 class="font-bold text-slate-800 text-base">Healthcare & Hygiene Outreach</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">Conducting preventive healthcare drives, hygiene workshops, and distributing essential health supplies to rural communities.</p>
                 </div>
-
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
                     <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl">
                         <i class="fa-solid fa-briefcase"></i>
@@ -333,7 +324,7 @@
         </div>
     </section>
 
-    <!-- DONATION SECTION (UNTOUCHED & FULLY PRESERVED) -->
+    <!-- DONATION SECTION -->
     <section id="donate" class="bg-emerald-900 text-white py-16 px-4 sm:px-6 lg:px-8 w-full border-y border-emerald-950">
         <div class="max-w-5xl mx-auto space-y-10">
             <div class="text-center max-w-2xl mx-auto space-y-3">
@@ -356,7 +347,6 @@
                             </h3>
                             <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-1 rounded border border-emerald-800">Naira (NGN) Account</span>
                         </div>
-                        
                         <div class="space-y-3 text-sm">
                             <div>
                                 <span class="text-xs text-slate-400 block">Account Name:</span>
@@ -394,11 +384,9 @@
                             </h3>
                             <span class="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-1 rounded border border-emerald-200">International / Institutional</span>
                         </div>
-
                         <p class="text-xs text-slate-600 leading-relaxed">
                             For corporate partnerships, grant disbursements, international donor arrangements, or material donations (equipment, books, medical kits), please reach our finance desk directly.
                         </p>
-
                         <div class="space-y-3">
                             <a href="mailto:info@hrcdi.org.ng?subject=Donation%20Enquiry%20-%20HRCDI" class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 shadow">
                                 <i class="fa-solid fa-envelope"></i> Email Finance Team (info@hrcdi.org.ng)
@@ -408,7 +396,6 @@
                             </a>
                         </div>
                     </div>
-
                     <div class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 text-center">
                         All financial receipts and donation acknowledgments are issued by our governance secretariat.
                     </div>
@@ -427,31 +414,23 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
-                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">
-                    VO
-                </div>
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">VO</div>
                 <div>
                     <h3 class="font-bold text-slate-800 text-base">Victor Oluebube Okeke</h3>
                     <p class="text-xs text-brand-700 font-medium">Executive Director / IT Lead</p>
                 </div>
                 <p class="text-xs text-slate-500">Overseeing strategic planning, technology implementation, and organizational growth.</p>
             </div>
-
             <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
-                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">
-                    RO
-                </div>
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">RO</div>
                 <div>
                     <h3 class="font-bold text-slate-800 text-base">Rejoice Ifechukwu Obinna</h3>
                     <p class="text-xs text-brand-700 font-medium">Program Manager</p>
                 </div>
                 <p class="text-xs text-slate-500">Leading field operations, community engagement, and program delivery.</p>
             </div>
-
             <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-3">
-                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">
-                    IH
-                </div>
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center font-bold text-xl mx-auto border-2 border-emerald-200">IH</div>
                 <div>
                     <h3 class="font-bold text-slate-800 text-base">Isaac Hassan</h3>
                     <p class="text-xs text-brand-700 font-medium">Board Trustee Advisor</p>
@@ -493,9 +472,9 @@
                 <p class="text-[11px] text-slate-500 mt-0.5">&copy; 2026 All Rights Reserved &bull; Non-Governmental Organization</p>
             </div>
             <div class="flex items-center gap-4 text-[11px]">
-                <a href="mailto:info@hrcdi.org.ng" class="hover:text-emerald-400 transition">info@hrcdi.org.ng</a>
+                <a href="portal.html" class="text-slate-300 hover:text-emerald-400 font-semibold transition">Staff Portal Access</a>
                 <span>&bull;</span>
-                <a href="https://hrcdi.org.ng" class="hover:text-emerald-400 transition">hrcdi.org.ng</a>
+                <a href="mailto:info@hrcdi.org.ng" class="hover:text-emerald-400 transition">info@hrcdi.org.ng</a>
             </div>
         </div>
     </footer>
