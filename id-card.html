@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRCDI Staff Identity Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        /* Standard CR80 ID Card dimensions roughly scaled for print */
+        .id-card {
+            width: 350px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sharp-logo {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .id-card {
+                box-shadow: none;
+                border: 1px solid #cbd5e1;
+                margin: 10px auto;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="p-6 flex flex-col items-center justify-center min-h-screen">
 
+    <!-- PRINT & EDIT CONTROLS -->
+    <div class="max-w-md w-full mb-6 flex justify-between items-center no-print text-white">
+        <div>
+            <h2 class="font-bold text-base">HRCDI Staff ID Generator</h2>
+            <p class="text-xs text-slate-400">Click text to edit details before printing</p>
+        </div>
+        <button onclick="window.print()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-2">
+            <i class="fa-solid fa-print"></i> Print ID Cards
+        </button>
+    </div>
+
+    <!-- CARDS CONTAINER (FRONT & BACK) -->
+    <div class="flex flex-wrap gap-8 justify-center items-center">
+
+        <!-- ================= FRONT SIDE ================= -->
+        <div class="id-card border border-slate-200" contenteditable="true">
+            
+            <!-- HEADER / LANYARD CLIP AREA -->
+            <div class="bg-[#022c22] text-white pt-4 pb-3 px-4 text-center relative border-b-4 border-emerald-500">
+                <div class="w-10 h-1.5 bg-slate-400 rounded-full mx-auto mb-2 opacity-50"></div>
+                <div class="flex items-center justify-center gap-2">
+                    <img src="IMG_2369.png" alt="Logo" class="h-8 w-auto object-contain sharp-logo">
+                    <div class="text-left">
+                        <h3 class="text-[10px] font-extrabold uppercase tracking-tight leading-none text-emerald-300">HRCDI</h3>
+                        <p class="text-[8px] text-slate-300">Community Development Initiative</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHOTO & IDENTITY DETAILS -->
+            <div class="px-6 py-4 text-center flex-grow flex flex-col items-center justify-center space-y-3">
+                
+                <!-- PASSPORT PHOTO PLACEHOLDER -->
+                <div class="w-28 h-28 rounded-2xl bg-slate-200 border-4 border-emerald-700/20 overflow-hidden shadow-inner flex items-center justify-center text-slate-400">
+                    <i class="fa-solid fa-user text-5xl"></i>
+                </div>
+
+                <!-- NAME & TITLE -->
+                <div class="space-y-0.5 w-full">
+                    <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Victor O. Okeke</h2>
+                    <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Executive Director / IT Lead</p>
+                </div>
+
+                <!-- ID NUMBER & BADGE TYPE -->
+                <div class="w-full bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 text-left flex justify-between items-center text-xs">
+                    <div>
+                        <span class="text-[9px] text-slate-400 block font-bold uppercase">Staff ID No:</span>
+                        <span class="font-mono font-bold text-slate-800">HRCDI/STF/2026/01</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[9px] text-slate-400 block font-bold uppercase">Status:</span>
+                        <span class="text-emerald-700 font-extrabold text-[11px]">VERIFIED</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CARD FOOTER / QR CODE -->
+            <div class="bg-slate-100 py-3 px-4 border-t border-slate-200 flex items-center justify-between">
+                <div class="text-left">
+                    <p class="text-[8px] text-slate-500 font-bold uppercase">Borno State, Nigeria</p>
+                    <p class="text-[8px] text-emerald-800 font-semibold">www.hrcdi.org.ng</p>
+                </div>
+                <!-- Simulated QR Code -->
+                <div class="w-10 h-10 bg-white border border-slate-300 p-0.5 rounded flex items-center justify-center text-slate-800">
+                    <i class="fa-solid fa-qrcode text-xl"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ================= BACK SIDE ================= -->
+        <div class="id-card border border-slate-200 bg-slate-50" contenteditable="true">
+            
+            <!-- BACK HEADER -->
+            <div class="bg-slate-900 text-white py-3 px-4 text-center">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400">Official Staff Credential</h4>
+                <p class="text-[9px] text-slate-300">Hope Rising Community Development Initiative</p>
+            </div>
+
+            <!-- TERMS & EMERGENCY CONTACT -->
+            <div class="p-6 space-y-4 text-[11px] text-slate-700 leading-relaxed">
+                <div>
+                    <h5 class="font-bold text-slate-900 uppercase text-[10px] text-emerald-800">Terms & Conditions</h5>
+                    <p class="text-[10px] text-slate-600 mt-0.5">This card remains the property of HRCDI. If found, please return to the nearest police station or mail to our official address below.</p>
+                </div>
+
+                <div class="space-y-1 bg-white p-3 rounded-xl border border-slate-200">
+                    <h5 class="font-bold text-slate-900 uppercase text-[10px]">Emergency Contact</h5>
+                    <p class="text-slate-600"><strong>Tel:</strong> 09030700643</p>
+                    <p class="text-slate-600"><strong>Email:</strong> info@hrcdi.org.ng</p>
+                    <p class="text-slate-600"><strong>Base:</strong> Maiduguri, Borno State, Nigeria</p>
+                </div>
+
+                <div class="text-center pt-2">
+                    <p class="text-[9px] text-slate-400 italic">"Promoting rural livelihoods, education, healthcare & grassroots empowerment."</p>
+                </div>
+            </div>
+
+            <!-- AUTHORIZED SIGNATURE STRIP -->
+            <div class="bg-white py-3 px-6 border-t border-slate-200 flex justify-between items-center">
+                <div>
+                    <div class="w-24 border-b border-slate-400 mb-0.5"></div>
+                    <span class="text-[9px] font-bold text-slate-500 uppercase">Authorized Signature</span>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800 text-xs font-bold">
+                    SEAL
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
