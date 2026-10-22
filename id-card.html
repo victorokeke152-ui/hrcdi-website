@@ -13,7 +13,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #0f172a;
         }
-        /* Standard CR80 ID Card dimensions roughly scaled for print */
         .id-card {
             width: 350px;
             height: 550px;
@@ -48,22 +47,29 @@
 </head>
 <body class="p-6 flex flex-col items-center justify-center min-h-screen">
 
-    <!-- PRINT & EDIT CONTROLS -->
-    <div class="max-w-md w-full mb-6 flex justify-between items-center no-print text-white">
+    <!-- PRINT & UPLOAD CONTROLS -->
+    <div class="max-w-md w-full mb-6 flex flex-col sm:flex-row justify-between items-center gap-3 no-print text-white bg-slate-800 p-4 rounded-2xl border border-slate-700">
         <div>
-            <h2 class="font-bold text-base">HRCDI Staff ID Generator</h2>
-            <p class="text-xs text-slate-400">Click text to edit details before printing</p>
+            <h2 class="font-bold text-sm">HRCDI ID Card Generator</h2>
+            <p class="text-[11px] text-slate-400">Upload photo, edit text, then print</p>
         </div>
-        <button onclick="window.print()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-2">
-            <i class="fa-solid fa-print"></i> Print ID Cards
-        </button>
+        <div class="flex items-center gap-2">
+            <!-- Hidden file input triggered by custom button -->
+            <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="loadPhoto(event)">
+            <label for="photo-upload" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-camera"></i> Upload Photo
+            </label>
+            <button onclick="window.print()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-1.5">
+                <i class="fa-solid fa-print"></i> Print
+            </button>
+        </div>
     </div>
 
     <!-- CARDS CONTAINER (FRONT & BACK) -->
     <div class="flex flex-wrap gap-8 justify-center items-center">
 
         <!-- ================= FRONT SIDE ================= -->
-        <div class="id-card border border-slate-200" contenteditable="true">
+        <div class="id-card border border-slate-200">
             
             <!-- HEADER / LANYARD CLIP AREA -->
             <div class="bg-[#022c22] text-white pt-4 pb-3 px-4 text-center relative border-b-4 border-emerald-500">
@@ -80,19 +86,20 @@
             <!-- PHOTO & IDENTITY DETAILS -->
             <div class="px-6 py-4 text-center flex-grow flex flex-col items-center justify-center space-y-3">
                 
-                <!-- PASSPORT PHOTO PLACEHOLDER -->
-                <div class="w-28 h-28 rounded-2xl bg-slate-200 border-4 border-emerald-700/20 overflow-hidden shadow-inner flex items-center justify-center text-slate-400">
-                    <i class="fa-solid fa-user text-5xl"></i>
+                <!-- PASSPORT PHOTO CONTAINER -->
+                <div id="photo-container" class="w-28 h-28 rounded-2xl bg-slate-200 border-4 border-emerald-700/20 overflow-hidden shadow-inner flex items-center justify-center text-slate-400 relative">
+                    <i id="photo-icon" class="fa-solid fa-user text-5xl"></i>
+                    <img id="preview-img" src="" alt="Staff Photo" class="w-full h-full object-cover hidden">
                 </div>
 
-                <!-- NAME & TITLE -->
-                <div class="space-y-0.5 w-full">
+                <!-- NAME & TITLE (Editable) -->
+                <div class="space-y-0.5 w-full" contenteditable="true">
                     <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Victor O. Okeke</h2>
                     <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Executive Director / IT Lead</p>
                 </div>
 
-                <!-- ID NUMBER & BADGE TYPE -->
-                <div class="w-full bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 text-left flex justify-between items-center text-xs">
+                <!-- ID NUMBER & BADGE TYPE (Editable) -->
+                <div class="w-full bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 text-left flex justify-between items-center text-xs" contenteditable="true">
                     <div>
                         <span class="text-[9px] text-slate-400 block font-bold uppercase">Staff ID No:</span>
                         <span class="font-mono font-bold text-slate-800">HRCDI/STF/2026/01</span>
@@ -111,7 +118,6 @@
                     <p class="text-[8px] text-slate-500 font-bold uppercase">Borno State, Nigeria</p>
                     <p class="text-[8px] text-emerald-800 font-semibold">www.hrcdi.org.ng</p>
                 </div>
-                <!-- Simulated QR Code -->
                 <div class="w-10 h-10 bg-white border border-slate-300 p-0.5 rounded flex items-center justify-center text-slate-800">
                     <i class="fa-solid fa-qrcode text-xl"></i>
                 </div>
@@ -162,6 +168,25 @@
         </div>
 
     </div>
+
+    <!-- JAVASCRIPT FOR PHOTO UPLOAD -->
+    <script>
+        function loadPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('preview-img');
+                    const icon = document.getElementById('photo-icon');
+                    
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                    icon.classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 
 </body>
 </html>
