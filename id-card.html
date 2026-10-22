@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRCDI Staff Identity Card</title>
+    <title>HRCDI Standard Organizational ID Card</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,17 +13,30 @@
             font-family: 'Inter', sans-serif;
             background-color: #0f172a;
         }
-        .id-card {
-            width: 350px;
-            height: 550px;
-            background: white;
+        .id-card-wrapper {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            background: #1e293b;
+            padding: 24px;
             border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
+        /* Standard CR80 ID Card Proportions (approx 2.125 inch by 3.375 inch scaled up for crisp print) */
+        .id-card {
+            width: 340px;
+            height: 520px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 1px solid #cbd5e1;
         }
         .sharp-logo {
             image-rendering: -webkit-optimize-contrast;
@@ -36,148 +49,184 @@
             .no-print {
                 display: none !important;
             }
+            .id-card-wrapper {
+                background: transparent;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
             .id-card {
                 box-shadow: none;
-                border: 1px solid #cbd5e1;
-                margin: 10px auto;
+                border: 1px solid #94a3b8;
+                margin: 15px auto;
                 page-break-inside: avoid;
             }
         }
     </style>
 </head>
-<body class="p-6 flex flex-col items-center justify-center min-h-screen">
+<body class="p-4 sm:p-8 flex flex-col items-center min-h-screen">
 
-    <!-- PRINT & UPLOAD CONTROLS -->
-    <div class="max-w-md w-full mb-6 flex flex-col sm:flex-row justify-between items-center gap-3 no-print text-white bg-slate-800 p-4 rounded-2xl border border-slate-700">
+    <!-- CONTROL PANEL (NO PRINT) -->
+    <div class="max-w-xl w-full mb-8 no-print text-white bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-xl flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
-            <h2 class="font-bold text-sm">HRCDI ID Card Generator</h2>
-            <p class="text-[11px] text-slate-400">Upload photo, edit text, then print</p>
+            <h2 class="font-bold text-base text-emerald-400">HRCDI Standard ID Generator</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Select how many staff cards to generate (Up to 30):</p>
         </div>
         <div class="flex items-center gap-2">
-            <!-- Hidden file input triggered by custom button -->
-            <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="loadPhoto(event)">
-            <label for="photo-upload" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-1.5 shadow">
-                <i class="fa-solid fa-camera"></i> Upload Photo
-            </label>
-            <button onclick="window.print()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-1.5">
-                <i class="fa-solid fa-print"></i> Print
+            <input type="number" id="staff-count" min="1" max="30" value="2" class="w-16 px-3 py-2 bg-slate-900 border border-slate-600 rounded-xl text-white font-bold text-center text-sm focus:outline-none focus:border-emerald-500">
+            <button onclick="generateCards()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-1.5 whitespace-nowrap">
+                <i class="fa-solid fa-id-badge"></i> Generate Cards
+            </button>
+            <button onclick="window.print()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-1.5 whitespace-nowrap">
+                <i class="fa-solid fa-print"></i> Print Cards
             </button>
         </div>
     </div>
 
-    <!-- CARDS CONTAINER (FRONT & BACK) -->
-    <div class="flex flex-wrap gap-8 justify-center items-center">
-
-        <!-- ================= FRONT SIDE ================= -->
-        <div class="id-card border border-slate-200">
-            
-            <!-- HEADER / LANYARD CLIP AREA -->
-            <div class="bg-[#022c22] text-white pt-4 pb-3 px-4 text-center relative border-b-4 border-emerald-500">
-                <div class="w-10 h-1.5 bg-slate-400 rounded-full mx-auto mb-2 opacity-50"></div>
-                <div class="flex items-center justify-center gap-2">
-                    <img src="IMG_2369.png" alt="Logo" class="h-8 w-auto object-contain sharp-logo">
-                    <div class="text-left">
-                        <h3 class="text-[10px] font-extrabold uppercase tracking-tight leading-none text-emerald-300">HRCDI</h3>
-                        <p class="text-[8px] text-slate-300">Community Development Initiative</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PHOTO & IDENTITY DETAILS -->
-            <div class="px-6 py-4 text-center flex-grow flex flex-col items-center justify-center space-y-3">
-                
-                <!-- PASSPORT PHOTO CONTAINER -->
-                <div id="photo-container" class="w-28 h-28 rounded-2xl bg-slate-200 border-4 border-emerald-700/20 overflow-hidden shadow-inner flex items-center justify-center text-slate-400 relative">
-                    <i id="photo-icon" class="fa-solid fa-user text-5xl"></i>
-                    <img id="preview-img" src="" alt="Staff Photo" class="w-full h-full object-cover hidden">
-                </div>
-
-                <!-- NAME & TITLE (Editable) -->
-                <div class="space-y-0.5 w-full" contenteditable="true">
-                    <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Victor O. Okeke</h2>
-                    <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Executive Director / IT Lead</p>
-                </div>
-
-                <!-- ID NUMBER & BADGE TYPE (Editable) -->
-                <div class="w-full bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 text-left flex justify-between items-center text-xs" contenteditable="true">
-                    <div>
-                        <span class="text-[9px] text-slate-400 block font-bold uppercase">Staff ID No:</span>
-                        <span class="font-mono font-bold text-slate-800">HRCDI/STF/2026/01</span>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[9px] text-slate-400 block font-bold uppercase">Status:</span>
-                        <span class="text-emerald-700 font-extrabold text-[11px]">VERIFIED</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- CARD FOOTER / QR CODE -->
-            <div class="bg-slate-100 py-3 px-4 border-t border-slate-200 flex items-center justify-between">
-                <div class="text-left">
-                    <p class="text-[8px] text-slate-500 font-bold uppercase">Borno State, Nigeria</p>
-                    <p class="text-[8px] text-emerald-800 font-semibold">www.hrcdi.org.ng</p>
-                </div>
-                <div class="w-10 h-10 bg-white border border-slate-300 p-0.5 rounded flex items-center justify-center text-slate-800">
-                    <i class="fa-solid fa-qrcode text-xl"></i>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- ================= BACK SIDE ================= -->
-        <div class="id-card border border-slate-200 bg-slate-50" contenteditable="true">
-            
-            <!-- BACK HEADER -->
-            <div class="bg-slate-900 text-white py-3 px-4 text-center">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400">Official Staff Credential</h4>
-                <p class="text-[9px] text-slate-300">Hope Rising Community Development Initiative</p>
-            </div>
-
-            <!-- TERMS & EMERGENCY CONTACT -->
-            <div class="p-6 space-y-4 text-[11px] text-slate-700 leading-relaxed">
-                <div>
-                    <h5 class="font-bold text-slate-900 uppercase text-[10px] text-emerald-800">Terms & Conditions</h5>
-                    <p class="text-[10px] text-slate-600 mt-0.5">This card remains the property of HRCDI. If found, please return to the nearest police station or mail to our official address below.</p>
-                </div>
-
-                <div class="space-y-1 bg-white p-3 rounded-xl border border-slate-200">
-                    <h5 class="font-bold text-slate-900 uppercase text-[10px]">Emergency Contact</h5>
-                    <p class="text-slate-600"><strong>Tel:</strong> 09030700643</p>
-                    <p class="text-slate-600"><strong>Email:</strong> info@hrcdi.org.ng</p>
-                    <p class="text-slate-600"><strong>Base:</strong> Maiduguri, Borno State, Nigeria</p>
-                </div>
-
-                <div class="text-center pt-2">
-                    <p class="text-[9px] text-slate-400 italic">"Promoting rural livelihoods, education, healthcare & grassroots empowerment."</p>
-                </div>
-            </div>
-
-            <!-- AUTHORIZED SIGNATURE STRIP -->
-            <div class="bg-white py-3 px-6 border-t border-slate-200 flex justify-between items-center">
-                <div>
-                    <div class="w-24 border-b border-slate-400 mb-0.5"></div>
-                    <span class="text-[9px] font-bold text-slate-500 uppercase">Authorized Signature</span>
-                </div>
-                <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800 text-xs font-bold">
-                    SEAL
-                </div>
-            </div>
-
-        </div>
-
+    <!-- DYNAMIC CARDS CONTAINER -->
+    <div id="cards-container" class="w-full max-w-6xl space-y-8">
+        <!-- Cards generated dynamically -->
     </div>
 
-    <!-- JAVASCRIPT FOR PHOTO UPLOAD -->
     <script>
-        function loadPhoto(event) {
+        const sampleStaff = [
+            { name: "Victor O. Okeke", role: "Executive Director / IT Lead", id: "HRCDI/STF/2026/01" },
+            { name: "Rejoice I. Obinna", role: "Program Manager", id: "HRCDI/STF/2026/02" },
+            { name: "Isaac Hassan", role: "Board Trustee Advisor", id: "HRCDI/STF/2026/03" },
+            { name: "Aisha Mohammed", role: "Field Coordinator", id: "HRCDI/STF/2026/04" },
+            { name: "Ibrahim Sani", role: "Community Outreach Officer", id: "HRCDI/STF/2026/05" },
+            { name: "Grace Chukwu", role: "Administrative Secretary", id: "HRCDI/STF/2026/06" },
+            { name: "Usman Danladi", role: "Logistics & Transport Officer", id: "HRCDI/STF/2026/07" },
+            { name: "Fatima Bello", role: "Health & Sanitation Lead", id: "HRCDI/STF/2026/08" }
+        ];
+
+        function generateCards() {
+            const countInput = document.getElementById('staff-count').value;
+            const count = Math.min(Math.max(parseInt(countInput) || 1, 1), 30);
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            for (let i = 0; i < count; i++) {
+                const staff = sampleStaff[i] || { 
+                    name: `Staff Member ${i+1}`, 
+                    role: "Field Operative", 
+                    id: `HRCDI/STF/2026/${(i+1).toString().padStart(2, '0')}` 
+                };
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'id-card-wrapper';
+                wrapper.innerHTML = `
+                    <div class="text-xs text-emerald-400 font-bold self-center no-print w-full text-center pb-1">Staff Credential Set #${i+1}</div>
+                    
+                    <!-- ================= FRONT SIDE ================= -->
+                    <div class="id-card">
+                        <!-- ORGANIZATION BANNER HEADER -->
+                        <div class="bg-slate-900 text-white pt-3 pb-2.5 px-4 relative border-b-4 border-emerald-600">
+                            <div class="w-8 h-1 bg-slate-600 rounded-full mx-auto mb-2 opacity-60"></div>
+                            <div class="flex items-center gap-3">
+                                <img src="IMG_2369.png" alt="Logo" class="h-8 w-auto object-contain sharp-logo bg-white p-0.5 rounded shadow-sm">
+                                <div>
+                                    <h3 class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 leading-tight">HRCDI</h3>
+                                    <p class="text-[7.5px] text-slate-300 leading-none mt-0.5 font-medium">Community Development Initiative</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ID BODY SECTION -->
+                        <div class="px-5 py-3 text-center flex-grow flex flex-col items-center justify-between">
+                            
+                            <!-- PASSPORT PHOTO UPLOAD CONTAINER -->
+                            <div class="w-24 h-24 rounded-xl bg-slate-100 border-2 border-slate-300 overflow-hidden shadow-inner flex items-center justify-center text-slate-400 relative mt-1">
+                                <i id="photo-icon-${i}" class="fa-solid fa-user text-3xl text-slate-400"></i>
+                                <img id="preview-img-${i}" src="" alt="Staff Photo" class="w-full h-full object-cover hidden">
+                                <input type="file" id="file-${i}" accept="image/*" class="hidden" onchange="loadStaffPhoto(event, ${i})">
+                                <label for="file-${i}" class="absolute inset-0 bg-black/50 text-white text-[9px] font-bold flex items-center justify-center opacity-0 hover:opacity-100 transition cursor-pointer">
+                                    <i class="fa-solid fa-camera mr-1"></i> Upload Photo
+                                </label>
+                            </div>
+
+                            <!-- NAME & TITLE (Editable) -->
+                            <div class="space-y-0.5 w-full my-1" contenteditable="true">
+                                <h2 class="font-extrabold text-slate-900 text-base tracking-tight">${staff.name}</h2>
+                                <p class="text-[11px] font-bold text-emerald-700 uppercase tracking-wide">${staff.role}</p>
+                            </div>
+
+                            <!-- IDENTIFICATION META (Editable) -->
+                            <div class="w-full bg-slate-50 py-2 px-3 rounded-lg border border-slate-200 text-left flex justify-between items-center text-[11px] mb-1" contenteditable="true">
+                                <div>
+                                    <span class="text-[7.5px] text-slate-400 block font-bold uppercase">Staff ID No:</span>
+                                    <span class="font-mono font-bold text-slate-800">${staff.id}</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[7.5px] text-slate-400 block font-bold uppercase">Authorization:</span>
+                                    <span class="text-emerald-700 font-extrabold text-[9.5px]">OFFICIAL</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- CARD FOOTER BAR -->
+                        <div class="bg-slate-100 py-2.5 px-4 border-t border-slate-200 flex items-center justify-between">
+                            <div class="text-left">
+                                <p class="text-[7.5px] text-slate-500 font-bold uppercase">Borno State, Nigeria</p>
+                                <p class="text-[7.5px] text-emerald-800 font-semibold">www.hrcdi.org.ng</p>
+                            </div>
+                            <div class="w-8 h-8 bg-white border border-slate-300 p-0.5 rounded flex items-center justify-center text-slate-800">
+                                <i class="fa-solid fa-qrcode text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= BACK SIDE ================= -->
+                    <div class="id-card bg-slate-50" contenteditable="true">
+                        <!-- BACK HEADER -->
+                        <div class="bg-emerald-900 text-white py-2.5 px-4 text-center">
+                            <h4 class="text-[10px] font-bold uppercase tracking-widest text-emerald-300">Official Credential</h4>
+                            <p class="text-[7.5px] text-emerald-100">Hope Rising Community Development Initiative</p>
+                        </div>
+
+                        <!-- TERMS & EMERGENCY CONTACT -->
+                        <div class="p-4 space-y-2.5 text-[9.5px] text-slate-700 leading-relaxed">
+                            <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                                <h5 class="font-bold text-slate-900 uppercase text-[8.5px] text-emerald-800 mb-0.5">Terms of Use</h5>
+                                <p class="text-[8.5px] text-slate-600 leading-tight">This identification card is issued by HRCDI. If found, please return to the nearest police station or our headquarters in Maiduguri.</p>
+                            </div>
+
+                            <div class="bg-white p-2.5 rounded-lg border border-slate-200 space-y-0.5">
+                                <h5 class="font-bold text-slate-900 uppercase text-[8.5px]">Contact Support</h5>
+                                <p class="text-[8.5px] text-slate-600"><strong>Tel:</strong> 09030700643</p>
+                                <p class="text-[8.5px] text-slate-600"><strong>Email:</strong> info@hrcdi.org.ng</p>
+                                <p class="text-[8.5px] text-slate-600"><strong>Base:</strong> Borno State, Nigeria</p>
+                            </div>
+
+                            <div class="text-center pt-0.5">
+                                <p class="text-[8px] text-slate-400 italic">"Grassroots Empowerment & Sustainable Development"</p>
+                            </div>
+                        </div>
+
+                        <!-- SIGNATURE & SEAL STRIP -->
+                        <div class="bg-white py-2.5 px-4 border-t border-slate-200 flex justify-between items-center mt-auto">
+                            <div>
+                                <div class="w-20 border-b border-slate-400 mb-0.5"></div>
+                                <span class="text-[7.5px] font-bold text-slate-500 uppercase">Authorized Signature</span>
+                            </div>
+                            <div class="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-800 text-[9px] font-bold shadow-inner">
+                                SEAL
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(wrapper);
+            }
+        }
+
+        function loadStaffPhoto(event, index) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const img = document.getElementById('preview-img');
-                    const icon = document.getElementById('photo-icon');
+                    const img = document.getElementById(`preview-img-${index}`);
+                    const icon = document.getElementById(`photo-icon-${index}`);
                     
                     img.src = e.target.result;
                     img.classList.remove('hidden');
@@ -185,6 +234,10 @@
                 }
                 reader.readAsDataURL(file);
             }
+        }
+
+        window.onload = function() {
+            generateCards();
         }
     </script>
 
