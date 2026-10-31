@@ -171,7 +171,6 @@
                 ref: 'HRCDI_' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function(response) {
                     alert('Thank you for supporting HRCDI! Payment Reference: ' + response.reference);
-                    // Forces the browser to break out of any iframe/modal and return home
                     window.top.location.href = "index.html"; 
                 },
                 onClose: function() {
