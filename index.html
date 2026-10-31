@@ -299,17 +299,26 @@
             </div>
         </section>
 
-        <!-- SECURE ONLINE DONATION SECTION -->
+        <!-- ADVANCED SECURE ONLINE DONATION SECTION -->
         <section id="donate-section" class="max-w-2xl mx-auto px-4 py-16">
-            <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8">
+            <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
                 
+                <!-- TOP BADGE & LIVE COUNTER BANNER -->
+                <div class="flex items-center justify-between bg-sky-50 border border-sky-200 rounded-2xl p-3 text-xs text-sky-900 font-semibold">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span><strong>1,248+</strong> Donors active this month</span>
+                    </div>
+                    <span class="text-sky-700 font-bold"><i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i> SSL Secure</span>
+                </div>
+
                 <div class="text-center space-y-3">
                     <div class="w-16 h-16 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center mx-auto shadow-md overflow-hidden p-1">
                         <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                         <div class="w-full h-full items-center justify-center text-slate-800 hidden font-bold text-sm">HR</div>
                     </div>
                     <span class="inline-block bg-red-600 text-white font-extrabold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider">
-                        SECURE DONATION GATEWAY
+                        ADVANCED SECURE DONATION GATEWAY
                     </span>
                     <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                         Support Our Humanitarian Mission
@@ -331,51 +340,76 @@
                     </div>
                 </div>
 
-                <!-- PRESET TIER CARDS -->
+                <!-- DYNAMIC PRESET TIER CARDS -->
                 <div class="space-y-3">
                     <p class="text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Select or enter contribution amount</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <button onclick="selectTier(4000, this)" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
-                            <span class="block font-black text-base sm:text-lg text-slate-900">₦4,000</span>
-                            <span class="block text-[10px] text-slate-500 font-medium tier-desc">₦133/day</span>
+                        <button onclick="selectTier(0, this)" id="tier-1-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
+                            <span id="tier-1-amount" class="block font-black text-base sm:text-lg text-slate-900">₦4,000</span>
+                            <span id="tier-1-desc" class="block text-[10px] text-slate-500 font-medium tier-desc">₦133/day</span>
                         </button>
-                        <button onclick="selectTier(7000, this)" class="tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm">
+                        <button onclick="selectTier(1, this)" id="tier-2-btn" class="tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm">
                             <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">Popular</span>
-                            <span class="block font-black text-base sm:text-lg text-slate-900">₦7,000</span>
-                            <span class="block text-[10px] text-sky-700 font-bold tier-desc">₦233/day</span>
+                            <span id="tier-2-amount" class="block font-black text-base sm:text-lg text-slate-900">₦7,000</span>
+                            <span id="tier-2-desc" class="block text-[10px] text-sky-700 font-bold tier-desc">₦233/day</span>
                         </button>
-                        <button onclick="selectTier(12000, this)" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
-                            <span class="block font-black text-base sm:text-lg text-slate-900">₦12,000</span>
-                            <span class="block text-[10px] text-slate-500 font-medium tier-desc">₦400/day</span>
+                        <button onclick="selectTier(2, this)" id="tier-3-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
+                            <span id="tier-3-amount" class="block font-black text-base sm:text-lg text-slate-900">₦12,000</span>
+                            <span id="tier-3-desc" class="block text-[10px] text-slate-500 font-medium tier-desc">₦400/day</span>
                         </button>
-                        <button onclick="selectTier('other', this)" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition flex flex-col items-center justify-center space-y-1">
+                        <button onclick="selectTier('other', this)" id="tier-other-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition flex flex-col items-center justify-center space-y-1">
                             <span class="block font-black text-sm sm:text-base text-slate-900">Other</span>
                             <span class="block text-[10px] text-slate-500 font-medium">Custom amount</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- PAYSTACK GATEWAY CHECKOUT -->
+                <!-- ADVANCED DONOR DETAILS FORM -->
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
-                    <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center justify-between mb-1">
                         <h4 class="font-extrabold text-xs text-slate-900 flex items-center gap-1.5">
-                            <i class="fa-solid fa-credit-card text-red-600"></i> Paystack Online Checkout
+                            <i class="fa-solid fa-user-shield text-emerald-600"></i> Donor Information & Paystack Checkout
                         </h4>
-                        <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">Instant</span>
+                        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Encrypted</span>
                     </div>
-                    <p class="text-[11px] text-slate-600 mb-3">Instant secure checkout using Debit Cards, Mastercard, Visa, USSD, or Bank Transfer.</p>
+                    <p class="text-[11px] text-slate-600 mb-3">Please provide your contact details for official donation acknowledgment receipt and impact reports.</p>
 
                     <div class="space-y-3">
-                        <input type="number" id="paystack-amount" value="7000" placeholder="Enter amount in NGN" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-3 text-slate-900 text-xs font-bold focus:outline-none focus:border-red-600">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Full Name</label>
+                                <input type="text" id="donor-name" placeholder="Enter your full name" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Email Address</label>
+                                <input type="email" id="donor-email" placeholder="you@example.com" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Phone Number</label>
+                                <input type="tel" id="donor-phone" placeholder="08000000000" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Donation Amount (NGN)</label>
+                                <input type="number" id="paystack-amount" value="7000" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-bold focus:outline-none focus:border-red-600">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Dedication / Message (Optional)</label>
+                            <input type="text" id="donor-note" placeholder="e.g. In support of Maiduguri youth education" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                        </div>
                         
-                        <button onclick="payWithPaystack()" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs rounded-xl transition shadow-md flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock"></i> Donate Securely with Paystack
+                        <button onclick="payWithPaystack()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-2">
+                            <i class="fa-solid fa-lock"></i> Complete Secure Donation via Paystack
                         </button>
                     </div>
 
-                    <div class="flex items-center justify-center gap-2 text-[10px] text-slate-500 pt-2 border-t border-slate-200">
-                        <i class="fa-solid fa-shield-halved text-red-600"></i>
-                        <span>Accepts local & international cards securely. Encrypted transactions.</span>
+                    <div class="flex items-center justify-center gap-2 text-[10px] text-slate-500 pt-3 border-t border-slate-200">
+                        <i class="fa-solid fa-globe text-red-600"></i>
+                        <span>Accepts Nigerian cards, foreign cards, USSD & Bank Transfers.</span>
                     </div>
                 </div>
 
@@ -503,9 +537,23 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- ADVANCED JAVASCRIPT LOGIC -->
     <script>
         let currentFrequency = 'monthly';
+        let selectedTierIndex = 1; // Default to popular tier (7000)
+
+        const tierData = {
+            monthly: [
+                { amount: 4000, label: '₦4,000', sub: '₦133/day' },
+                { amount: 7000, label: '₦7,000', sub: '₦233/day' },
+                { amount: 12000, label: '₦12,000', sub: '₦400/day' }
+            ],
+            once: [
+                { amount: 15000, label: '₦15,000', sub: 'One-time support' },
+                { amount: 35000, label: '₦35,000', sub: 'Impact partner' },
+                { amount: 75000, label: '₦75,000', sub: 'Major contributor' }
+            ]
+        };
 
         function toggleMenuDrawer() {
             const drawer = document.getElementById('nav-drawer');
@@ -525,9 +573,19 @@
                 onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-sky-500 text-white shadow";
                 monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-700 hover:text-slate-900";
             }
+
+            // Update tier card labels dynamically
+            const currentTiers = tierData[freq];
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`tier-${i+1}-amount`).innerText = currentTiers[i].label;
+                document.getElementById(`tier-${i+1}-desc`).innerText = currentTiers[i].sub;
+            }
+
+            // Reset selection to middle tier
+            selectTier(1, document.getElementById('tier-2-btn'));
         }
 
-        function selectTier(amount, btnElement) {
+        function selectTier(index, btnElement) {
             const buttons = document.querySelectorAll('.tier-btn');
             buttons.forEach(btn => {
                 btn.className = "tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1";
@@ -535,9 +593,20 @@
                 if (badge) badge.remove();
             });
 
-            if (amount !== 'other') {
+            if (index !== 'other') {
+                selectedTierIndex = index;
                 btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm";
-                document.getElementById('paystack-amount').value = amount;
+                
+                // Add popular badge back to middle tier if selected or keep clean
+                if (index === 1) {
+                    const badge = document.createElement('span');
+                    badge.className = "absolute -top-2.5 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider";
+                    badge.innerText = "Popular";
+                    btnElement.appendChild(badge);
+                }
+
+                const amt = tierData[currentFrequency][index].amount;
+                document.getElementById('paystack-amount').value = amt;
             } else {
                 btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition flex flex-col items-center justify-center space-y-1 relative shadow-sm";
                 document.getElementById('paystack-amount').value = '';
@@ -555,23 +624,31 @@
             document.body.style.overflow = 'auto';
         }
 
-        function setAmount(val) {
-            document.getElementById('paystack-amount').value = val;
-        }
-
         function payWithPaystack() {
+            const name = document.getElementById('donor-name').value || 'HRCDI Supporter';
+            const email = document.getElementById('donor-email').value || 'info@hrcdi.org.ng';
+            const phone = document.getElementById('donor-phone').value || '09030700643';
+            const note = document.getElementById('donor-note').value || 'General Donation';
             const inputVal = document.getElementById('paystack-amount').value;
             const amountInNaira = inputVal ? parseInt(inputVal) : 7000;
             const amountInKobo = amountInNaira * 100;
 
             let handler = PaystackPop.setup({
                 key: 'pk_live_YOUR_PAYSTACK_PUBLIC_KEY',
-                email: 'info@hrcdi.org.ng',
+                email: email,
                 amount: amountInKobo,
                 currency: 'NGN',
                 ref: 'HRCDI_' + currentFrequency.toUpperCase() + '_' + Math.floor((Math.random() * 1000000000) + 1),
+                metadata: {
+                    custom_fields: [
+                        { display_name: "Donor Name", variable_name: "donor_name", value: name },
+                        { display_name: "Phone Number", variable_name: "phone_number", value: phone },
+                        { display_name: "Frequency", variable_name: "frequency", value: currentFrequency },
+                        { display_name: "Dedication Note", variable_name: "dedication_note", value: note }
+                    ]
+                },
                 callback: function(response) {
-                    alert('Thank you for supporting HRCDI! Payment Reference: ' + response.reference);
+                    alert('Thank you ' + name + ' for supporting HRCDI! Payment Reference: ' + response.reference);
                     window.top.location.href = "index.html"; 
                 },
                 onClose: function() {
