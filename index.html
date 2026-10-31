@@ -127,29 +127,22 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION -->
-        <section class="relative bg-slate-900 text-white overflow-hidden">
-            <div class="relative h-[420px] sm:h-[500px] w-full flex items-end p-6 sm:p-12">
-                <div class="absolute inset-0 z-0">
-                    <img src="logo.jpg" alt="Hero background" class="w-full h-full object-cover opacity-25 filter blur-sm">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
-                </div>
-
-                <div class="relative z-10 max-w-3xl space-y-4">
-                    <span class="inline-block bg-red-600 text-white font-black text-xs uppercase px-3 py-1 tracking-widest rounded">
-                        OUR TARGETS
-                    </span>
-                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-                        Civilians & Vulnerable Groups, the first victims of crisis
-                    </h2>
-                    <p class="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-                        Providing life-saving humanitarian assistance, youth educational support, and healthcare relief across Maiduguri and vulnerable communities in Nigeria.
-                    </p>
-                    <div>
-                        <a href="#donate-section" class="inline-flex items-center gap-2 text-white font-extrabold text-sm hover:text-emerald-400 transition group">
-                            <span>› Donate now</span>
-                        </a>
-                    </div>
+        <!-- HERO SECTION MATCHING STANDARD REFERENCE -->
+        <section class="bg-[#0b1329] text-white py-16 sm:py-24 px-6 border-b border-slate-800">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <span class="inline-block bg-red-600 text-white font-black text-xs uppercase px-3.5 py-1.5 tracking-widest rounded shadow-sm">
+                    OUR TARGETS
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
+                    Civilians & Vulnerable Groups, the first victims of crisis
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+                    Providing life-saving humanitarian assistance, youth educational support, and healthcare relief across Maiduguri and vulnerable communities in Nigeria.
+                </p>
+                <div class="pt-2">
+                    <a href="#donate-section" class="inline-flex items-center gap-2 text-white font-extrabold text-sm hover:text-emerald-400 transition group">
+                        <span>› Donate now</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -303,7 +296,6 @@
         <section id="donate-section" class="max-w-2xl mx-auto px-4 py-16">
             <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
                 
-                <!-- TOP BADGE & LIVE COUNTER BANNER -->
                 <div class="flex items-center justify-between bg-sky-50 border border-sky-200 rounded-2xl p-3 text-xs text-sky-900 font-semibold">
                     <div class="flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -540,7 +532,7 @@
     <!-- ADVANCED JAVASCRIPT LOGIC -->
     <script>
         let currentFrequency = 'monthly';
-        let selectedTierIndex = 1; // Default to popular tier (7000)
+        let selectedTierIndex = 1;
 
         const tierData = {
             monthly: [
@@ -574,14 +566,12 @@
                 monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-700 hover:text-slate-900";
             }
 
-            // Update tier card labels dynamically
             const currentTiers = tierData[freq];
             for (let i = 0; i < 3; i++) {
                 document.getElementById(`tier-${i+1}-amount`).innerText = currentTiers[i].label;
                 document.getElementById(`tier-${i+1}-desc`).innerText = currentTiers[i].sub;
             }
 
-            // Reset selection to middle tier
             selectTier(1, document.getElementById('tier-2-btn'));
         }
 
@@ -597,7 +587,6 @@
                 selectedTierIndex = index;
                 btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm";
                 
-                // Add popular badge back to middle tier if selected or keep clean
                 if (index === 1) {
                     const badge = document.createElement('span');
                     badge.className = "absolute -top-2.5 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider";
