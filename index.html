@@ -44,24 +44,29 @@
 </head>
 <body class="bg-[#022c22] text-white min-h-screen">
 
-    <!-- TOP ANNOUNCEMENT BAR -->
+    <!-- TOP ANNOUNCEMENT BAR (RESTORED WITH STAFF PORTAL LINK) -->
     <div class="bg-emerald-950 text-emerald-300 text-[11px] py-2 px-4 text-center border-b border-emerald-800/40">
-        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <span class="font-medium mx-auto sm:mx-0">
-                <i class="fa-solid fa-circle-info text-emerald-400 mr-1"></i>
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span class="font-medium">
+                <i class="fa-solid fa-circle text-emerald-400 text-[8px] mr-1"></i>
                 CAC Incorporated Trustee Filing • Statutory Notice Period Pending Nov 2, 2026 Maturity
             </span>
-            <div class="hidden sm:flex items-center gap-4 text-xs font-semibold mx-auto sm:mx-0">
+            <div class="flex flex-wrap items-center justify-center gap-3 text-[11px] font-semibold">
                 <a href="tel:09030700643" target="_top" class="hover:text-white transition"><i class="fa-solid fa-phone mr-1"></i> 09030700643</a>
-                <span>|</span>
+                <span class="text-emerald-700">|</span>
                 <a href="mailto:info@hrcdi.org.ng" target="_top" class="hover:text-white transition"><i class="fa-solid fa-envelope mr-1"></i> info@hrcdi.org.ng</a>
-                <span>|</span>
-                <a href="https://facebook.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <span class="text-emerald-700">|</span>
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-facebook mr-1"></i> Facebook</a>
+                <span class="text-emerald-700">|</span>
+                <!-- RESTORED STAFF PORTAL LINK -->
+                <a href="portal.html" target="_top" class="text-emerald-400 hover:text-emerald-300 transition font-bold flex items-center gap-1 bg-emerald-900/60 px-2 py-0.5 rounded border border-emerald-500/40">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- MAIN NAVBAR -->
+    <!-- MAIN NAVBAR WITH ORGANIZATION LOGO -->
     <header class="bg-slate-900/90 backdrop-blur-md border-b border-emerald-800/30 sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -102,6 +107,7 @@
             <a href="#programs" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-emerald-400"><i class="fa-solid fa-layer-group mr-2 text-emerald-400"></i> Our Programs</a>
             <a href="#leadership" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-emerald-400"><i class="fa-solid fa-users mr-2 text-emerald-400"></i> Leadership</a>
             <button onclick="toggleMobileMenu(); openPolicyModal();" class="block w-full text-left py-2 text-slate-300 hover:text-emerald-400"><i class="fa-solid fa-file-contract mr-2 text-emerald-400"></i> Policy Document</button>
+            <a href="portal.html" target="_top" class="block py-2 text-emerald-400 font-bold"><i class="fa-solid fa-lock mr-2"></i> Staff Portal</a>
             <a href="#donate-section" onclick="toggleMobileMenu()" class="block py-2 text-emerald-400 font-bold"><i class="fa-solid fa-heart mr-2 text-red-500"></i> Donate & Support</a>
         </div>
     </header>
@@ -119,7 +125,7 @@
             </h2>
 
             <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Empowering vulnerable communities through sustainable development, education, healthcare, and humanitarian support across Borno State and Nigeria.
+                Building a sustainable foundation to advance rural livelihoods, youth empowerment, healthcare relief, and accountable governance in Maiduguri and across Nigeria.
             </p>
 
             <!-- HERO CTAS -->
@@ -500,6 +506,7 @@
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
             <div class="flex items-center gap-4 text-[11px] font-semibold">
+                <a href="portal.html" target="_top" class="hover:text-emerald-400"><i class="fa-solid fa-lock text-[10px] mr-1"></i>Staff Portal</a>
                 <button onclick="openPolicyModal()" class="hover:text-emerald-400">Policy Document</button>
                 <a href="mailto:info@hrcdi.org.ng" class="hover:text-emerald-400">Contact Us</a>
             </div>
