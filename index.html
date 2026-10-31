@@ -20,9 +20,9 @@
 </head>
 <body class="bg-[#022c22] text-white p-3 sm:p-6 min-h-screen flex flex-col items-center justify-center">
 
-    <!-- TOP NAVIGATION (BACK TO HOME) -->
+    <!-- TOP NAVIGATION (BREAKS OUT OF IFRAMES/POPUPS) -->
     <div class="w-full max-w-4xl mb-4 flex items-center justify-between px-2">
-        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-slate-900/90 px-4 py-2.5 rounded-xl border border-emerald-500/30 transition shadow">
+        <a href="index.html" target="_top" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-slate-900/90 px-4 py-2.5 rounded-xl border border-emerald-500/30 transition shadow">
             <i class="fa-solid fa-arrow-left"></i> Back to Main Page
         </a>
         <span class="text-[11px] text-slate-400 font-semibold hidden sm:inline">hrcdi.org.ng</span>
@@ -139,7 +139,7 @@
                 <h4 class="font-bold text-xs text-white">Large Donors, International Grants & Wire Transfers</h4>
                 <p class="text-[10px] text-slate-400">For foreign currency (USD/EUR) wires or institutional grant funding</p>
             </div>
-            <a href="mailto:info@hrcdi.org.ng?subject=Institutional%20Grant%20Support" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition text-center border border-slate-600 shadow-sm whitespace-nowrap">
+            <a href="mailto:info@hrcdi.org.ng?subject=Institutional%20Grant%20Support" target="_top" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition text-center border border-slate-600 shadow-sm whitespace-nowrap">
                 Contact Board
             </a>
         </div>
@@ -171,10 +171,11 @@
                 ref: 'HRCDI_' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function(response) {
                     alert('Thank you for supporting HRCDI! Payment Reference: ' + response.reference);
-                    window.location.href = "index.html"; // Redirects back to homepage after payment
+                    // Forces the browser to break out of any iframe/modal and return home
+                    window.top.location.href = "index.html"; 
                 },
                 onClose: function() {
-                    alert('Transaction window closed.');
+                    console.log('Transaction window closed.');
                 }
             });
             handler.openIframe();
