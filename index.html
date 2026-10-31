@@ -8,161 +8,170 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Paystack Inline JS SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #022c22;
         }
-        .sharp-logo {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen flex items-center justify-center">
 
-    <!-- MAIN DONATION CONTAINER -->
-    <div class="max-w-2xl w-full bg-[#022c22] border border-emerald-800/40 rounded-3xl p-6 sm:p-8 shadow-2xl text-white">
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-3xl w-full bg-[#022c22] border border-emerald-800/40 rounded-3xl p-6 sm:p-8 shadow-2xl text-white">
         
-        <!-- HEADER BADGE & TITLES -->
+        <!-- HEADER -->
         <div class="text-center space-y-3 mb-8">
             <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs font-bold tracking-wide uppercase">
                 <i class="fa-solid fa-heart text-red-500 text-[10px]"></i> Make a Difference
             </span>
-            
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Support Our NGO Mission
-            </h1>
-            
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Support Our NGO Mission</h1>
             <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
-                Your financial contribution empowers youth training, educational scholarship drives, and community health projects in Borno State.
+                Your contribution empowers youth training, educational scholarship drives, and community health projects in Borno State.
             </p>
         </div>
 
-        <!-- DONATION CARDS GRID -->
-        <div class="space-y-6">
+        <!-- PAYMENT METHODS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <!-- OPTION 1: DIRECT ONLINE PAYMENT GATEWAY (PAYSTACK / FLUTTERWAVE) -->
-            <div class="bg-gradient-to-r from-emerald-900/40 via-slate-900/60 to-emerald-900/40 border border-emerald-500/40 rounded-2xl p-5 shadow-lg flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div class="text-left space-y-1">
-                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
-                        <i class="fa-solid fa-bolt-lightning"></i>
-                        <span>Instant Online Donation</span>
+            <!-- METHOD 1: COMMERCIAL BANK DIRECT TRANSFER -->
+            <div class="bg-slate-900/90 border border-emerald-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between">
+                <div>
+                    <!-- METHOD TITLE -->
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-900/50 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h3 class="font-bold text-sm text-white">Commercial Bank Transfer</h3>
+                        </div>
+                        <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-bold">NGN</span>
                     </div>
-                    <p class="text-xs text-slate-300">Pay securely via Debit Card, Bank Transfer, or USSD.</p>
-                </div>
-                
-                <!-- Replace 'https://paystack.com/pay/hrcdi' with your live donation link -->
-                <a href="https://paystack.com/pay/hrcdi" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 whitespace-nowrap">
-                    <i class="fa-solid fa-credit-card"></i> Donate Online Now
-                </a>
-            </div>
 
-            <!-- OPTION 2: ONE-TAP BANK TRANSFER CARD -->
-            <div class="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-5 space-y-4 relative overflow-hidden">
-                
-                <!-- CARD HEADER -->
-                <div class="flex justify-between items-start">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-900/50 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-sm">
-                            <i class="fa-solid fa-building-columns"></i>
+                    <p class="text-[11px] text-slate-300 mb-4">Transfer directly from any bank app or ATM to HRCDI’s official corporate account.</p>
+
+                    <!-- ACCOUNT DETAILS -->
+                    <div class="space-y-3 text-xs bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+                        <div>
+                            <span class="text-[9px] text-slate-400 uppercase font-bold block">Account Name:</span>
+                            <span class="font-bold text-slate-200">Hope Rising Community Dev Initiative</span>
                         </div>
                         <div>
-                            <h3 class="font-bold text-sm text-white">Direct Bank Transfer</h3>
-                            <p class="text-[10px] text-slate-400">Official Non-Profit Account</p>
-                        </div>
-                    </div>
-                    <span class="px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-bold">
-                        Naira (NGN)
-                    </span>
-                </div>
-
-                <!-- ACCOUNT DETAILS -->
-                <div class="space-y-3 pt-2 text-xs border-t border-slate-800">
-                    <div>
-                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Account Name:</span>
-                        <span class="font-bold text-slate-200">Hope Rising Community Dev Initiative</span>
-                    </div>
-
-                    <div>
-                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Bank Name:</span>
-                        <span class="font-bold text-emerald-400">[ Insert Official Bank Name ]</span>
-                    </div>
-
-                    <!-- INTERACTIVE TAP-TO-COPY BOX -->
-                    <div onclick="copyAccountDetails('0000000000')" class="group relative bg-slate-950 hover:bg-slate-950/80 border border-emerald-500/30 hover:border-emerald-400 p-3.5 rounded-xl cursor-pointer transition-all">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-[9px] text-slate-400 uppercase font-bold block">Account Number:</span>
-                                <span id="account-number" class="text-lg font-mono font-extrabold text-emerald-400 tracking-wider">0000000000</span>
-                            </div>
-                            
-                            <button class="px-3.5 py-2 bg-emerald-600 group-hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition shadow flex items-center gap-1.5 pointer-events-none">
-                                <i id="copy-icon" class="fa-regular fa-copy"></i>
-                                <span id="copy-text">Tap to Copy</span>
-                            </button>
+                            <span class="text-[9px] text-slate-400 uppercase font-bold block">Commercial Bank:</span>
+                            <span class="font-bold text-emerald-400">[ Insert Your Bank Name ]</span>
                         </div>
                         
-                        <!-- CONFIRMATION ALERT BANNER -->
-                        <div id="copy-banner" class="hidden mt-2 text-center text-[10px] font-bold text-emerald-300 bg-emerald-950/90 py-1.5 px-2 rounded-lg border border-emerald-500/40">
-                            ✓ Account number copied to clipboard! Switch to your mobile banking app to complete the transfer.
+                        <!-- ONE-TAP COPY BOX -->
+                        <div onclick="copyAccount('0000000000')" class="bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 p-3 rounded-lg cursor-pointer transition flex items-center justify-between group">
+                            <div>
+                                <span class="text-[8px] text-slate-400 uppercase font-bold block">Account No (Tap to Copy):</span>
+                                <span class="text-base font-mono font-extrabold text-emerald-400">0000000000</span>
+                            </div>
+                            <i class="fa-regular fa-copy text-emerald-400 group-hover:scale-110 transition"></i>
                         </div>
+                        <div id="copy-banner" class="hidden text-[10px] text-emerald-300 font-bold text-center">✓ Account number copied!</div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 pt-1">
+                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 pt-2 border-t border-slate-800/80">
                     <i class="fa-solid fa-shield-halved text-emerald-500"></i>
-                    <span>Official corporate non-profit account dedicated to program implementation.</span>
+                    <span>Official registered non-profit corporate account.</span>
                 </div>
-
             </div>
 
-            <!-- OPTION 3: GRANTS & INSTITUTIONAL SUPPORT -->
-            <div class="bg-white text-slate-900 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-xl">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 text-base">
-                        <i class="fa-solid fa-globe"></i>
+            <!-- METHOD 2: PAYSTACK ONLINE GATEWAY -->
+            <div class="bg-slate-900/90 border border-emerald-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between">
+                <div>
+                    <!-- METHOD TITLE -->
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-900/50 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <h3 class="font-bold text-sm text-white">Paystack Gateway</h3>
+                        </div>
+                        <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold">Local & Foreign</span>
                     </div>
-                    <div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Grants & Institutional Support</h4>
-                        <p class="text-[11px] text-slate-600">International Donors & Philanthropic Partners</p>
+
+                    <p class="text-[11px] text-slate-300 mb-3">Instant checkout using Debit/Credit Cards (Mastercard, Visa), USSD, or Bank Transfer.</p>
+
+                    <!-- PRESET BUTTONS -->
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        <button onclick="setAmount(5000)" class="py-1.5 bg-slate-950 hover:bg-emerald-900/60 border border-slate-700 text-xs font-bold rounded-lg text-emerald-400">₦5,000</button>
+                        <button onclick="setAmount(10000)" class="py-1.5 bg-slate-950 hover:bg-emerald-900/60 border border-slate-700 text-xs font-bold rounded-lg text-emerald-400">₦10,000</button>
+                        <button onclick="setAmount(50000)" class="py-1.5 bg-slate-950 hover:bg-emerald-900/60 border border-slate-700 text-xs font-bold rounded-lg text-emerald-400">₦50,000</button>
+                    </div>
+
+                    <!-- CUSTOM INPUT -->
+                    <div class="space-y-3">
+                        <input type="number" id="paystack-amount" placeholder="Or enter custom amount in NGN" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-xs font-bold focus:outline-none focus:border-emerald-400">
+                        
+                        <button onclick="payWithPaystack()" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-lock"></i> Pay Securely with Paystack
+                        </button>
                     </div>
                 </div>
 
-                <a href="mailto:info@hrcdi.org.ng?subject=Institutional%20Grant%20Partnership" class="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition text-center whitespace-nowrap shadow">
-                    <i class="fa-regular fa-envelope mr-1"></i> Contact Board
-                </a>
+                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 pt-2 border-t border-slate-800/80">
+                    <i class="fa-solid fa-globe text-emerald-500"></i>
+                    <span>Accepts Nigerian cards, foreign cards & USSD transfers.</span>
+                </div>
             </div>
 
+        </div>
+
+        <!-- INSTITUTIONAL / GRANTS FOOTER -->
+        <div class="mt-6 bg-white/5 border border-slate-700/50 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="text-center sm:text-left">
+                <h4 class="font-bold text-xs text-white">Large Donors, International Grants & Wire Transfers</h4>
+                <p class="text-[10px] text-slate-400">For foreign currency (USD/EUR) wires or institutional funding above ₦1M+</p>
+            </div>
+            <a href="mailto:info@hrcdi.org.ng?subject=Institutional%20Grant%20Support" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition whitespace-nowrap border border-slate-600">
+                Contact Board
+            </a>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT FOR DIRECT ONE-TAP COPY -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        function copyAccountDetails(accNo) {
-            // Copy to device clipboard
-            navigator.clipboard.writeText(accNo).then(() => {
-                const banner = document.getElementById('copy-banner');
-                const copyText = document.getElementById('copy-text');
-                const copyIcon = document.getElementById('copy-icon');
+        // 1. One-tap copy for commercial bank details
+        function copyAccount(accNo) {
+            navigator.clipboard.writeText(accNo);
+            const banner = document.getElementById('copy-banner');
+            banner.classList.remove('hidden');
+            setTimeout(() => banner.classList.add('hidden'), 3500);
+        }
 
-                // UI Updates
-                banner.classList.remove('hidden');
-                copyText.innerText = "Copied!";
-                copyIcon.className = "fa-solid fa-check text-emerald-300";
+        // 2. Preset amount handler for Paystack
+        function setAmount(val) {
+            document.getElementById('paystack-amount').value = val;
+        }
 
-                // Reset back to initial state after 4 seconds
-                setTimeout(() => {
-                    banner.classList.add('hidden');
-                    copyText.innerText = "Tap to Copy";
-                    copyIcon.className = "fa-regular fa-copy";
-                }, 4000);
-            }).catch(err => {
-                console.error("Copy failed: ", err);
+        // 3. Paystack Pop Execution
+        function payWithPaystack() {
+            const inputVal = document.getElementById('paystack-amount').value;
+            const amountInNaira = inputVal ? parseInt(inputVal) : 5000;
+            const amountInKobo = amountInNaira * 100;
+
+            let handler = PaystackPop.setup({
+                key: 'pk_live_YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack Public Key
+                email: 'info@hrcdi.org.ng',
+                amount: amountInKobo,
+                currency: 'NGN',
+                ref: 'HRCDI_' + Math.floor((Math.random() * 1000000000) + 1),
+                callback: function(response) {
+                    alert('Thank you for supporting HRCDI! Payment Reference: ' + response.reference);
+                },
+                onClose: function() {
+                    alert('Transaction closed.');
+                }
             });
+            handler.openIframe();
         }
     </script>
-
 </body>
 </html>
