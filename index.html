@@ -131,17 +131,17 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION (GREEN & RED THEME) -->
+        <!-- HERO SECTION -->
         <section class="bg-slate-900 text-white py-16 sm:py-24 px-6 border-b border-emerald-900/45 bg-pattern relative overflow-hidden">
             <div class="max-w-4xl mx-auto space-y-6 relative z-10">
                 <span class="inline-block bg-red-600 text-white font-black text-xs uppercase px-3.5 py-1.5 tracking-widest rounded shadow-md">
-                    OUR TARGETS
+                    HRCDI MISSION
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
-                    Civilians & Vulnerable Groups, the first victims of crisis
+                    Supporting Civilians and Vulnerable Communities
                 </h2>
                 <p class="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-                    Providing life-saving humanitarian assistance, youth educational support, and healthcare relief across Maiduguri and vulnerable communities in Nigeria.
+                    Committed to supporting vulnerable people affected by crises through humanitarian assistance, youth education, community development, and improved access to healthcare in Maiduguri and other communities across Nigeria.
                 </p>
                 <div class="pt-2">
                     <a href="#donate-section" class="inline-flex items-center gap-2 text-emerald-400 font-extrabold text-sm hover:text-emerald-300 transition group">
@@ -336,28 +336,34 @@
                     </div>
                 </div>
 
-                <!-- DYNAMIC PRESET TIER CARDS -->
+                <!-- EXACT TIER CARDS MATCHING REFERENCE IMG_3331 -->
                 <div class="space-y-3">
                     <p class="text-center text-xs font-bold text-emerald-400 uppercase tracking-wider">Select or enter contribution amount</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <button onclick="selectTier(0, this)" id="tier-1-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
                             <span id="tier-1-amount" class="block font-black text-base sm:text-lg text-white">₦4,000</span>
-                            <span id="tier-1-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">₦133/day</span>
+                            <span id="tier-1-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">133/day</span>
                         </button>
+                        
+                        <!-- Popular Tier with Indicator Pointer matching IMG_3331 -->
                         <button onclick="selectTier(1, this)" id="tier-2-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition space-y-1 relative shadow-sm">
-                            <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow">Popular</span>
+                            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow">Popular</span>
                             <span id="tier-2-amount" class="block font-black text-base sm:text-lg text-white">₦7,000</span>
-                            <span id="tier-2-desc" class="block text-[10px] text-emerald-400 font-bold tier-desc">₦233/day</span>
+                            <span id="tier-2-desc" class="block text-[10px] text-emerald-400 font-bold tier-desc">233/day</span>
+                            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-emerald-500"></div>
                         </button>
+
                         <button onclick="selectTier(2, this)" id="tier-3-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
                             <span id="tier-3-amount" class="block font-black text-base sm:text-lg text-white">₦12,000</span>
-                            <span id="tier-3-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">₦400/day</span>
+                            <span id="tier-3-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">400/day</span>
                         </button>
+                        
                         <button onclick="selectTier('other', this)" id="tier-other-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition flex flex-col items-center justify-center space-y-1">
                             <span class="block font-black text-sm sm:text-base text-white">Other</span>
                             <span class="block text-[10px] text-slate-400 font-medium">Custom amount</span>
                         </button>
                     </div>
+                    <p class="text-center text-[11px] font-bold text-emerald-400 pt-1">Most chosen by our donors</p>
                 </div>
 
                 <!-- ADVANCED DONOR DETAILS FORM -->
@@ -494,7 +500,7 @@
         </div>
     </div>
 
-    <!-- GLOBAL FOOTER (GREEN & RED THEME) -->
+    <!-- GLOBAL FOOTER MATCHING REFERENCE IMG_3329 -->
     <footer class="bg-slate-950 text-white pt-12 pb-8 border-t border-emerald-900">
         <div class="max-w-5xl mx-auto px-4 text-center space-y-6">
             
@@ -540,9 +546,9 @@
 
         const tierData = {
             monthly: [
-                { amount: 4000, label: '₦4,000', sub: '₦133/day' },
-                { amount: 7000, label: '₦7,000', sub: '₦233/day' },
-                { amount: 12000, label: '₦12,000', sub: '₦400/day' }
+                { amount: 4000, label: '₦4,000', sub: '133/day' },
+                { amount: 7000, label: '₦7,000', sub: '233/day' },
+                { amount: 12000, label: '₦12,000', sub: '400/day' }
             ],
             once: [
                 { amount: 15000, label: '₦15,000', sub: 'One-time support' },
@@ -585,6 +591,8 @@
                 btn.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1";
                 const badge = btn.querySelector('.absolute');
                 if (badge) badge.remove();
+                const pointer = btn.querySelector('.border-t-[8px]');
+                if (pointer) pointer.remove();
             });
 
             if (index !== 'other') {
@@ -593,9 +601,13 @@
                 
                 if (index === 1) {
                     const badge = document.createElement('span');
-                    badge.className = "absolute -top-2.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow";
+                    badge.className = "absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow";
                     badge.innerText = "Popular";
                     btnElement.appendChild(badge);
+
+                    const pointer = document.createElement('div');
+                    pointer.className = "absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-emerald-500";
+                    btnElement.appendChild(pointer);
                 }
 
                 const amt = tierData[currentFrequency][index].amount;
