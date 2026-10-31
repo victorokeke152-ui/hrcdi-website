@@ -17,8 +17,12 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            background-color: #022c22;
+            color: #f8fafc;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(#059669 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
         }
         @media print {
             body * {
@@ -42,31 +46,31 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between bg-[#022c22] text-white">
 
     <!-- TOP GLOBAL HEADER -->
-    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-emerald-800/40 shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center shadow-sm overflow-hidden p-0.5">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border border-emerald-500/40 flex items-center justify-center shadow-md overflow-hidden p-0.5">
                     <img src="logo.jpg" alt="HRCDI Logo" class="w-full h-full object-contain rounded-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="w-full h-full items-center justify-center text-emerald-800 hidden font-bold text-xs">
                         HR
                     </div>
                 </div>
                 <div>
-                    <h1 class="font-black text-xs sm:text-sm tracking-tight text-slate-900 leading-tight">
+                    <h1 class="font-black text-xs sm:text-sm tracking-tight text-white leading-tight">
                         HOPE RISING COMMUNITY DEV INITIATIVE
                     </h1>
-                    <p class="text-[10px] text-slate-500 font-medium">Maiduguri, Borno State & Across Nigeria</p>
+                    <p class="text-[10px] text-emerald-400 font-medium">Maiduguri, Borno State & Across Nigeria</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#donate-section" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full font-extrabold text-xs sm:text-sm tracking-wider uppercase transition shadow-md">
+                <a href="#donate-section" class="bg-red-600 hover:bg-red-500 text-white px-5 py-2.5 rounded-full font-extrabold text-xs sm:text-sm tracking-wider uppercase transition shadow-lg">
                     Donate
                 </a>
-                <button onclick="toggleMenuDrawer()" class="p-2.5 text-slate-800 hover:text-emerald-600 focus:outline-none transition">
+                <button onclick="toggleMenuDrawer()" class="p-2.5 text-slate-200 hover:text-emerald-400 focus:outline-none transition">
                     <i id="menu-icon" class="fa-solid fa-bars text-xl sm:text-2xl"></i>
                 </button>
             </div>
@@ -74,52 +78,52 @@
     </header>
 
     <!-- FULL SCREEN NAVIGATION DRAWER -->
-    <div id="nav-drawer" class="fixed inset-0 bg-white z-50 hidden flex flex-col justify-between overflow-y-auto">
+    <div id="nav-drawer" class="fixed inset-0 bg-slate-950 z-50 hidden flex flex-col justify-between overflow-y-auto text-white">
         <div class="max-w-4xl w-full mx-auto px-6 py-6 space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+            <div class="flex items-center justify-between border-b border-emerald-900 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full border border-slate-200 overflow-hidden p-0.5">
+                    <div class="w-10 h-10 rounded-full border border-emerald-500/40 overflow-hidden p-0.5 bg-white">
                         <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full">
                     </div>
-                    <span class="font-black text-xs sm:text-sm text-slate-900">HRCDI MENU</span>
+                    <span class="font-black text-xs sm:text-sm text-emerald-400">HRCDI MENU</span>
                 </div>
-                <button onclick="toggleMenuDrawer()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 text-lg transition">
+                <button onclick="toggleMenuDrawer()" class="w-10 h-10 rounded-full bg-slate-900 hover:bg-slate-800 flex items-center justify-center text-slate-200 text-lg transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <nav class="space-y-4 text-lg sm:text-xl font-bold text-slate-900">
-                <a href="#about" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-100 hover:text-emerald-600 transition">
+            <nav class="space-y-4 text-lg sm:text-xl font-bold text-slate-100">
+                <a href="#about" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-900 hover:text-emerald-400 transition">
                     <span>Who we are</span>
-                    <i class="fa-solid fa-chevron-right text-sm text-slate-400"></i>
+                    <i class="fa-solid fa-chevron-right text-sm text-emerald-600"></i>
                 </a>
-                <a href="#programs" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-100 hover:text-emerald-600 transition">
+                <a href="#programs" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-900 hover:text-emerald-400 transition">
                     <span>What we do</span>
-                    <i class="fa-solid fa-chevron-right text-sm text-slate-400"></i>
+                    <i class="fa-solid fa-chevron-right text-sm text-emerald-600"></i>
                 </a>
-                <a href="#leadership" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-100 hover:text-emerald-600 transition">
+                <a href="#leadership" onclick="toggleMenuDrawer()" class="flex items-center justify-between py-3 border-b border-slate-900 hover:text-emerald-400 transition">
                     <span>Leadership & Governance</span>
-                    <i class="fa-solid fa-chevron-right text-sm text-slate-400"></i>
+                    <i class="fa-solid fa-chevron-right text-sm text-emerald-600"></i>
                 </a>
-                <button onclick="toggleMenuDrawer(); openPolicyModal();" class="w-full text-left flex items-center justify-between py-3 border-b border-slate-100 hover:text-emerald-600 transition">
+                <button onclick="toggleMenuDrawer(); openPolicyModal();" class="w-full text-left flex items-center justify-between py-3 border-b border-slate-900 hover:text-emerald-400 transition">
                     <span>Policy Document & Letterhead</span>
-                    <i class="fa-solid fa-chevron-right text-sm text-slate-400"></i>
+                    <i class="fa-solid fa-chevron-right text-sm text-emerald-600"></i>
                 </button>
-                <a href="portal.html" target="_top" class="flex items-center justify-between py-3 border-b border-slate-100 text-emerald-700 hover:text-emerald-800 transition">
+                <a href="portal.html" target="_top" class="flex items-center justify-between py-3 border-b border-slate-900 text-emerald-400 hover:text-emerald-300 transition">
                     <span><i class="fa-solid fa-lock mr-2 text-xs"></i> Staff Portal</span>
                     <i class="fa-solid fa-chevron-right text-sm text-emerald-500"></i>
                 </a>
             </nav>
 
             <div class="pt-4">
-                <button onclick="toggleMenuDrawer(); openPolicyModal();" class="px-6 py-3 bg-slate-900 text-white font-bold text-xs rounded-xl shadow">
+                <button onclick="toggleMenuDrawer(); openPolicyModal();" class="px-6 py-3 bg-emerald-900 text-emerald-200 font-bold text-xs rounded-xl border border-emerald-700 shadow">
                     Press & Governance Centre
                 </button>
             </div>
         </div>
 
-        <div class="bg-slate-50 border-t border-slate-200 py-6 px-6 text-center text-xs text-slate-600">
-            <p class="font-bold mb-2">HRCDI Operational Regions</p>
+        <div class="bg-slate-900 border-t border-emerald-900 py-6 px-6 text-center text-xs text-slate-400">
+            <p class="font-bold mb-2 text-emerald-400">HRCDI Operational Regions</p>
             <p>Maiduguri HQ • Borno State • Nationwide Support Across Nigeria</p>
         </div>
     </div>
@@ -127,10 +131,10 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION MATCHING STANDARD REFERENCE -->
-        <section class="bg-[#0b1329] text-white py-16 sm:py-24 px-6 border-b border-slate-800">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <span class="inline-block bg-red-600 text-white font-black text-xs uppercase px-3.5 py-1.5 tracking-widest rounded shadow-sm">
+        <!-- HERO SECTION (GREEN & RED THEME) -->
+        <section class="bg-slate-900 text-white py-16 sm:py-24 px-6 border-b border-emerald-900/45 bg-pattern relative overflow-hidden">
+            <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+                <span class="inline-block bg-red-600 text-white font-black text-xs uppercase px-3.5 py-1.5 tracking-widest rounded shadow-md">
                     OUR TARGETS
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
@@ -140,7 +144,7 @@
                     Providing life-saving humanitarian assistance, youth educational support, and healthcare relief across Maiduguri and vulnerable communities in Nigeria.
                 </p>
                 <div class="pt-2">
-                    <a href="#donate-section" class="inline-flex items-center gap-2 text-white font-extrabold text-sm hover:text-emerald-400 transition group">
+                    <a href="#donate-section" class="inline-flex items-center gap-2 text-emerald-400 font-extrabold text-sm hover:text-emerald-300 transition group">
                         <span>› Donate now</span>
                     </a>
                 </div>
@@ -148,60 +152,60 @@
         </section>
 
         <!-- LIVE FROM THE GROUND / NEWS STRIP -->
-        <section class="bg-slate-100 py-12 px-4 border-b border-slate-200">
+        <section class="bg-[#03362c] py-12 px-4 border-b border-emerald-900/40">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="text-center space-y-2">
-                    <h3 class="text-xs font-black uppercase tracking-widest text-red-600">Live From The Ground</h3>
-                    <h4 class="text-xl sm:text-3xl font-black text-slate-900">HRCDI Field Updates & Missions</h4>
+                    <h3 class="text-xs font-black uppercase tracking-widest text-red-500">Live From The Ground</h3>
+                    <h4 class="text-xl sm:text-3xl font-black text-white">HRCDI Field Updates & Missions</h4>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-xl border border-emerald-800/40 flex flex-col justify-between">
                         <div class="p-6 space-y-3">
-                            <span class="text-[10px] font-bold text-red-600 uppercase">Press Release</span>
-                            <h5 class="font-extrabold text-base text-slate-900 leading-snug">
+                            <span class="text-[10px] font-bold text-red-500 uppercase">Press Release</span>
+                            <h5 class="font-extrabold text-base text-white leading-snug">
                                 Maiduguri Outreach: Expanding Community Health & Sanitation Support
                             </h5>
-                            <p class="text-xs text-slate-600 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
                                 Deploying essential hygiene supplies and clean water awareness programs across local settlement zones.
                             </p>
                         </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-slate-100">
-                            <a href="#donate-section" class="text-xs font-bold text-slate-900 hover:text-red-600 transition flex items-center gap-1">
+                        <div class="px-6 pb-6 pt-2 border-t border-emerald-900/50">
+                            <a href="#donate-section" class="text-xs font-bold text-emerald-400 hover:text-red-400 transition flex items-center gap-1">
                                 Read full update ›
                             </a>
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-xl border border-emerald-800/40 flex flex-col justify-between">
                         <div class="p-6 space-y-3">
-                            <span class="text-[10px] font-bold text-red-600 uppercase">Education Initiative</span>
-                            <h5 class="font-extrabold text-base text-slate-900 leading-snug">
+                            <span class="text-[10px] font-bold text-red-500 uppercase">Education Initiative</span>
+                            <h5 class="font-extrabold text-base text-white leading-snug">
                                 Youth Academic Sponsorship & Vocational Training Kickoff
                             </h5>
-                            <p class="text-xs text-slate-600 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
                                 Empowering underprivileged youth with school supplies and targeted technical skill development.
                             </p>
                         </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-slate-100">
-                            <a href="#donate-section" class="text-xs font-bold text-slate-900 hover:text-red-600 transition flex items-center gap-1">
+                        <div class="px-6 pb-6 pt-2 border-t border-emerald-900/50">
+                            <a href="#donate-section" class="text-xs font-bold text-emerald-400 hover:text-red-400 transition flex items-center gap-1">
                                 Support youth programs ›
                             </a>
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-xl border border-emerald-800/40 flex flex-col justify-between">
                         <div class="p-6 space-y-3">
-                            <span class="text-[10px] font-bold text-red-600 uppercase">Governance Notice</span>
-                            <h5 class="font-extrabold text-base text-slate-900 leading-snug">
+                            <span class="text-[10px] font-bold text-red-500 uppercase">Governance Notice</span>
+                            <h5 class="font-extrabold text-base text-white leading-snug">
                                 CAC Incorporated Trustee Compliance & Transparency
                             </h5>
-                            <p class="text-xs text-slate-600 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
                                 Operating strictly under CAMA 2020 legal framework with verified trustee oversight and full accountability.
                             </p>
                         </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-slate-100">
-                            <button onclick="openPolicyModal()" class="text-xs font-bold text-slate-900 hover:text-red-600 transition flex items-center gap-1">
+                        <div class="px-6 pb-6 pt-2 border-t border-emerald-900/50">
+                            <button onclick="openPolicyModal()" class="text-xs font-bold text-emerald-400 hover:text-red-400 transition flex items-center gap-1">
                                 View Policy Document ›
                             </button>
                         </div>
@@ -213,28 +217,28 @@
         <!-- ABOUT SECTION -->
         <section id="about" class="max-w-5xl mx-auto px-4 py-16 space-y-8">
             <div class="text-center space-y-2">
-                <h3 class="text-xs font-black uppercase tracking-widest text-emerald-700">Who We Are</h3>
-                <h4 class="text-2xl sm:text-3xl font-black text-slate-900">Hope Rising Community Development Initiative</h4>
-                <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
+                <h3 class="text-xs font-black uppercase tracking-widest text-emerald-400">Who We Are</h3>
+                <h4 class="text-2xl sm:text-3xl font-black text-white">Hope Rising Community Development Initiative</h4>
+                <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto">
                     Dedicated to safeguarding vulnerable lives, promoting sustainable livelihoods, and fostering educational growth across Borno State and Nigeria.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-3 shadow-sm">
-                    <h5 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-bullseye text-emerald-600"></i> Our Mission
+                <div class="bg-slate-900 border border-emerald-800/40 rounded-3xl p-6 sm:p-8 space-y-3 shadow-xl">
+                    <h5 class="font-extrabold text-base text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-emerald-400"></i> Our Mission
                     </h5>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         To empower vulnerable and marginalized communities through sustainable development programs, access to quality education, healthcare initiatives, and economic growth opportunities.
                     </p>
                 </div>
 
-                <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-3 shadow-sm">
-                    <h5 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-eye text-emerald-600"></i> Our Vision
+                <div class="bg-slate-900 border border-emerald-800/40 rounded-3xl p-6 sm:p-8 space-y-3 shadow-xl">
+                    <h5 class="font-extrabold text-base text-white flex items-center gap-2">
+                        <i class="fa-solid fa-eye text-emerald-400"></i> Our Vision
                     </h5>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         A thriving society where every community member has access to education, dignity, healthcare relief, and long-term economic growth.
                     </p>
                 </div>
@@ -242,7 +246,7 @@
         </section>
 
         <!-- LEADERSHIP & GOVERNANCE -->
-        <section id="leadership" class="bg-slate-900 text-white py-16 px-4">
+        <section id="leadership" class="bg-slate-950 text-white py-16 px-4 border-y border-emerald-900/40">
             <div class="max-w-3xl mx-auto space-y-10">
                 <div class="text-center space-y-2">
                     <h3 class="text-xs font-black uppercase tracking-widest text-emerald-400">Leadership</h3>
@@ -250,8 +254,8 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 text-center space-y-3">
-                        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
+                    <div class="bg-slate-900 border border-emerald-800/40 rounded-3xl p-6 text-center space-y-3 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
                             RO
                         </div>
                         <h5 class="font-extrabold text-white text-base">Obinna Rejoice Ifechukwu</h5>
@@ -261,8 +265,8 @@
                         </p>
                     </div>
 
-                    <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 text-center space-y-3">
-                        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
+                    <div class="bg-slate-900 border border-emerald-800/40 rounded-3xl p-6 text-center space-y-3 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
                             IH
                         </div>
                         <h5 class="font-extrabold text-white text-base">Isaac Hassan</h5>
@@ -272,8 +276,8 @@
                         </p>
                     </div>
 
-                    <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 text-center space-y-3">
-                        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
+                    <div class="bg-slate-900 border border-emerald-800/40 rounded-3xl p-6 text-center space-y-3 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-extrabold text-lg mx-auto">
                             VO
                         </div>
                         <h5 class="font-extrabold text-white text-base">Okeke Victor Oluebube</h5>
@@ -285,7 +289,7 @@
                 </div>
 
                 <div class="text-center pt-2">
-                    <button onclick="openPolicyModal()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition shadow">
+                    <button onclick="openPolicyModal()" class="px-6 py-3 bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition shadow-lg">
                         <i class="fa-solid fa-file-shield mr-1"></i> View Official Policy Document & Letterhead
                     </button>
                 </div>
@@ -294,39 +298,39 @@
 
         <!-- ADVANCED SECURE ONLINE DONATION SECTION -->
         <section id="donate-section" class="max-w-2xl mx-auto px-4 py-16">
-            <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
+            <div class="bg-slate-900 border border-emerald-800/50 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden text-white">
                 
-                <div class="flex items-center justify-between bg-sky-50 border border-sky-200 rounded-2xl p-3 text-xs text-sky-900 font-semibold">
+                <div class="flex items-center justify-between bg-emerald-950/80 border border-emerald-700/50 rounded-2xl p-3 text-xs text-emerald-300 font-semibold">
                     <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
                         <span><strong>1,248+</strong> Donors active this month</span>
                     </div>
-                    <span class="text-sky-700 font-bold"><i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i> SSL Secure</span>
+                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-shield-halved text-red-500 mr-1"></i> SSL Secure</span>
                 </div>
 
                 <div class="text-center space-y-3">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center mx-auto shadow-md overflow-hidden p-1">
+                    <div class="w-16 h-16 rounded-full bg-white border-2 border-emerald-500/50 flex items-center justify-center mx-auto shadow-md overflow-hidden p-1">
                         <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                        <div class="w-full h-full items-center justify-center text-slate-800 hidden font-bold text-sm">HR</div>
+                        <div class="w-full h-full items-center justify-center text-emerald-800 hidden font-bold text-sm">HR</div>
                     </div>
-                    <span class="inline-block bg-red-600 text-white font-extrabold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider">
+                    <span class="inline-block bg-red-600 text-white font-extrabold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider shadow">
                         ADVANCED SECURE DONATION GATEWAY
                     </span>
-                    <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                    <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
                         Support Our Humanitarian Mission
                     </h3>
-                    <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                         Your contribution directly funds youth education, community health outreach, and relief distribution in Maiduguri and across Nigeria.
                     </p>
                 </div>
 
                 <!-- FREQUENCY TOGGLE (MONTHLY / GIVE ONCE) -->
                 <div class="flex justify-center">
-                    <div class="bg-slate-100 p-1.5 rounded-2xl flex gap-2 border border-slate-200 w-full">
-                        <button id="freq-monthly" onclick="setFrequency('monthly')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-sky-500 text-white shadow">
-                            Monthly <i class="fa-solid fa-heart text-red-200 ml-1"></i>
+                    <div class="bg-slate-950 p-1.5 rounded-2xl flex gap-2 border border-emerald-900 w-full">
+                        <button id="freq-monthly" onclick="setFrequency('monthly')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow">
+                            Monthly <i class="fa-solid fa-heart text-red-300 ml-1"></i>
                         </button>
-                        <button id="freq-once" onclick="setFrequency('once')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-700 hover:text-slate-900">
+                        <button id="freq-once" onclick="setFrequency('once')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white">
                             Give Once
                         </button>
                     </div>
@@ -334,73 +338,73 @@
 
                 <!-- DYNAMIC PRESET TIER CARDS -->
                 <div class="space-y-3">
-                    <p class="text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Select or enter contribution amount</p>
+                    <p class="text-center text-xs font-bold text-emerald-400 uppercase tracking-wider">Select or enter contribution amount</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <button onclick="selectTier(0, this)" id="tier-1-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
-                            <span id="tier-1-amount" class="block font-black text-base sm:text-lg text-slate-900">₦4,000</span>
-                            <span id="tier-1-desc" class="block text-[10px] text-slate-500 font-medium tier-desc">₦133/day</span>
+                        <button onclick="selectTier(0, this)" id="tier-1-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
+                            <span id="tier-1-amount" class="block font-black text-base sm:text-lg text-white">₦4,000</span>
+                            <span id="tier-1-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">₦133/day</span>
                         </button>
-                        <button onclick="selectTier(1, this)" id="tier-2-btn" class="tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm">
-                            <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">Popular</span>
-                            <span id="tier-2-amount" class="block font-black text-base sm:text-lg text-slate-900">₦7,000</span>
-                            <span id="tier-2-desc" class="block text-[10px] text-sky-700 font-bold tier-desc">₦233/day</span>
+                        <button onclick="selectTier(1, this)" id="tier-2-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition space-y-1 relative shadow-sm">
+                            <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow">Popular</span>
+                            <span id="tier-2-amount" class="block font-black text-base sm:text-lg text-white">₦7,000</span>
+                            <span id="tier-2-desc" class="block text-[10px] text-emerald-400 font-bold tier-desc">₦233/day</span>
                         </button>
-                        <button onclick="selectTier(2, this)" id="tier-3-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1">
-                            <span id="tier-3-amount" class="block font-black text-base sm:text-lg text-slate-900">₦12,000</span>
-                            <span id="tier-3-desc" class="block text-[10px] text-slate-500 font-medium tier-desc">₦400/day</span>
+                        <button onclick="selectTier(2, this)" id="tier-3-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
+                            <span id="tier-3-amount" class="block font-black text-base sm:text-lg text-white">₦12,000</span>
+                            <span id="tier-3-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">₦400/day</span>
                         </button>
-                        <button onclick="selectTier('other', this)" id="tier-other-btn" class="tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition flex flex-col items-center justify-center space-y-1">
-                            <span class="block font-black text-sm sm:text-base text-slate-900">Other</span>
-                            <span class="block text-[10px] text-slate-500 font-medium">Custom amount</span>
+                        <button onclick="selectTier('other', this)" id="tier-other-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition flex flex-col items-center justify-center space-y-1">
+                            <span class="block font-black text-sm sm:text-base text-white">Other</span>
+                            <span class="block text-[10px] text-slate-400 font-medium">Custom amount</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- ADVANCED DONOR DETAILS FORM -->
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+                <div class="bg-slate-950 border border-emerald-900/60 rounded-2xl p-5 space-y-4">
                     <div class="flex items-center justify-between mb-1">
-                        <h4 class="font-extrabold text-xs text-slate-900 flex items-center gap-1.5">
-                            <i class="fa-solid fa-user-shield text-emerald-600"></i> Donor Information & Paystack Checkout
+                        <h4 class="font-extrabold text-xs text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-user-shield text-emerald-400"></i> Donor Information & Paystack Checkout
                         </h4>
-                        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Encrypted</span>
+                        <span class="px-2 py-0.5 rounded bg-emerald-900 text-emerald-300 text-[10px] font-bold">Encrypted</span>
                     </div>
-                    <p class="text-[11px] text-slate-600 mb-3">Please provide your contact details for official donation acknowledgment receipt and impact reports.</p>
+                    <p class="text-[11px] text-slate-300 mb-3">Please provide your contact details for official donation acknowledgment receipt and impact reports.</p>
 
                     <div class="space-y-3">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Full Name</label>
-                                <input type="text" id="donor-name" placeholder="Enter your full name" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                                <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Full Name</label>
+                                <input type="text" id="donor-name" placeholder="Enter your full name" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Email Address</label>
-                                <input type="email" id="donor-email" placeholder="you@example.com" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                                <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Email Address</label>
+                                <input type="email" id="donor-email" placeholder="you@example.com" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Phone Number</label>
-                                <input type="tel" id="donor-phone" placeholder="08000000000" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                                <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Phone Number</label>
+                                <input type="tel" id="donor-phone" placeholder="08000000000" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Donation Amount (NGN)</label>
-                                <input type="number" id="paystack-amount" value="7000" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-bold focus:outline-none focus:border-red-600">
+                                <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Donation Amount (NGN)</label>
+                                <input type="number" id="paystack-amount" value="7000" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-bold focus:outline-none focus:border-red-500">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Dedication / Message (Optional)</label>
-                            <input type="text" id="donor-note" placeholder="e.g. In support of Maiduguri youth education" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-900 text-xs font-semibold focus:outline-none focus:border-red-600">
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Dedication / Message (Optional)</label>
+                            <input type="text" id="donor-note" placeholder="e.g. In support of Maiduguri youth education" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
                         </div>
                         
-                        <button onclick="payWithPaystack()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-2">
+                        <button onclick="payWithPaystack()" class="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs sm:text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-2">
                             <i class="fa-solid fa-lock"></i> Complete Secure Donation via Paystack
                         </button>
                     </div>
 
-                    <div class="flex items-center justify-center gap-2 text-[10px] text-slate-500 pt-3 border-t border-slate-200">
-                        <i class="fa-solid fa-globe text-red-600"></i>
+                    <div class="flex items-center justify-center gap-2 text-[10px] text-slate-400 pt-3 border-t border-emerald-900/60">
+                        <i class="fa-solid fa-globe text-red-500"></i>
                         <span>Accepts Nigerian cards, foreign cards, USSD & Bank Transfers.</span>
                     </div>
                 </div>
@@ -414,16 +418,16 @@
     <div id="policy-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto no-print">
         <div class="bg-slate-900 border border-emerald-500/40 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl my-8">
             
-            <div class="bg-slate-950 px-4 sm:px-6 py-3 border-b border-slate-800 flex items-center justify-between gap-3">
+            <div class="bg-slate-950 px-4 sm:px-6 py-3 border-b border-emerald-900 flex items-center justify-between gap-3">
                 <div class="flex items-center gap-2 min-w-0">
                     <i class="fa-solid fa-file-shield text-emerald-400 text-base shrink-0"></i>
                     <h4 class="font-extrabold text-xs sm:text-sm text-white truncate">Policy Document & Letterhead</h4>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
-                    <button onclick="window.print()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-[11px] rounded-xl transition flex items-center gap-1.5 shadow">
+                    <button onclick="window.print()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white font-black text-[11px] rounded-xl transition flex items-center gap-1.5 shadow">
                         <i class="fa-solid fa-print"></i> <span>Print / PDF</span>
                     </button>
-                    <button onclick="closePolicyModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <button onclick="closePolicyModal()" class="w-8 h-8 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition">
                         <i class="fa-solid fa-xmark text-sm"></i>
                     </button>
                 </div>
@@ -490,40 +494,40 @@
         </div>
     </div>
 
-    <!-- GLOBAL FOOTER -->
-    <footer class="bg-[#00adef] text-white pt-12 pb-8 border-t border-sky-400">
+    <!-- GLOBAL FOOTER (GREEN & RED THEME) -->
+    <footer class="bg-slate-950 text-white pt-12 pb-8 border-t border-emerald-900">
         <div class="max-w-5xl mx-auto px-4 text-center space-y-6">
             
             <div class="flex justify-center items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-white overflow-hidden p-0.5">
+                <div class="w-10 h-10 rounded-full bg-white overflow-hidden p-0.5 border border-emerald-500/40">
                     <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full">
                 </div>
-                <span class="font-black text-sm uppercase tracking-wider">HRCDI, For Every Community</span>
+                <span class="font-black text-sm uppercase tracking-wider text-emerald-400">HRCDI, For Every Community</span>
             </div>
 
             <div>
-                <a href="#donate-section" class="inline-block bg-white text-slate-900 hover:bg-slate-100 font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg transition">
+                <a href="#donate-section" class="inline-block bg-red-600 hover:bg-red-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg transition">
                     Become a donor
                 </a>
             </div>
 
-            <div class="flex justify-center items-center gap-5 text-xl py-2">
-                <a href="https://facebook.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://youtube.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://whatsapp.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="flex justify-center items-center gap-5 text-xl py-2 text-emerald-400">
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-6 text-xs font-bold pt-2">
-                <a href="mailto:info@hrcdi.org.ng" class="hover:underline">Contact us</a>
-                <button onclick="openPolicyModal()" class="hover:underline">Legal & Policy</button>
-                <a href="portal.html" target="_top" class="hover:underline">Staff Portal</a>
-                <a href="#about" class="hover:underline">Accessibility</a>
+            <div class="flex flex-wrap justify-center gap-6 text-xs font-bold pt-2 text-slate-300">
+                <a href="mailto:info@hrcdi.org.ng" class="hover:text-emerald-400">Contact us</a>
+                <button onclick="openPolicyModal()" class="hover:text-emerald-400">Legal & Policy</button>
+                <a href="portal.html" target="_top" class="hover:text-emerald-400">Staff Portal</a>
+                <a href="#about" class="hover:text-emerald-400">Accessibility</a>
             </div>
 
-            <div class="border-t border-sky-400/60 pt-6 max-w-2xl mx-auto text-[11px] text-sky-100 leading-relaxed">
+            <div class="border-t border-emerald-900/60 pt-6 max-w-2xl mx-auto text-[11px] text-slate-400 leading-relaxed">
                 <p>© 2026 Hope Rising Community Development Initiative (HRCDI). Strives to uphold the rights of vulnerable communities, protecting them from harm and all forms of hardship. Maiduguri, Borno State & Across Nigeria • info@hrcdi.org.ng</p>
             </div>
         </div>
@@ -559,11 +563,11 @@
             const onceBtn = document.getElementById('freq-once');
             
             if (freq === 'monthly') {
-                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-sky-500 text-white shadow";
-                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-700 hover:text-slate-900";
+                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow";
+                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white";
             } else {
-                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-sky-500 text-white shadow";
-                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-700 hover:text-slate-900";
+                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow";
+                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white";
             }
 
             const currentTiers = tierData[freq];
@@ -578,18 +582,18 @@
         function selectTier(index, btnElement) {
             const buttons = document.querySelectorAll('.tier-btn');
             buttons.forEach(btn => {
-                btn.className = "tier-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-sky-500 bg-white text-center transition space-y-1";
+                btn.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-900/60 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1";
                 const badge = btn.querySelector('.absolute');
                 if (badge) badge.remove();
             });
 
             if (index !== 'other') {
                 selectedTierIndex = index;
-                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition space-y-1 relative shadow-sm";
+                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition space-y-1 relative shadow-sm";
                 
                 if (index === 1) {
                     const badge = document.createElement('span');
-                    badge.className = "absolute -top-2.5 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider";
+                    badge.className = "absolute -top-2.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow";
                     badge.innerText = "Popular";
                     btnElement.appendChild(badge);
                 }
@@ -597,7 +601,7 @@
                 const amt = tierData[currentFrequency][index].amount;
                 document.getElementById('paystack-amount').value = amt;
             } else {
-                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-sky-500 bg-sky-50/50 text-center transition flex flex-col items-center justify-center space-y-1 relative shadow-sm";
+                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition flex flex-col items-center justify-center space-y-1 relative shadow-sm";
                 document.getElementById('paystack-amount').value = '';
                 document.getElementById('paystack-amount').focus();
             }
