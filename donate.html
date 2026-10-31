@@ -1,209 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8LJFMQBHGL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Hope Rising Community Development Initiative (HRCDI)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Paystack Inline JS SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 
-  gtag('config', 'G-8LJFMQBHGL');
-</script>
-    <!-- Primary Meta Tags -->
-<meta name="title" content="Hope Rising Community Development Initiative (HRCDI)">
-<meta name="description" content="Empowering marginalized communities through sustainable development, education, capacity building, and economic growth in Nigeria.">
-
-<!-- Open Graph / Facebook / WhatsApp -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hrcdi.org.ng/">
-<meta property="og:title" content="Hope Rising Community Development Initiative (HRCDI)">
-<meta property="og:description" content="Empowering marginalized communities through sustainable development, education, capacity building, and economic growth in Nigeria.">
-<meta property="og:image" content="https://hrcdi.org.ng/IMG_2369.png">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://hrcdi.org.ng/">
-<meta property="twitter:title" content="Hope Rising Community Development Initiative (HRCDI)">
-<meta property="twitter:description" content="Empowering marginalized communities through sustainable development, education, capacity building, and economic growth in Nigeria.">
-<meta property="twitter:image" content="https://hrcdi.org.ng/IMG_2369.png">
     <style>
-        :root {
-            --primary: #1b4332;
-            --primary-light: #2d6a4f;
-            --accent: #52b788;
-            --bg-light: #f8f9fa;
-            --text-dark: #212529;
-            --text-muted: #6c757d;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+            background-color: #022c22;
+            color: #f8fafc;
         }
-
-        /* Navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 4%;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--primary);
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.logo img {
-    height: 35px;
-    width: auto;
-    object-fit: contain;
-}
-
-.nav-links {
-    display: flex;
-    gap: 0.8rem;
-    list-style: none;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
-.nav-links a.btn-primary {
-    background-color: var(--accent);
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 5px;
-    font-size: 0.85rem;
-}
-
-        /* Donation Container */
-        .donation-container {
-            max-width: 600px;
-            margin: 3rem auto;
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .donation-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .donation-header h2 {
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .btn-donate {
-            width: 100%;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-donate:hover {
-            background-color: var(--primary-light);
-        }
-
-        footer {
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin-top: 3rem;
+        .bg-pattern {
+            background-image: radial-gradient(#059669 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between bg-[#022c22] text-white">
 
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="IMG_2369.png" alt="HRCDI Logo">
-            <span>HRCDI</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <a href="programs.html">Programs</a>
-            <li><a href="about.html">About Us</a></li>
-            <a href="contact.html">Contact</a>
-            <li><a href="donate.html" class="btn-primary">Donate</a></li>
-        </ul>
-    </nav>
+    <!-- TOP GLOBAL HEADER -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-emerald-800/40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-emerald-500/50 flex items-center justify-center shadow-md overflow-hidden shrink-0 p-0.5">
+                    <img src="logo.jpg" alt="HRCDI Logo" class="w-full h-full object-contain rounded-full" onerror="this.onerror=null; this.src='IMG_3342.jpeg';">
+                </a>
+                <div>
+                    <h1 class="font-black text-[11px] sm:text-xs tracking-tight text-white leading-tight uppercase">
+                        HOPE RISING COMMUNITY<br>DEVELOPMENT INITIATIVE
+                    </h1>
+                    <p class="text-[10px] text-emerald-400 font-medium">Maiduguri & Across Nigeria</p>
+                </div>
+            </div>
 
-    <div class="donation-container">
-        <div class="donation-header">
-            <h2>Make a Difference</h2>
-            <p>Your generosity supports sustainable development and community growth.</p>
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-full font-bold text-xs transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </div>
         </div>
+    </header>
 
-        <div class="donate-container" style="max-width: 500px; margin: 2rem auto; padding: 2rem; border-radius: 8px; background: #f8f9fa; text-align: center;">
-    <h2>Make a Direct Donation</h2>
-    <p>You can support Hope Rising Community Development Initiative directly via bank transfer:</p>
-    
-    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <p><strong>Bank Name:</strong> [Insert Bank Name]</p>
-        <p><strong>Account Name:</strong> Hope Rising Community Development Initiative</p>
-        <p><strong>Account Number:</strong> [Insert Account Number]</p>
-    </div>
-</div>
+    <!-- MAIN DONATION CONTAINER -->
+    <main class="flex-grow py-12 px-4">
+        <div class="max-w-2xl mx-auto bg-slate-900 border border-emerald-800/50 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
             
+            <div class="flex items-center justify-between bg-emerald-950/80 border border-emerald-700/50 rounded-2xl p-3 text-xs text-emerald-300 font-semibold">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                    <span><strong>1,248+</strong> Donors active this month</span>
+                </div>
+                <span class="text-emerald-400 font-bold"><i class="fa-solid fa-shield-halved text-red-500 mr-1"></i> SSL Secure</span>
+            </div>
 
+            <div class="text-center space-y-3">
+                <div class="w-20 h-20 rounded-full bg-white border-2 border-emerald-500/50 flex items-center justify-center mx-auto shadow-md overflow-hidden p-1">
+                    <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full" onerror="this.onerror=null; this.src='IMG_3342.jpeg';">
+                </div>
+                <span class="inline-block bg-red-600 text-white font-extrabold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider shadow">
+                    SECURE DONATION GATEWAY
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                    Support Our Humanitarian Mission
+                </h2>
+            </div>
+
+            <!-- FREQUENCY TOGGLE -->
+            <div class="flex justify-center">
+                <div class="bg-slate-950 p-1.5 rounded-2xl flex gap-2 border border-emerald-900 w-full">
+                    <button id="freq-monthly" onclick="setFrequency('monthly')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow">
+                        Monthly <i class="fa-solid fa-heart text-red-300 ml-1"></i>
+                    </button>
+                    <button id="freq-once" onclick="setFrequency('once')" class="flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white">
+                        Give Once
+                    </button>
+                </div>
+            </div>
+
+            <!-- TIER CARDS -->
+            <div class="space-y-3">
+                <p class="text-center text-xs font-bold text-emerald-400 uppercase tracking-wider">Select or enter contribution amount</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <button onclick="selectTier(0, this)" id="tier-1-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/65 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
+                        <span id="tier-1-amount" class="block font-black text-base sm:text-lg text-white">₦4,000</span>
+                        <span id="tier-1-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">133/day</span>
+                    </button>
+                    
+                    <button onclick="selectTier(1, this)" id="tier-2-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition space-y-1 relative shadow-sm">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow">Popular</span>
+                        <span id="tier-2-amount" class="block font-black text-base sm:text-lg text-white">₦7,000</span>
+                        <span id="tier-2-desc" class="block text-[10px] text-emerald-400 font-bold tier-desc">233/day</span>
+                    </button>
+
+                    <button onclick="selectTier(2, this)" id="tier-3-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/65 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1">
+                        <span id="tier-3-amount" class="block font-black text-base sm:text-lg text-white">₦12,000</span>
+                        <span id="tier-3-desc" class="block text-[10px] text-slate-400 font-medium tier-desc">400/day</span>
+                    </button>
+                    
+                    <button onclick="selectTier('other', this)" id="tier-other-btn" class="tier-btn p-4 rounded-2xl border-2 border-emerald-900/65 hover:border-emerald-500 bg-slate-950 text-center transition flex flex-col items-center justify-center space-y-1">
+                        <span class="block font-black text-sm sm:text-base text-white">Other</span>
+                        <span class="block text-[10px] text-slate-400 font-medium">Custom amount</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- DONOR DETAILS FORM -->
+            <div class="bg-slate-950 border border-emerald-900/60 rounded-2xl p-5 space-y-4">
+                <div class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Full Name</label>
+                            <input type="text" id="donor-name" placeholder="Enter your full name" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Email Address</label>
+                            <input type="email" id="donor-email" placeholder="you@example.com" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Phone Number</label>
+                            <input type="tel" id="donor-phone" placeholder="08000000000" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Donation Amount (NGN)</label>
+                            <input type="number" id="paystack-amount" value="7000" class="w-full bg-slate-900 border border-emerald-900 rounded-xl px-3 py-2.5 text-white text-xs font-bold focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                    
+                    <button onclick="payWithPaystack()" class="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs sm:text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-2">
+                        <i class="fa-solid fa-lock"></i> Complete Secure Donation via Paystack
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white py-6 text-center text-xs border-t border-emerald-900">
+        <p>© 2026 Hope Rising Community Development Initiative (HRCDI). All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        let currentFrequency = 'monthly';
+        const tierData = {
+            monthly: [
+                { amount: 4000, label: '₦4,000', sub: '133/day' },
+                { amount: 7000, label: '₦7,000', sub: '233/day' },
+                { amount: 12000, label: '₦12,000', sub: '400/day' }
+            ],
+            once: [
+                { amount: 15000, label: '₦15,000', sub: 'One-time support' },
+                { amount: 35000, label: '₦35,000', sub: 'Impact partner' },
+                { amount: 75000, label: '₦75,000', sub: 'Major contributor' }
+            ]
+        };
+
+        function setFrequency(freq) {
+            currentFrequency = freq;
+            const monthlyBtn = document.getElementById('freq-monthly');
+            const onceBtn = document.getElementById('freq-once');
             
+            if (freq === 'monthly') {
+                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow";
+                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white";
+            } else {
+                onceBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition bg-emerald-600 text-white shadow";
+                monthlyBtn.className = "flex-1 py-3 rounded-xl font-extrabold text-xs sm:text-sm transition text-slate-300 hover:text-white";
+            }
+
+            const currentTiers = tierData[freq];
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`tier-${i+1}-amount`).innerText = currentTiers[i].label;
+                document.getElementById(`tier-${i+1}-desc`).innerText = currentTiers[i].sub;
+            }
+            selectTier(1, document.getElementById('tier-2-btn'));
+        }
+
+        function selectTier(index, btnElement) {
+            const buttons = document.querySelectorAll('.tier-btn');
+            buttons.forEach(btn => {
+                btn.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-900/65 hover:border-emerald-500 bg-slate-950 text-center transition space-y-1";
+                const badge = btn.querySelector('.absolute');
+                if (badge) badge.remove();
+            });
+
+            if (index !== 'other') {
+                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition space-y-1 relative shadow-sm";
+                if (index === 1) {
+                    const badge = document.createElement('span');
+                    badge.className = "absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider shadow";
+                    badge.innerText = "Popular";
+                    btnElement.appendChild(badge);
+                }
+                document.getElementById('paystack-amount').value = tierData[currentFrequency][index].amount;
+            } else {
+                btnElement.className = "tier-btn p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 text-center transition flex flex-col items-center justify-center space-y-1 relative shadow-sm";
+                document.getElementById('paystack-amount').value = '';
+                document.getElementById('paystack-amount').focus();
+            }
+        }
+
+        function payWithPaystack() {
+            const name = document.getElementById('donor-name').value || 'HRCDI Supporter';
+            const email = document.getElementById('donor-email').value || 'info@hrcdi.org.ng';
+            const phone = document.getElementById('donor-phone').value || '08000000000';
+            const amountInNaira = parseInt(document.getElementById('paystack-amount').value) || 7000;
+
+            let handler = PaystackPop.setup({
+                key: 'pk_live_YOUR_PAYSTACK_PUBLIC_KEY',
+                email: email,
+                amount: amountInNaira * 100,
+                currency: 'NGN',
+                ref: 'HRCDI_' + currentFrequency.toUpperCase() + '_' + Math.floor(Math.random() * 1000000000),
+                callback: function(response) {
+                    alert('Thank you ' + name + ' for supporting HRCDI! Ref: ' + response.reference);
+                }
+            });
+            handler.openIframe();
+        }
     </script>
 </body>
 </html>
