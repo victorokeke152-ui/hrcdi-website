@@ -20,7 +20,7 @@
 </head>
 <body class="bg-[#022c22] text-white p-3 sm:p-6 min-h-screen flex flex-col items-center justify-center">
 
-    <!-- TOP NAVIGATION (BREAKS OUT OF IFRAMES/POPUPS) -->
+    <!-- TOP NAVIGATION (BREAKS OUT OF IFRAMES/POPUPS TO RETURN HOME) -->
     <div class="w-full max-w-4xl mb-4 flex items-center justify-between px-2">
         <a href="index.html" target="_top" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-slate-900/90 px-4 py-2.5 rounded-xl border border-emerald-500/30 transition shadow">
             <i class="fa-solid fa-arrow-left"></i> Back to Main Page
@@ -171,6 +171,7 @@
                 ref: 'HRCDI_' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function(response) {
                     alert('Thank you for supporting HRCDI! Payment Reference: ' + response.reference);
+                    // Forces the browser to break out of any modal and return home safely
                     window.top.location.href = "index.html"; 
                 },
                 onClose: function() {
